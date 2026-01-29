@@ -20,7 +20,7 @@ body {
     background-color: var(--bg); 
     color: var(--white); 
     font-family: 'Inter', sans-serif; 
-    line-height: 2.0; /* Spacious line height */
+    line-height: 2.0; 
     -webkit-font-smoothing: antialiased;
 }
 
@@ -75,7 +75,7 @@ nav {
 
 .availability { 
     font-size: 0.65rem; 
-    color: #00ff88; /* Green indicator */
+    color: #00ff88; 
     text-transform: uppercase; 
     letter-spacing: 2px; 
     margin-bottom: 40px; 
@@ -100,7 +100,7 @@ nav {
     color: var(--bg); 
 }
 
-/* --- About Section & 85px Photo --- */
+/* --- About Section & 100px Photo --- */
 section { 
     padding: 140px 0; 
     border-top: 1px solid var(--border); 
@@ -113,12 +113,12 @@ section {
 }
 
 .profile-img-medium { 
-    width: 85px; /* Fixed size as requested */
+    width: 100px; /* Updated to 100px */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
-    border: none; /* No white border */
-    border-radius: 1px;
+    border: none; 
+    border-radius: 2px;
 }
 
 .label { 
@@ -132,111 +132,4 @@ section {
 }
 
 .content-text { 
-    font-size: 1.6rem; 
-    line-height: 1.6; 
-    max-width: 800px; 
-    margin: 0 auto; 
-    text-align: center; 
-}
-
-/* --- Experience & Projects Lists --- */
-.list-item { 
-    display: flex; 
-    padding: 60px 0; 
-    border-bottom: 1px solid var(--border); 
-    align-items: baseline; 
-}
-
-.meta { 
-    width: 180px; 
-    color: var(--muted); 
-    font-size: 0.8rem; 
-}
-
-.item-info h3 { 
-    font-size: 2.2rem; 
-    font-weight: 400; 
-    margin-bottom: 15px; 
-}
-
-.item-info p { 
-    color: var(--muted); 
-}
-
-.arrow { 
-    margin-left: auto; 
-    font-size: 1.8rem; 
-}
-
-/* --- Contact & Footer --- */
-#contact { 
-    text-align: center; 
-    border-bottom: none; 
-    padding-bottom: 80px; 
-}
-
-.contact-title { 
-    font-size: 2.2rem; /* Medium size */
-    font-weight: 500; 
-    margin-bottom: 30px; 
-}
-
-.contact-details {
-    margin-bottom: 60px;
-}
-
-.phone-link { 
-    font-size: 1.5rem; 
-    text-decoration: none; 
-    color: var(--white); 
-    transition: 0.3s;
-}
-
-.phone-link:hover {
-    opacity: 0.6;
-}
-
-.social-wrapper { 
-    margin-top: 60px; 
-}
-
-.footer-links { 
-    display: flex; 
-    justify-content: center; 
-    gap: 20px; 
-    font-size: 0.8rem; 
-    margin-bottom: 30px; 
-    font-weight: 600; 
-}
-
-.footer-links a { 
-    color: var(--white); 
-    text-decoration: none; 
-    letter-spacing: 1px; 
-    transition: 0.3s;
-}
-
-.footer-links a:hover {
-    color: var(--muted);
-}
-
-.sep { 
-    color: var(--muted); 
-}
-
-.rights { 
-    font-size: 0.65rem; 
-    color: var(--muted); 
-    letter-spacing: 1px; 
-}
-
-/* --- Mobile Responsive --- */
-@media (max-width: 768px) {
-    .container { padding: 0 30px; }
-    .nav-links { display: none; }
-    .hero-text { font-size: 2rem; }
-    .list-item { flex-direction: column; gap: 20px; }
-    .meta { width: 100%; }
-    .contact-title { font-size: 1.8rem; }
-    .phone-link { font-size: 1.2rem; }
-}
+    font-
