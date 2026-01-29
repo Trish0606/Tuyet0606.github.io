@@ -1,11 +1,12 @@
 :root {
     --primary: #2563eb;
-    --dark: #1e293b;
-    --light: #f8fafc;
+    --dark: #1e293b;       /* Darker grey-blue */
+    --light: #f1f5f9;
     --text: #334155;
-    --text-light: #64748b;
     --white: #ffffff;
 }
+
+
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -28,8 +29,16 @@ nav { padding: 20px 0; position: sticky; top: 0; background: rgba(255, 255, 255,
 .nav-links a:hover { color: var(--primary); }
 
 /* --- Hero --- */
-.hero { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-.hero h1 { font-size: 4rem; color: var(--dark); margin-bottom: 20px; }
+/* Add this to make the Hero section dark */
+.hero {
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 100px 0;
+}
+
+.hero h1 {
+    color: var(--white); /* Ensures your name is white on the dark background */
+}
 .subtitle { font-size: 1.5rem; color: var(--text-light); margin-bottom: 40px; }
 
 /* --- Buttons --- */
