@@ -1,69 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuyet | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+:root {
+    --bg: #000000;
+    --white: #ffffff;
+    --muted: #666666;
+    --border: #1a1a1a;
+}
 
-    <nav>
-        <div class="container nav-wrapper">
-            <div class="brand">Tuyet</div>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Work</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
-    </nav>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-    <header class="hero">
-        <div class="container">
-            <h1 class="hero-text">
-                Tuyet is a designer <br> 
-                + developer shaping <br> 
-                digital experiences.
-            </h1>
-            <p class="availability">● Available for new opportunities</p>
-            <div class="hero-action">
-                <a href="#contact" class="btn-box">Get In Touch</a>
-            </div>
-        </div>
-    </header>
+body { 
+    background-color: var(--bg); 
+    color: var(--white); 
+    font-family: 'Inter', sans-serif; 
+    line-height: 2.0;
+    -webkit-font-smoothing: antialiased;
+}
 
-    <section id="about">
-        <div class="container">
-            <div class="about-image-wrapper">
-                <img src="images/profile.jpg" alt="Tuyet" class="profile-img-tiny">
-            </div>
-            <span class="label">About Me</span>
-            <p class="content-text">
-                My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance. I love building products that push the mundane into something extraordinary.
-            </p>
-        </div>
-    </section>
+.container { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="contact-title">Shoot me MSG!</h2>
-            <div class="contact-details">
-                <a href="tel:+1234567890" class="phone-link">(905) 000-0000</a>
-            </div>
-            <div class="social-wrapper">
-                <div class="footer-links">
-                    <a href="#">LINKEDIN</a> <span class="sep">+</span>
-                    <a href="#">RESUME</a> <span class="sep">+</span>
-                    <a href="#">IG</a> <span class="sep">+</span>
-                    <a href="#">GITHUB</a>
-                </div>
-                <p class="rights">© 2026 All rights reserved.</p>
-            </div>
-        </div>
-    </section>
+nav { padding: 60px 0; }
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 600; font-size: 1.2rem; }
+.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
 
-</body>
-</html>
+.hero { padding: 120px 0; text-align: center; }
+.hero-text { font-size: clamp(2.2rem, 6vw, 4.5rem); line-height: 1.2; font-weight: 400; margin-bottom: 40px; }
+.availability { font-size: 0.7rem; color: #00ff88; text-transform: uppercase; letter-spacing: 2px; }
+
+/* --- Small Photo Fix --- */
+.about-image-wrapper { display: flex; justify-content: center; margin-bottom: 60px; }
+.profile-img-small { 
+    width: 90px; /* Small size restored */
+    height: 120px; 
+    object-fit: cover; 
+    border: 2px solid var(--white); 
+    border-radius: 2px;
+}
+
+section { padding: 160px 0; border-top: 1px solid var(--border); }
+.label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 60px; letter-spacing: 3px; text-align: center; }
+.content-text { font-size: 1.8rem; line-height: 1.6; max-width: 850px; margin: 0 auto; text-align: center; }
+
+.list-item { display: flex; padding: 60px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.meta { width: 180px; color: var(--muted); font-size: 0.8rem; }
+.item-info h3 { font-size: 2.2rem; font-weight: 400; margin-bottom: 15px; }
+.item-info p { color: var(--muted); }
+.arrow { margin-left: auto; font-size: 1.8rem; }
+
+#contact { text-align: center; border-bottom: none; }
+.contact-title { font-size: 4rem; font-weight: 400; margin-bottom: 50px; }
+.contact-details { display: flex; flex-direction: column; gap: 20px; margin-bottom: 100px; }
+.big-email, .big-phone { font-size: 2.5rem; text-decoration: none; color: var(--white); }
+
+.footer-links { display: flex; justify-content: center; gap: 15px; font-size: 0.8rem; margin-bottom: 50px; font-weight: 600; }
+.footer-links a { color: var(--white); text-decoration: none; }
+.sep { color: var(--muted); }
+.rights { font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-text { font-size: 2.5rem; }
+    .contact-title { font-size: 2.5rem; }
+}
