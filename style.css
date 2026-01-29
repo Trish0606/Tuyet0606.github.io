@@ -1,82 +1,69 @@
-:root {
-    --bg: #000000;
-    --white: #ffffff;
-    --muted: #666666;
-    --border: #1a1a1a;
-    --primary: #3b82f6; /* Original blue color from the beginning */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyet | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+    <nav>
+        <div class="container nav-wrapper">
+            <div class="brand">Tuyet</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-body { 
-    background-color: var(--bg); 
-    color: var(--white); 
-    font-family: 'Inter', sans-serif; 
-    line-height: 2.0;
-    -webkit-font-smoothing: antialiased;
-}
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero-text">
+                Tuyet is a designer <br> 
+                + developer shaping <br> 
+                digital experiences.
+            </h1>
+            <p class="availability">● Available for new opportunities</p>
+            <div class="hero-action">
+                <a href="#contact" class="btn-box">Get In Touch</a>
+            </div>
+        </div>
+    </header>
 
-.container { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
+    <section id="about">
+        <div class="container">
+            <div class="about-image-wrapper">
+                <img src="images/profile.jpg" alt="Tuyet" class="profile-img-tiny">
+            </div>
+            <span class="label">About Me</span>
+            <p class="content-text">
+                My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance. I love building products that push the mundane into something extraordinary.
+            </p>
+        </div>
+    </section>
 
-/* --- Navigation --- */
-nav { padding: 40px 0; }
-.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-.brand { font-weight: 600; font-size: 1.1rem; }
-.nav-links a { margin-left: 35px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
+    <section id="contact">
+        <div class="container">
+            <h2 class="contact-title">Shoot me MSG!</h2>
+            <div class="contact-details">
+                <a href="tel:+1234567890" class="phone-link">(905) 000-0000</a>
+            </div>
+            <div class="social-wrapper">
+                <div class="footer-links">
+                    <a href="#">LINKEDIN</a> <span class="sep">+</span>
+                    <a href="#">RESUME</a> <span class="sep">+</span>
+                    <a href="#">IG</a> <span class="sep">+</span>
+                    <a href="#">GITHUB</a>
+                </div>
+                <p class="rights">© 2026 All rights reserved.</p>
+            </div>
+        </div>
+    </section>
 
-/* --- Hero Section (Text made slightly smaller) --- */
-.hero { padding: 100px 0; text-align: center; }
-.hero-text { 
-    font-size: clamp(1.8rem, 5vw, 3.2rem); /* Reduced size from 4.5rem */
-    line-height: 1.3; 
-    font-weight: 400; 
-    margin-bottom: 25px; 
-}
-.availability { 
-    font-size: 0.65rem; /* Slightly smaller availability text */
-    color: #00ff88; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    margin-bottom: 35px; 
-}
-
-/* Hero Box Button (Like the original) */
-.btn-box {
-    display: inline-block;
-    padding: 14px 36px;
-    background-color: var(--primary); /* Solid blue box */
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border-radius: 6px;
-    transition: 0.3s ease;
-}
-.btn-box:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
-
-/* --- Profile Pic (Made even smaller) --- */
-.about-image-wrapper { display: flex; justify-content: center; margin-bottom: 40px; }
-.profile-img-tiny { 
-    width: 80px;  /* Tiny rectangular size */
-    height: 105px; 
-    object-fit: cover; 
-    border: 2px solid var(--white); 
-    border-radius: 2px;
-}
-
-/* --- Content Styling --- */
-#about { padding: 140px 0; text-align: center; border-top: 1px solid var(--border); }
-.label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 40px; letter-spacing: 3px; }
-.content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; }
-
-/* --- Footer --- */
-.contact-title { font-size: 5rem; font-weight: 400; margin-bottom: 60px; }
-.phone-link { font-size: 2.5rem; text-decoration: none; color: var(--white); font-weight: 400; }
-.footer-links a { color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.8rem; }
-
-@media (max-width: 768px) {
-    .hero-text { font-size: 2rem; }
-    .contact-title { font-size: 3rem; }
-    .btn-box { padding: 12px 28px; font-size: 0.8rem; }
-}
+</body>
+</html>
