@@ -75,3 +75,12 @@ footer { text-align: center; padding: 40px 0; color: var(--text-light); border-t
     .hero h1 { font-size: 2.5rem; }
     .nav-links { display: none; }
 }
+.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; /* This makes the square photo a circle */
+    object-fit: cover;   /* This prevents the photo from stretching */
+    margin-bottom: 20px;
+    border: 5px solid var(--primary); /* Adds a nice blue ring around your photo */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
