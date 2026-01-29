@@ -3,6 +3,7 @@
     --white: #ffffff;
     --muted: #666666;
     --border: #1a1a1a;
+    --primary: #3b82f6; /* Original blue color from the beginning */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,86 +20,63 @@ body {
 .container { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
 /* --- Navigation --- */
-nav { padding: 60px 0; }
+nav { padding: 40px 0; }
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-.brand { font-weight: 600; font-size: 1.2rem; }
-.nav-links a { 
-    margin-left: 40px; 
-    text-transform: uppercase; 
-    font-size: 0.7rem; 
-    letter-spacing: 2px; 
-    color: var(--muted);
-    text-decoration: none;
+.brand { font-weight: 600; font-size: 1.1rem; }
+.nav-links a { margin-left: 35px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
+
+/* --- Hero Section (Text made slightly smaller) --- */
+.hero { padding: 100px 0; text-align: center; }
+.hero-text { 
+    font-size: clamp(1.8rem, 5vw, 3.2rem); /* Reduced size from 4.5rem */
+    line-height: 1.3; 
+    font-weight: 400; 
+    margin-bottom: 25px; 
 }
-.nav-links a:hover { color: var(--white); }
+.availability { 
+    font-size: 0.65rem; /* Slightly smaller availability text */
+    color: #00ff88; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    margin-bottom: 35px; 
+}
 
-/* --- Hero --- */
-.hero { padding: 120px 0; text-align: center; }
-.hero-text { font-size: clamp(2.2rem, 6vw, 4.5rem); line-height: 1.2; font-weight: 400; margin-bottom: 30px; }
-.availability { font-size: 0.7rem; color: #00ff88; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; }
-
-/* Hero Button */
-.hero-action { margin-top: 20px; }
-.btn-main {
+/* Hero Box Button (Like the original) */
+.btn-box {
     display: inline-block;
-    padding: 12px 32px;
-    border: 1px solid var(--white);
+    padding: 14px 36px;
+    background-color: var(--primary); /* Solid blue box */
     color: var(--white);
     text-decoration: none;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    transition: 0.3s;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: 0.3s ease;
 }
-.btn-main:hover { background: var(--white); color: var(--bg); }
+.btn-box:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
 
-/* --- About Section & Small Image --- */
-#about { padding: 160px 0; text-align: center; border-top: 1px solid var(--border); }
+/* --- Profile Pic (Made even smaller) --- */
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 40px; }
-.profile-img-small { 
-    width: 100px;  /* Small size as requested */
-    height: 130px; 
+.profile-img-tiny { 
+    width: 80px;  /* Tiny rectangular size */
+    height: 105px; 
     object-fit: cover; 
     border: 2px solid var(--white); 
     border-radius: 2px;
 }
+
+/* --- Content Styling --- */
+#about { padding: 140px 0; text-align: center; border-top: 1px solid var(--border); }
 .label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 40px; letter-spacing: 3px; }
-.content-text { font-size: 1.8rem; line-height: 1.6; max-width: 850px; margin: 0 auto; }
+.content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; }
 
-/* --- Experience & Projects --- */
-section { padding: 160px 0; border-top: 1px solid var(--border); }
-.list-item { display: flex; padding: 60px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
-.meta { width: 180px; color: var(--muted); font-size: 0.8rem; }
-.item-info h3 { font-size: 2.2rem; font-weight: 400; margin-bottom: 15px; }
-.item-info p { color: var(--muted); }
-.arrow { margin-left: auto; font-size: 1.8rem; }
-
-/* --- Contact Section --- */
-#contact { text-align: center; border-bottom: none; padding-bottom: 100px; }
-.contact-title { font-size: 5rem; font-weight: 400; margin-bottom: 60px; } /* Slightly bigger as requested */
-
-.contact-details { margin-bottom: 120px; }
-.phone-link { font-size: 2.8rem; text-decoration: none; color: var(--white); transition: 0.3s; } /* Pure white */
-.phone-link:hover { opacity: 0.7; }
-
-/* --- Footer Socials --- */
-.social-wrapper { margin-top: 80px; }
-.footer-links { 
-    display: flex; 
-    justify-content: center; 
-    gap: 20px; 
-    font-size: 0.85rem; 
-    margin-bottom: 40px; 
-    font-weight: 600;
-}
-.footer-links a { color: var(--white); text-decoration: none; letter-spacing: 1px; } /* All links white */
-.sep { color: var(--muted); }
-.rights { font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
+/* --- Footer --- */
+.contact-title { font-size: 5rem; font-weight: 400; margin-bottom: 60px; }
+.phone-link { font-size: 2.5rem; text-decoration: none; color: var(--white); font-weight: 400; }
+.footer-links a { color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.8rem; }
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-text { font-size: 2.5rem; }
+    .hero-text { font-size: 2rem; }
     .contact-title { font-size: 3rem; }
-    .phone-link { font-size: 1.8rem; }
+    .btn-box { padding: 12px 28px; font-size: 0.8rem; }
 }
