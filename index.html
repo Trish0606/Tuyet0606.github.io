@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuyet | Portfolio</title>
+    <title>Tuyet — Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="top-nav">
-        <div class="brand-name">Tuyet</div>
+    <nav>
+        <div class="container nav-wrapper">
+            <div class="brand">Tuyet</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </nav>
-
-    <div class="floating-menu">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Work</a>
-        <a href="#contact">Contact</a>
-    </div>
 
     <header class="hero">
         <div class="container">
-            <div class="brand-copy">Tuyet©2026</div>
             <h1 class="hero-text">
                 Tuyet is a designer <br>
                 <span>+ developer</span> shaping <br>
@@ -30,16 +30,16 @@
             </h1>
             <p class="availability">● Available for new opportunities</p>
             
-            <div class="hero-image-wrapper">
-                <img src="images/profile.jpg" alt="Tuyet" class="profile-img">
+            <div class="hero-image-container">
+                <img src="images/profile.jpg" alt="Tuyet" class="profile-img-small">
             </div>
         </div>
     </header>
 
     <section id="about">
         <div class="container">
-            <span class="section-label">About Me</span>
-            <p class="large-body-text">
+            <span class="label">About Me</span>
+            <p class="content-text">
                 My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance. I love building products that push the mundane into something extraordinary.
             </p>
         </div>
@@ -47,12 +47,12 @@
 
     <section id="experience">
         <div class="container">
-            <span class="section-label">Experience</span>
-            <div class="exp-item">
-                <span class="year">2024 — Present</span>
-                <div class="exp-content">
+            <span class="label">Experience</span>
+            <div class="exp-row">
+                <span class="date">2024 — Present</span>
+                <div class="exp-details">
                     <h3>Frontend Developer</h3>
-                    <p>Working on accessible and performance-driven web interfaces.</p>
+                    <p>Building accessible and high-performance web interfaces.</p>
                 </div>
             </div>
         </div>
@@ -60,22 +60,17 @@
 
     <section id="projects">
         <div class="container">
-            <span class="section-label">(03) Featured Work</span>
-            <div class="work-list">
-                <div class="work-item">
-                    <span class="work-num">01</span>
-                    <div class="work-info"><h3>Portfolio Website</h3><p>Design & Dev</p></div>
-                    <a href="#" class="work-link">↗</a>
+            <span class="label">Featured Work</span>
+            <div class="project-list">
+                <div class="project-item">
+                    <span class="numb">01</span>
+                    <div class="proj-title"><h3>Portfolio Website</h3><p>Design & Dev</p></div>
+                    <span class="arrow">↗</span>
                 </div>
-                <div class="work-item">
-                    <span class="work-num">02</span>
-                    <div class="work-info"><h3>Weather App</h3><p>Product Design</p></div>
-                    <a href="#" class="work-link">↗</a>
-                </div>
-                <div class="work-item">
-                    <span class="work-num">03</span>
-                    <div class="work-info"><h3>Task Manager</h3><p>Internal Tooling</p></div>
-                    <a href="#" class="work-link">↗</a>
+                <div class="project-item">
+                    <span class="numb">02</span>
+                    <div class="proj-title"><h3>Weather App</h3><p>Product Design</p></div>
+                    <span class="arrow">↗</span>
                 </div>
             </div>
         </div>
@@ -83,22 +78,22 @@
 
     <section id="contact">
         <div class="container">
-            <h2 class="contact-title">Shoot me MSG!</h2>
-            <div class="contact-primary">
-                <a href="mailto:hello@tuyet.design">hello@tuyet.design</a>
-                <a href="tel:+1234567890">(905) 000-0000</a>
+            <h2 class="msg-text">Shoot me MSG!</h2>
+            <div class="contact-info">
+                <a href="mailto:hello@tuyet.design" class="big-link">hello@tuyet.design</a>
+                <a href="tel:+1234567890" class="big-link">(905) 000-0000</a>
             </div>
             
-            <div class="footer-links">
+            <div class="footer-socials">
                 <a href="#">LINKEDIN</a>
-                <span>+</span>
+                <span class="plus">+</span>
                 <a href="#">RÉSUMÉ</a>
-                <span>+</span>
+                <span class="plus">+</span>
                 <a href="#">IG</a>
-                <span>+</span>
+                <span class="plus">+</span>
                 <a href="#">GITHUB</a>
             </div>
-            <p class="copyright">© 2026 All rights reserved. Typeset with love.</p>
+            <p class="rights">© 2026 All rights reserved.</p>
         </div>
     </section>
 
