@@ -43,13 +43,14 @@ nav { padding: 60px 0; }
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- Tiny Profile Picture (65px) --- */
+/* --- Adjusted Photo (75px, No Border) --- */
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 40px; }
 .profile-img-medium { 
-    width: 65px; /* Reduced significantly to a small, clean detail */
-    height: 85px; 
+    width: 75px; /* The "just right" small size */
+    height: auto; /* Maintains ratio without stretching */
+    aspect-ratio: 3/4; /* Keeps the rectangular shape */
     object-fit: cover; 
-    border: 1.5px solid var(--white); 
+    border: none; /* Border removed as requested */
     border-radius: 1px;
 }
 
@@ -61,12 +62,12 @@ section { padding: 140px 0; border-top: 1px solid var(--border); }
 /* --- Contact Section (Small/Original Scale) --- */
 #contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
 .contact-title { 
-    font-size: 2.2rem; /* Returned to a smaller, understated size */
+    font-size: 2.2rem; 
     font-weight: 500; 
     margin-bottom: 30px; 
 }
 .phone-link { 
-    font-size: 1.5rem; /* Small, clean phone number size */
+    font-size: 1.5rem; 
     text-decoration: none; 
     color: var(--white); 
 }
