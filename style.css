@@ -76,15 +76,22 @@ footer { text-align: center; padding: 40px 0; color: var(--text-light); border-t
     .nav-links { display: none; }
 }
 .profile-img {
-    width: 100px;           /* Small rectangular width */
-    height: 120px;          /* Slightly taller than wide for a portrait look */
-    border-radius: 8px;     /* Slight rounding for a modern feel, not a circle */
+    width: 100px;           
+    height: 120px;          
+    /* Low number (8px) makes it a rectangle with soft corners. 
+       50% would make it a circle—we don't want that! */
+    border-radius: 8px !important; 
+    
     object-fit: cover;
     display: block;
     margin: 0 auto 15px auto;
-    border: 3px solid var(--white); /* White border as requested */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Adds depth so the white border pops */
-    background-color: var(--white); /* Fallback background */
+    
+    /* This changes the blue line to white */
+    border: 4px solid #ffffff !important; 
+    
+    /* This shadow helps the white border stand out against light backgrounds */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+    background-color: #ffffff; 
 }
 .hero h1 {
     font-size: 3rem; /* Slightly smaller text to match the smaller pic */
