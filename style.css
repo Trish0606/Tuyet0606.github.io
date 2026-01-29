@@ -18,7 +18,7 @@ body {
 
 .container { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
-/* --- Nav --- */
+/* --- Navigation --- */
 nav { padding: 60px 0; }
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
 .brand { font-weight: 600; font-size: 1.2rem; }
@@ -44,11 +44,11 @@ nav { padding: 60px 0; }
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- Adjusted Picture Size --- */
+/* --- Small Profile Picture (90px) --- */
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 60px; }
 .profile-img-medium { 
-    width: 130px; /* Slightly bigger than before, but not 'too much' */
-    height: 170px; 
+    width: 90px; /* Small, refined size as requested */
+    height: 120px; 
     object-fit: cover; 
     border: 2px solid var(--white); 
     border-radius: 2px;
@@ -59,18 +59,20 @@ section { padding: 160px 0; border-top: 1px solid var(--border); }
 .label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 60px; letter-spacing: 3px; text-align: center; }
 .content-text { font-size: 1.8rem; line-height: 1.6; max-width: 850px; margin: 0 auto; text-align: center; }
 
-/* --- List items --- */
-.list-item { display: flex; padding: 60px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
-.meta { width: 180px; color: var(--muted); font-size: 0.8rem; }
-.item-info h3 { font-size: 2.2rem; font-weight: 400; margin-bottom: 15px; }
-.item-info p { color: var(--muted); }
-.arrow { margin-left: auto; font-size: 1.8rem; }
-
-/* --- Footer --- */
+/* --- Contact Section (Restored to Original Sizes) --- */
 #contact { text-align: center; border-bottom: none; padding-bottom: 100px; }
-.contact-title { font-size: 5rem; font-weight: 400; margin-bottom: 60px; }
-.phone-link { font-size: 2.8rem; text-decoration: none; color: var(--white); }
+.contact-title { 
+    font-size: 3.5rem; /* Restored from 5rem to original size */
+    font-weight: 400; 
+    margin-bottom: 40px; 
+}
+.phone-link { 
+    font-size: 2rem; /* Restored from 2.8rem to original size */
+    text-decoration: none; 
+    color: var(--white); 
+}
 
+/* --- Footer Links --- */
 .social-wrapper { margin-top: 80px; }
 .footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.85rem; margin-bottom: 40px; font-weight: 600; }
 .footer-links a { color: var(--white); text-decoration: none; }
@@ -80,4 +82,6 @@ section { padding: 160px 0; border-top: 1px solid var(--border); }
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .hero-text { font-size: 2.5rem; }
+    .contact-title { font-size: 2.2rem; }
+    .phone-link { font-size: 1.5rem; }
 }
