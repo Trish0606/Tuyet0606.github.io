@@ -3,48 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuyet — Portfolio</title>
+    <title>Tuyet | Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav>
-        <div class="container nav-center">
-            <a href="#" class="brand">Tuyet©2026</a>
-        </div>
+    <nav class="top-nav">
+        <div class="brand-name">Tuyet</div>
     </nav>
+
+    <div class="floating-menu">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Work</a>
+        <a href="#contact">Contact</a>
+    </div>
 
     <header class="hero">
         <div class="container">
-            <h1>Tuyet is a designer <br><span>+ developer</span> shaping <br>digital experiences.</h1>
+            <div class="brand-copy">Tuyet©2026</div>
+            <h1 class="hero-text">
+                Tuyet is a designer <br>
+                <span>+ developer</span> shaping <br>
+                digital experiences.
+            </h1>
             <p class="availability">● Available for new opportunities</p>
+            
+            <div class="hero-image-wrapper">
+                <img src="images/profile.jpg" alt="Tuyet" class="profile-img">
+            </div>
         </div>
     </header>
 
     <section id="about">
-        <div class="container center-layout">
-            <img src="images/profile.jpg" alt="Tuyet" class="profile-img-about">
-            
-            <div class="section-header center">
-                <span class="section-number">About</span>
+        <div class="container">
+            <span class="section-label">About Me</span>
+            <p class="large-body-text">
+                My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance. I love building products that push the mundane into something extraordinary.
+            </p>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <span class="section-label">Experience</span>
+            <div class="exp-item">
+                <span class="year">2024 — Present</span>
+                <div class="exp-content">
+                    <h3>Frontend Developer</h3>
+                    <p>Working on accessible and performance-driven web interfaces.</p>
+                </div>
             </div>
-            <p class="large-text">My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance.</p>
-            <p class="sub-text">Currently crafting digital products with a focus on minimalist aesthetics and functional precision. Based in your location.</p>
         </div>
     </section>
 
     <section id="projects">
         <div class="container">
-            <div class="section-header">
-                <span class="section-number">(03)</span>
-                <h2>Featured Works</h2>
-            </div>
-            
+            <span class="section-label">(03) Featured Work</span>
             <div class="work-list">
                 <div class="work-item">
                     <span class="work-num">01</span>
-                    <div class="work-info"><h3>Portfolio Website</h3><p>Design & Development</p></div>
+                    <div class="work-info"><h3>Portfolio Website</h3><p>Design & Dev</p></div>
                     <a href="#" class="work-link">↗</a>
                 </div>
                 <div class="work-item">
@@ -62,16 +82,23 @@
     </section>
 
     <section id="contact">
-        <div class="container center-text">
-            <h2 class="footer-cta">Shoot me a msg!</h2>
-            <a href="mailto:hello@tuyet.design" class="footer-email">hello@tuyet.design</a>
-            <div class="footer-bottom">
-                <div class="social-links">
-                    <a href="#">LinkedIn</a>
-                    <a href="#">GitHub</a>
-                </div>
-                <p>© 2026 All rights reserved</p>
+        <div class="container">
+            <h2 class="contact-title">Shoot me MSG!</h2>
+            <div class="contact-primary">
+                <a href="mailto:hello@tuyet.design">hello@tuyet.design</a>
+                <a href="tel:+1234567890">(905) 000-0000</a>
             </div>
+            
+            <div class="footer-links">
+                <a href="#">LINKEDIN</a>
+                <span>+</span>
+                <a href="#">RÉSUMÉ</a>
+                <span>+</span>
+                <a href="#">IG</a>
+                <span>+</span>
+                <a href="#">GITHUB</a>
+            </div>
+            <p class="copyright">© 2026 All rights reserved. Typeset with love.</p>
         </div>
     </section>
 
