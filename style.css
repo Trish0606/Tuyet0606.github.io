@@ -21,22 +21,21 @@ body {
 /* --- Navigation --- */
 nav { padding: 60px 0; }
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-.brand { font-weight: 600; font-size: 1.2rem; }
+.brand { font-weight: 600; font-size: 1.1rem; }
 .nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
 
 /* --- Hero --- */
 .hero { padding: 100px 0; text-align: center; }
-.hero-text { font-size: clamp(2.2rem, 6vw, 4.5rem); line-height: 1.2; font-weight: 400; margin-bottom: 40px; }
-.availability { font-size: 0.7rem; color: #00ff88; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; }
+.hero-text { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; font-weight: 400; margin-bottom: 30px; }
+.availability { font-size: 0.65rem; color: #00ff88; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; }
 
-/* Pill Button */
 .btn-pill {
     display: inline-block;
-    padding: 12px 32px;
+    padding: 10px 28px;
     border: 1px solid var(--white);
     color: var(--white);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     border-radius: 50px;
@@ -44,44 +43,43 @@ nav { padding: 60px 0; }
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- Small Profile Picture (90px) --- */
-.about-image-wrapper { display: flex; justify-content: center; margin-bottom: 60px; }
+/* --- Tiny Profile Picture (65px) --- */
+.about-image-wrapper { display: flex; justify-content: center; margin-bottom: 40px; }
 .profile-img-medium { 
-    width: 90px; /* Small, refined size as requested */
-    height: 120px; 
+    width: 65px; /* Reduced significantly to a small, clean detail */
+    height: 85px; 
     object-fit: cover; 
-    border: 2px solid var(--white); 
-    border-radius: 2px;
+    border: 1.5px solid var(--white); 
+    border-radius: 1px;
 }
 
-/* --- Sections --- */
-section { padding: 160px 0; border-top: 1px solid var(--border); }
-.label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 60px; letter-spacing: 3px; text-align: center; }
-.content-text { font-size: 1.8rem; line-height: 1.6; max-width: 850px; margin: 0 auto; text-align: center; }
+/* --- Content Styling --- */
+section { padding: 140px 0; border-top: 1px solid var(--border); }
+.label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
+.content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; text-align: center; }
 
-/* --- Contact Section (Restored to Original Sizes) --- */
-#contact { text-align: center; border-bottom: none; padding-bottom: 100px; }
+/* --- Contact Section (Small/Original Scale) --- */
+#contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
 .contact-title { 
-    font-size: 3.5rem; /* Restored from 5rem to original size */
-    font-weight: 400; 
-    margin-bottom: 40px; 
+    font-size: 2.2rem; /* Returned to a smaller, understated size */
+    font-weight: 500; 
+    margin-bottom: 30px; 
 }
 .phone-link { 
-    font-size: 2rem; /* Restored from 2.8rem to original size */
+    font-size: 1.5rem; /* Small, clean phone number size */
     text-decoration: none; 
     color: var(--white); 
 }
 
 /* --- Footer Links --- */
-.social-wrapper { margin-top: 80px; }
-.footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.85rem; margin-bottom: 40px; font-weight: 600; }
-.footer-links a { color: var(--white); text-decoration: none; }
+.social-wrapper { margin-top: 60px; }
+.footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin-bottom: 30px; font-weight: 600; }
+.footer-links a { color: var(--white); text-decoration: none; letter-spacing: 1px; }
 .sep { color: var(--muted); }
-.rights { font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
+.rights { font-size: 0.65rem; color: var(--muted); letter-spacing: 1px; }
 
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    .hero-text { font-size: 2.5rem; }
-    .contact-title { font-size: 2.2rem; }
-    .phone-link { font-size: 1.5rem; }
+    .hero-text { font-size: 2rem; }
+    .contact-title { font-size: 1.8rem; }
 }
