@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuyet — Product Designer</title>
+    <title>Tuyet — Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <nav>
-        <div class="container nav-wrapper">
+        <div class="container nav-center">
             <a href="#" class="brand">Tuyet©2026</a>
-            <div class="nav-right">
-                <a href="#about">About</a>
-                <a href="#projects">Work</a>
-                <a href="#contact" class="nav-contact">Say Hi</a>
-            </div>
         </div>
     </nav>
 
     <header class="hero">
         <div class="container">
-            <div class="hero-top">
-                <img src="images/profile.jpg" alt="Tuyet" class="profile-img">
-                <p class="availability">● Available for new opportunities</p>
-            </div>
             <h1>Tuyet is a designer <br><span>+ developer</span> shaping <br>digital experiences.</h1>
+            <p class="availability">● Available for new opportunities</p>
         </div>
     </header>
+
+    <section id="about">
+        <div class="container center-layout">
+            <img src="images/profile.jpg" alt="Tuyet" class="profile-img-about">
+            
+            <div class="section-header center">
+                <span class="section-number">About</span>
+            </div>
+            <p class="large-text">My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance.</p>
+            <p class="sub-text">Currently crafting digital products with a focus on minimalist aesthetics and functional precision. Based in your location.</p>
+        </div>
+    </section>
 
     <section id="projects">
         <div class="container">
@@ -40,55 +44,31 @@
             <div class="work-list">
                 <div class="work-item">
                     <span class="work-num">01</span>
-                    <div class="work-info">
-                        <h3>Portfolio Website</h3>
-                        <p>Web Design & Development</p>
-                    </div>
-                    <a href="#" class="work-link">View Project ↗</a>
+                    <div class="work-info"><h3>Portfolio Website</h3><p>Design & Development</p></div>
+                    <a href="#" class="work-link">↗</a>
                 </div>
-
                 <div class="work-item">
                     <span class="work-num">02</span>
-                    <div class="work-info">
-                        <h3>Weather Application</h3>
-                        <p>Product Design (NDA)</p>
-                    </div>
-                    <a href="#" class="work-link">View Project ↗</a>
+                    <div class="work-info"><h3>Weather App</h3><p>Product Design</p></div>
+                    <a href="#" class="work-link">↗</a>
                 </div>
-
                 <div class="work-item">
                     <span class="work-num">03</span>
-                    <div class="work-info">
-                        <h3>Task Manager</h3>
-                        <p>Internal DTC Tooling</p>
-                    </div>
-                    <a href="#" class="work-link">View Project ↗</a>
+                    <div class="work-info"><h3>Task Manager</h3><p>Internal Tooling</p></div>
+                    <a href="#" class="work-link">↗</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container grid-2">
-            <div class="about-left">
-                <span class="section-number">About</span>
-            </div>
-            <div class="about-right">
-                <p class="large-text">My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance.</p>
-                <p>Outside of design, my passion lies in discovering delicacies, curating for interior spaces, and paying attention to the finer things in life. Get to know me and you'll quickly learn that I aim to impress.</p>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <div class="container">
-            <h2 class="footer-cta">What're you waiting for? <br>Shoot me a msg!</h2>
+        <div class="container center-text">
+            <h2 class="footer-cta">Shoot me a msg!</h2>
             <a href="mailto:hello@tuyet.design" class="footer-email">hello@tuyet.design</a>
             <div class="footer-bottom">
                 <div class="social-links">
                     <a href="#">LinkedIn</a>
                     <a href="#">GitHub</a>
-                    <a href="#">Instagram</a>
                 </div>
                 <p>© 2026 All rights reserved</p>
             </div>
