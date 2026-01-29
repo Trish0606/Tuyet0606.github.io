@@ -86,3 +86,7 @@ footer { text-align: center; padding: 40px 0; color: var(--text-light); border-t
     box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Adds depth so the white border pops */
     background-color: var(--white); /* Fallback background */
 }
+.hero h1 {
+    font-size: 3rem; /* Slightly smaller text to match the smaller pic */
+    margin-top: 0;
+}
