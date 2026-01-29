@@ -76,19 +76,17 @@ footer { text-align: center; padding: 40px 0; color: var(--text-light); border-t
     .nav-links { display: none; }
 }
 .profile-img {
-    width: 120px;   /* Decreased from 180px to 120px */
-    height: 120px;  /* Keep width and height the same for a perfect circle */
+    width: 80px;      /* Small, avatar-like size */
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    display: block;  /* Needed for margin auto to work */
-    margin: 0 auto 20px auto; /* Centers the image and adds 20px space below it */
-    border: 3px solid var(--primary); /* Slightly thinner border for a smaller pic */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: block;
+    margin: 0 auto 10px auto; /* 10px space between pic and name */
+    border: 2px solid var(--primary); /* Thinner border for the smaller size */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.hero .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Ensures the text below is also centered */
-    text-align: center;
+.hero h1 {
+    font-size: 3rem; /* Slightly smaller text to match the smaller pic */
+    margin-top: 0;
 }
