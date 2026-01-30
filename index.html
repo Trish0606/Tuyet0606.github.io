@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <nav>
+    <nav class="sticky-nav">
         <div class="container nav-wrapper">
             <div class="brand">Tuyet</div>
             <div class="nav-links">
@@ -21,7 +21,7 @@
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero" id="hero-section">
         <div class="circuit-overlay"></div>
         <div class="hero-glow"></div>
         <div class="container hero-content">
@@ -54,14 +54,6 @@
                 <div class="item-info">
                     <h3>Senior Designer</h3>
                     <p>Shaping digital products and design systems.</p>
-                </div>
-                <div class="arrow">→</div>
-            </div>
-            <div class="list-item">
-                <div class="meta">2022 — 2024</div>
-                <div class="item-info">
-                    <h3>UI/UX Developer</h3>
-                    <p>Bridging the gap between design and code.</p>
                 </div>
                 <div class="arrow">→</div>
             </div>
@@ -99,6 +91,27 @@
             </div>
         </div>
     </section>
+
+    <button id="restart-btn" class="restart-trigger">
+        <span class="restart-icon">↺</span> Restart Intro
+    </button>
+
+    <script>
+        const restartBtn = document.getElementById('restart-btn');
+        const hero = document.getElementById('hero-section');
+
+        restartBtn.addEventListener('click', () => {
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Briefly remove the hero and put it back to re-trigger CSS animations
+            const heroClone = hero.cloneNode(true);
+            hero.parentNode.replaceChild(heroClone, hero);
+            
+            // Refresh the reference to the new clone for next time
+            window.location.hash = ""; // Clear hash
+        });
+    </script>
 
 </body>
 </html>
