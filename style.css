@@ -5,61 +5,52 @@
     --border: #1a1a1a;
 }
 
-/* --- Base --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
 body { 
     background-color: var(--bg); 
     color: var(--white); 
     font-family: 'Inter', sans-serif; 
-    line-height: 1.6;
+    line-height: 2.0;
+    -webkit-font-smoothing: antialiased;
 }
+
 .container { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
 
-/* --- Hero Section --- */
-.hero { padding: 120px 0 80px 0; text-align: center; }
+/* --- Navigation --- */
+nav { padding: 60px 0; }
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 600; font-size: 1.1rem; }
+.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
 
-/* The Typing Effect */
+/* --- Hero Section with Typing Effect --- */
+.hero { padding: 120px 0 100px 0; text-align: center; }
+
 .typing-text {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--muted);
-    margin-bottom: 10px;
     letter-spacing: 2px;
     overflow: hidden; 
-    border-right: 2px solid var(--muted); /* The cursor */
     white-space: nowrap; 
-    margin: 0 auto 15px auto;
-    width: 0; /* Starts at 0 width */
-    animation: 
-        typing 2s steps(15, end) forwards,
-        blink-caret 0.75s step-end infinite;
+    margin: 0 auto 10px auto;
+    width: 0;
+    border-right: 2px solid var(--muted);
+    animation: typing 2.5s steps(15, end) forwards, blink 0.75s step-end infinite;
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 120px; } /* Adjust this width based on text length */
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: var(--muted); }
-}
+@keyframes typing { from { width: 0 } to { width: 110px; } }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--muted); } }
 
 .hero-name {
-    font-size: clamp(2.5rem, 8vw, 5rem); /* Big, bold white name */
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 600;
     margin-bottom: 30px;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
 }
 
-.availability { 
-    font-size: 0.7rem; 
-    color: #00ff88; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    margin-bottom: 40px; 
-}
+.availability { font-size: 0.65rem; color: #00ff88; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; }
 
-/* Pill Button */
 .btn-pill {
     display: inline-block;
     padding: 12px 34px;
@@ -70,52 +61,35 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     border-radius: 50px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- About Section & 220px Photo --- */
+/* --- About Section & 85px Borderless Photo --- */
 section { padding: 140px 0; border-top: 1px solid var(--border); }
-
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
-
-.profile-img-medium { 
-    width: 220px; /* Noticeably larger now */
+.profile-img-refined { 
+    width: 85px; 
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
     border: none; 
-    border-radius: 4px;
-    animation: fadeIn 1.5s ease-out forwards;
+    border-radius: 2px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+.label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
+.content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; text-align: center; }
 
-.label { 
-    display: block; 
-    font-size: 0.7rem; 
-    color: var(--muted); 
-    text-transform: uppercase; 
-    margin-bottom: 40px; 
-    letter-spacing: 3px; 
-    text-align: center; 
-}
-
-.content-text { 
-    font-size: 1.8rem; 
-    line-height: 1.6; 
-    max-width: 850px; 
-    margin: 0 auto; 
-    text-align: center; 
-}
-
-/* --- Centered Contact --- */
-#contact { text-align: center; padding-bottom: 100px; }
+/* --- Centered Contact Section --- */
+#contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
 .contact-title { font-size: 2.2rem; font-weight: 500; margin-bottom: 30px; }
 .phone-link { font-size: 1.5rem; text-decoration: none; color: var(--white); }
+
 .social-wrapper { margin-top: 60px; }
 .footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin-bottom: 30px; font-weight: 600; }
 .footer-links a { color: var(--white); text-decoration: none; }
+.rights { font-size: 0.65rem; color: var(--muted); letter-spacing: 1px; }
+
+@media (max-width: 768px) {
+    .hero-name { font-size: 2.5rem; }
+}
