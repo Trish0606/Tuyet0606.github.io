@@ -23,101 +23,70 @@ body {
 nav { padding: 60px 0; }
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
 .brand { font-weight: 600; font-size: 1.1rem; }
-.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; transition: 0.3s; }
-.nav-links a:hover { color: var(--white); }
+.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
 
-/* --- Hero Section & Animations --- */
+/* --- Hero & Animations --- */
 .hero { padding: 120px 0 100px 0; text-align: center; }
-
 .typing-text {
-    font-size: 1.1rem;
-    color: var(--muted);
-    letter-spacing: 2px;
-    overflow: hidden; 
-    white-space: nowrap; 
-    margin: 0 auto 10px auto;
-    width: 0;
-    border-right: 2px solid var(--muted);
+    font-size: 1.1rem; color: var(--muted); letter-spacing: 2px; overflow: hidden; white-space: nowrap; margin: 0 auto 10px auto; width: 0; border-right: 2px solid var(--muted);
     animation: typing 2s steps(15, end) forwards, blink 0.75s step-end infinite;
 }
-
 @keyframes typing { from { width: 0 } to { width: 110px; } }
 @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--muted); } }
 
 .hero-name {
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
-    font-weight: 600;
-    margin-bottom: 30px;
-    letter-spacing: -1px;
-    opacity: 0; 
+    font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 600; margin-bottom: 30px; letter-spacing: -1px; opacity: 0; 
     animation: fadeUp 1s ease-out 2s forwards; 
 }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.availability { 
-    font-size: 0.65rem; 
-    color: var(--accent); 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    margin-bottom: 40px;
-    opacity: 0;
-    animation: fadeUp 1s ease-out 2.5s forwards; 
-}
+.availability { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; opacity: 0; animation: fadeUp 1s ease-out 2.5s forwards; }
 
 .btn-pill {
-    display: inline-block;
-    padding: 12px 34px;
-    border: 1px solid var(--white);
-    color: var(--white);
-    text-decoration: none;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    transition: 0.3s;
-    opacity: 0;
-    animation: fadeUp 1s ease-out 2.8s forwards;
+    display: inline-block; padding: 12px 34px; border: 1px solid var(--white); color: var(--white); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 50px; transition: 0.3s; opacity: 0; animation: fadeUp 1s ease-out 2.8s forwards;
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- About Section & 150px Photo --- */
+/* --- About & 150px Photo --- */
 section { padding: 140px 0; border-top: 1px solid var(--border); }
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
-
 .profile-img-refined { 
-    width: 150px; /* Updated to 150px */
+    width: 150px; 
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
-    border: none; 
     border-radius: 2px;
-    display: block;
 }
 
 .label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
 .content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; text-align: center; }
 
-/* --- Smaller, Centered Contact Section --- */
+/* --- Experience & Work List Items --- */
+.list-item { 
+    display: flex; 
+    padding: 60px 0; 
+    border-bottom: 1px solid var(--border); 
+    align-items: baseline;
+    transition: 0.3s;
+}
+.list-item:hover { opacity: 0.7; }
+.meta { width: 180px; color: var(--muted); font-size: 0.8rem; letter-spacing: 1px; }
+.item-info h3 { font-size: 2.2rem; font-weight: 400; margin-bottom: 10px; }
+.item-info p { color: var(--muted); font-size: 1.1rem; }
+.arrow { margin-left: auto; font-size: 1.5rem; color: var(--muted); }
+
+/* --- Contact Section --- */
 #contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
 .contact-title { font-size: 1.8rem; font-weight: 500; margin-bottom: 25px; }
-.phone-link { font-size: 1.3rem; text-decoration: none; color: var(--white); transition: 0.3s; }
-.phone-link:hover { color: var(--muted); }
-
+.phone-link { font-size: 1.3rem; text-decoration: none; color: var(--white); }
 .social-wrapper { margin-top: 60px; }
 .footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin-bottom: 30px; font-weight: 600; }
-.footer-links a { color: var(--white); text-decoration: none; transition: 0.3s; }
-.footer-links a:hover { color: var(--muted); }
-.sep { color: var(--muted); }
+.footer-links a { color: var(--white); text-decoration: none; }
 .rights { font-size: 0.65rem; color: var(--muted); letter-spacing: 1px; }
 
-/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     .container { padding: 0 30px; }
     .hero-name { font-size: 2.5rem; }
-    .nav-links { display: none; }
-    .profile-img-refined { width: 120px; } /* Slightly smaller for mobile screens */
+    .list-item { flex-direction: column; gap: 10px; padding: 40px 0; }
+    .meta { width: 100%; }
 }
