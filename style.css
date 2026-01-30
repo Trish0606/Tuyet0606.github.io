@@ -50,7 +50,7 @@ nav { padding: 60px 0; }
     margin-bottom: 30px;
     letter-spacing: -1px;
     opacity: 0; 
-    animation: fadeUp 1s ease-out 2s forwards; /* Waits for Hello to type */
+    animation: fadeUp 1s ease-out 2s forwards; 
 }
 
 @keyframes fadeUp {
@@ -84,12 +84,12 @@ nav { padding: 60px 0; }
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- About Section & 130px Photo --- */
+/* --- About Section & 150px Photo --- */
 section { padding: 140px 0; border-top: 1px solid var(--border); }
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
 
 .profile-img-refined { 
-    width: 130px; /* Explicitly set to 130px */
+    width: 150px; /* Updated to 150px */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
@@ -119,4 +119,5 @@ section { padding: 140px 0; border-top: 1px solid var(--border); }
     .container { padding: 0 30px; }
     .hero-name { font-size: 2.5rem; }
     .nav-links { display: none; }
+    .profile-img-refined { width: 120px; } /* Slightly smaller for mobile screens */
 }
