@@ -1,18 +1,48 @@
-/* --- Hero Container Setup --- */
+:root {
+    --bg: #000000;
+    --white: #ffffff;
+    --muted: #666666;
+    --border: #1a1a1a;
+    --accent: #00ff88; /* The tech design color */
+}
+
+/* --- Base Reset --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body { 
+    background-color: var(--bg); 
+    color: var(--white); 
+    font-family: 'Inter', sans-serif; 
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
+
+/* --- Navigation --- */
+nav { padding: 60px 0; position: relative; z-index: 10; }
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 600; font-size: 1.1rem; }
+.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
+
+/* --- Hero Section (Fixed Centering) --- */
 .hero { 
     position: relative; 
-    padding: 150px 0; 
-    text-align: center; 
-    overflow: hidden; /* Keeps the tech design inside the hero */
-    background-color: #000;
+    height: 80vh; /* Set a specific height to keep it consistent */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
 }
 
 .hero-content {
     position: relative;
-    z-index: 2; /* Keeps text above the tech design */
+    z-index: 2; /* Sits above tech design */
 }
 
-/* --- Cool Tech Design (Moving Grid) --- */
+/* --- The Tech Design (Subtle & Moving) --- */
 .tech-bg {
     position: absolute;
     top: 0;
@@ -20,34 +50,33 @@
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px; /* Size of the grid squares */
-    background-position: center center;
-    
-    /* Fade in along with the name */
+        linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
     opacity: 0;
-    animation: 
-        techFadeIn 2s ease-out 2s forwards, 
-        gridMove 20s linear infinite;
-    mask-image: radial-gradient(circle, black, transparent 80%); /* Makes it fade out at the edges */
+    animation: techFade 2s ease forwards 2s, moveGrid 30s linear infinite;
+    mask-image: radial-gradient(circle, black, transparent 90%);
 }
 
-/* --- Animations --- */
+@keyframes techFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes moveGrid { from { background-position: 0 0; } to { background-position: 0 60px; } }
 
-/* Fades the tech design in */
-@keyframes techFadeIn {
-    from { opacity: 0; }
-    to { opacity: 0.4; } /* Keep it subtle so it doesn't distract from your name */
+/* --- Typing & Fade Animations --- */
+.typing-text {
+    font-size: 1.1rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    overflow: hidden; 
+    white-space: nowrap; 
+    margin: 0 auto 15px auto;
+    width: 0;
+    border-right: 2px solid var(--muted);
+    animation: typing 2s steps(15, end) forwards, blink 0.75s step-end infinite;
 }
 
-/* Moves the grid to give that "tech" feel */
-@keyframes gridMove {
-    from { transform: translateY(0); }
-    to { transform: translateY(50px); }
-}
+@keyframes typing { from { width: 0 } to { width: 115px; } }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--muted); } }
 
-/* Your Name Fade-Up (Keep this from before) */
 .hero-name {
     font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 600;
@@ -57,14 +86,71 @@
     animation: fadeUp 1s ease-out 2s forwards; 
 }
 
-/* ... keep the rest of your CSS the same ... */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-/* Ensure the About Photo stays at your preferred 200px */
+.availability { 
+    font-size: 0.65rem; 
+    color: var(--accent); 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 2.5s forwards; 
+}
+
+.btn-pill {
+    display: inline-block;
+    padding: 12px 34px;
+    border: 1px solid var(--white);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: 0.3s;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 2.8s forwards;
+}
+.btn-pill:hover { background: var(--white); color: var(--bg); }
+
+/* --- About & Sections (Keeping original spacing) --- */
+section { padding: 140px 0; border-top: 1px solid var(--border); background: var(--bg); position: relative; z-index: 5; }
+
+.about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
 .profile-img-refined { 
-    width: 200px;
+    width: 200px; /* Locked at 200px */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
     border-radius: 2px;
-    display: block;
+}
+
+.label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
+.content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; text-align: center; }
+
+/* --- Experience & Work Lists --- */
+.list-item { display: flex; padding: 60px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.meta { width: 180px; color: var(--muted); font-size: 0.8rem; }
+.item-info h3 { font-size: 2.2rem; font-weight: 400; margin-bottom: 10px; }
+.item-info p { color: var(--muted); }
+.arrow { margin-left: auto; font-size: 1.5rem; color: var(--muted); }
+
+/* --- Contact Section --- */
+#contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
+.contact-title { font-size: 1.8rem; font-weight: 500; margin-bottom: 25px; }
+.phone-link { font-size: 1.3rem; text-decoration: none; color: var(--white); }
+.footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin: 60px 0 30px; }
+.footer-links a { color: var(--white); text-decoration: none; }
+.rights { font-size: 0.65rem; color: var(--muted); }
+
+/* --- Mobile Fixes --- */
+@media (max-width: 768px) {
+    .container { padding: 0 30px; }
+    .hero-name { font-size: 2.5rem; }
+    .list-item { flex-direction: column; gap: 10px; }
+    .nav-links { display: none; }
 }
