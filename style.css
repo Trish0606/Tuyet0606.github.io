@@ -94,7 +94,7 @@ nav {
     color: var(--bg); 
 }
 
-/* --- About Section & 125px Photo --- */
+/* --- About Section & 160px Photo --- */
 section { 
     padding: 140px 0; 
     border-top: 1px solid var(--border); 
@@ -107,109 +107,17 @@ section {
 }
 
 .profile-img-medium { 
-    width: 125px; /* Increased to 125px */
+    width: 160px; /* New larger size */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
     border: none; 
     border-radius: 2px;
     /* Fade-in Animation */
-    animation: fadeIn 1.5s ease-out;
+    animation: fadeIn 1.2s ease-out forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-.label { 
-    display: block; 
-    font-size: 0.7rem; 
-    color: var(--muted); 
-    text-transform: uppercase; 
-    margin-bottom: 50px; 
-    letter-spacing: 3px; 
-    text-align: center; 
-}
-
-.content-text { 
-    font-size: 1.6rem; 
-    line-height: 1.6; 
-    max-width: 800px; 
-    margin: 0 auto; 
-    text-align: center; 
-}
-
-/* --- Experience & Projects --- */
-.list-item { 
-    display: flex; 
-    padding: 60px 0; 
-    border-bottom: 1px solid var(--border); 
-    align-items: baseline; 
-}
-
-.meta { width: 180px; color: var(--muted); font-size: 0.8rem; }
-.item-info h3 { font-size: 2.2rem; font-weight: 400; margin-bottom: 15px; }
-.item-info p { color: var(--muted); }
-.arrow { margin-left: auto; font-size: 1.8rem; }
-
-/* --- Centered Contact Section --- */
-#contact { 
-    text-align: center; /* Ensures all children are centered */
-    border-bottom: none; 
-    padding-bottom: 100px; 
-}
-
-.contact-title { 
-    font-size: 2.2rem; 
-    font-weight: 500; 
-    margin-bottom: 30px; 
-    text-align: center;
-}
-
-.contact-details {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 60px;
-}
-
-.phone-link { 
-    font-size: 1.5rem; 
-    text-decoration: none; 
-    color: var(--white); 
-}
-
-.social-wrapper { 
-    margin-top: 60px; 
-    text-align: center;
-}
-
-.footer-links { 
-    display: flex; 
-    justify-content: center; /* Center social row */
-    gap: 20px; 
-    font-size: 0.8rem; 
-    margin-bottom: 30px; 
-    font-weight: 600; 
-}
-
-.footer-links a { 
-    color: var(--white); 
-    text-decoration: none; 
-    letter-spacing: 1px; 
-}
-
-.rights { 
-    font-size: 0.65rem; 
-    color: var(--muted); 
-    letter-spacing: 1px; 
-    text-align: center;
-}
-
-/* --- Responsive --- */
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-text { font-size: 2rem; }
-    .list-item { flex-direction: column; gap: 20px; }
-    .meta { width: 100%; }
 }
