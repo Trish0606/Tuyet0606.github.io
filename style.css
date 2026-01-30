@@ -3,10 +3,9 @@
     --white: #ffffff;
     --muted: #666666;
     --border: #1a1a1a;
-    --accent: #00ff88; /* The tech grid color */
+    --accent: #00d4ff; /* Electric Blue */
 }
 
-/* --- Base Setup --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -24,140 +23,102 @@ body {
 nav { padding: 60px 0; position: relative; z-index: 10; }
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
 .brand { font-weight: 600; font-size: 1.1rem; }
-.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
+.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; transition: 0.3s; }
+.nav-links a:hover { color: var(--white); }
 
-/* --- Hero Section & 3D Tech Grid --- */
-/* --- Hero Container --- */
+/* --- Hero & Blue Circuit Animation --- */
 .hero { 
     position: relative; 
-    padding: 180px 0 140px 0; 
+    padding: 150px 0; 
     text-align: center; 
     overflow: hidden; 
     background: #000;
 }
 
-/* --- The Circuit Board Pattern --- */
 .circuit-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* This creates the dots and lines look from your reference image */
+    /* Pattern mimicking circuit board traces */
     background-image: 
-        radial-gradient(circle, var(--accent) 1px, transparent 1px),
-        linear-gradient(to right, rgba(0, 255, 136, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
-    background-size: 80px 80px, 80px 80px, 80px 80px;
-    background-position: center;
-    
+        radial-gradient(circle, var(--accent) 1.5px, transparent 1.5px),
+        linear-gradient(45deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+    background-size: 80px 80px, 160px 160px, 160px 160px;
     opacity: 0;
-    /* Move it slowly so it feels like a scanning system */
-    animation: circuitFade 2s ease-out 2s forwards, circuitMove 60s linear infinite;
-    
-    /* Radial mask keeps it focused behind the text */
-    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    animation: circuitFade 2.5s ease-out 2s forwards, circuitMove 100s linear infinite;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
 }
 
-/* Secondary "Neural" layer for extra detail */
 .circuit-overlay::after {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10L90 90M90 10L10 90' stroke='rgba(0,255,136,0.07)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
-    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100h40l20-20h40l20 20h80M100 0v40l-20 20v40l20 20v80' stroke='rgba(0,212,255,0.1)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
 }
 
-/* The Green Tech Glow */
 .hero-glow {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
     opacity: 0;
     animation: circuitFade 3s ease-out 2.5s forwards;
     pointer-events: none;
 }
 
 @keyframes circuitFade { from { opacity: 0; } to { opacity: 1; } }
-
-/* Slowly drifts the circuit board diagonally */
-@keyframes circuitMove {
-    from { background-position: 0 0; }
-    to { background-position: 160px 160px; }
-}
+@keyframes circuitMove { from { background-position: 0 0; } to { background-position: 800px 800px; } }
 
 .hero-content { position: relative; z-index: 5; }
 
-/* --- Typing & Fade Animations --- */
+/* --- Hero Text Animations --- */
 .typing-text {
     font-size: 1.1rem; color: var(--muted); letter-spacing: 2px; overflow: hidden; white-space: nowrap; margin: 0 auto 10px auto; width: 0; border-right: 2px solid var(--muted);
     animation: typing 2s steps(15, end) forwards, blink 0.75s step-end infinite;
 }
-
 @keyframes typing { from { width: 0 } to { width: 110px; } }
 @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--muted); } }
 
 .hero-name {
-    font-size: clamp(2.5rem, 8vw, 4.5rem); 
-    font-weight: 600; 
-    margin-bottom: 30px; 
-    letter-spacing: -1px; 
-    opacity: 0; 
+    font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 600; margin-bottom: 30px; letter-spacing: -1px; opacity: 0; 
     animation: fadeUp 1s ease-out 2s forwards; 
 }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.availability { 
-    font-size: 0.65rem; 
-    color: var(--accent); 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    margin-bottom: 40px; 
-    opacity: 0; 
-    animation: fadeUp 1s ease-out 2.5s forwards; 
-}
+.availability { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; opacity: 0; animation: fadeUp 1s ease-out 2.5s forwards; }
 
 .btn-pill {
     display: inline-block; padding: 12px 34px; border: 1px solid var(--white); color: var(--white); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 50px; transition: 0.3s; opacity: 0; animation: fadeUp 1s ease-out 2.8s forwards;
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- Sections & 200px Photo --- */
-section { padding: 140px 0; border-top: 1px solid var(--border); position: relative; background-color: var(--bg); z-index: 5; }
-
+/* --- Sections & Photo --- */
+section { padding: 140px 0; border-top: 1px solid var(--border); position: relative; background: var(--bg); z-index: 5; }
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
-.profile-img-refined { 
-    width: 200px; 
-    height: auto; 
-    aspect-ratio: 3/4; 
-    object-fit: cover; 
-    border-radius: 2px; 
-}
+.profile-img-refined { width: 200px; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 2px; }
 
 .label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
 .content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; text-align: center; }
 
-/* --- Experience & Work Lists --- */
+/* --- Experience/Work Lists --- */
 .list-item { display: flex; padding: 60px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
 .meta { width: 180px; color: var(--muted); font-size: 0.8rem; }
 .item-info h3 { font-size: 2.2rem; font-weight: 400; margin-bottom: 10px; }
 .item-info p { color: var(--muted); }
 .arrow { margin-left: auto; font-size: 1.5rem; color: var(--muted); }
 
-/* --- Contact Section --- */
-#contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
+/* --- Contact --- */
+#contact { text-align: center; padding-bottom: 80px; }
 .contact-title { font-size: 1.8rem; font-weight: 500; margin-bottom: 25px; }
 .phone-link { font-size: 1.3rem; text-decoration: none; color: var(--white); }
-.social-wrapper { margin-top: 60px; }
-.footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin-bottom: 30px; font-weight: 600; }
-.footer-links a { color: var(--white); text-decoration: none; }
+.footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin: 60px 0 30px; }
+.footer-links a { color: var(--white); text-decoration: none; transition: 0.3s; }
+.footer-links a:hover { color: var(--muted); }
+.sep { color: var(--muted); }
 .rights { font-size: 0.65rem; color: var(--muted); }
 
-/* --- Mobile Responsive --- */
 @media (max-width: 768px) {
     .container { padding: 0 30px; }
     .hero-name { font-size: 2.5rem; }
