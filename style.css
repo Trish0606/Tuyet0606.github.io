@@ -24,7 +24,7 @@ nav { padding: 60px 0; }
 .brand { font-weight: 600; font-size: 1.1rem; }
 .nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
 
-/* --- Hero Section with Typing Effect --- */
+/* --- Hero Section --- */
 .hero { padding: 120px 0 100px 0; text-align: center; }
 
 .typing-text {
@@ -65,11 +65,12 @@ nav { padding: 60px 0; }
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- About Section & 85px Borderless Photo --- */
+/* --- About Section & 80px Photo --- */
 section { padding: 140px 0; border-top: 1px solid var(--border); }
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
+
 .profile-img-refined { 
-    width: 85px; 
+    width: 80px; /* Refined 80px size */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
@@ -80,10 +81,21 @@ section { padding: 140px 0; border-top: 1px solid var(--border); }
 .label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
 .content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; text-align: center; }
 
-/* --- Centered Contact Section --- */
+/* --- Smaller Contact Section --- */
 #contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
-.contact-title { font-size: 2.2rem; font-weight: 500; margin-bottom: 30px; }
-.phone-link { font-size: 1.5rem; text-decoration: none; color: var(--white); }
+
+.contact-title { 
+    font-size: 1.8rem; /* Scaled down from 2.2rem */
+    font-weight: 500; 
+    margin-bottom: 25px; 
+    color: var(--white);
+}
+
+.phone-link { 
+    font-size: 1.3rem; /* Scaled down from 1.5rem */
+    text-decoration: none; 
+    color: var(--white); 
+}
 
 .social-wrapper { margin-top: 60px; }
 .footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin-bottom: 30px; font-weight: 600; }
@@ -92,4 +104,5 @@ section { padding: 140px 0; border-top: 1px solid var(--border); }
 
 @media (max-width: 768px) {
     .hero-name { font-size: 2.5rem; }
+    .contact-title { font-size: 1.5rem; }
 }
