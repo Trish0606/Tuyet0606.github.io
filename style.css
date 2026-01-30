@@ -24,7 +24,7 @@ nav { padding: 60px 0; }
 .brand { font-weight: 600; font-size: 1.1rem; }
 .nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
 
-/* --- Hero Section --- */
+/* --- Hero Section & Animations --- */
 .hero { padding: 120px 0 100px 0; text-align: center; }
 
 .typing-text {
@@ -36,7 +36,8 @@ nav { padding: 60px 0; }
     margin: 0 auto 10px auto;
     width: 0;
     border-right: 2px solid var(--muted);
-    animation: typing 2.5s steps(15, end) forwards, blink 0.75s step-end infinite;
+    /* Types for 2 seconds */
+    animation: typing 2s steps(15, end) forwards, blink 0.75s step-end infinite;
 }
 
 @keyframes typing { from { width: 0 } to { width: 110px; } }
@@ -47,9 +48,25 @@ nav { padding: 60px 0; }
     font-weight: 600;
     margin-bottom: 30px;
     letter-spacing: -1px;
+    opacity: 0; /* Hidden initially */
+    /* Waits 2s for typing to finish, then fades up */
+    animation: fadeUp 1s ease-out 2s forwards; 
 }
 
-.availability { font-size: 0.65rem; color: #00ff88; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; }
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.availability { 
+    font-size: 0.65rem; 
+    color: #00ff88; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 2.5s forwards; /* Fades in last */
+}
 
 .btn-pill {
     display: inline-block;
@@ -62,15 +79,17 @@ nav { padding: 60px 0; }
     letter-spacing: 2px;
     border-radius: 50px;
     transition: 0.3s;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 2.8s forwards;
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- About Section & 80px Photo --- */
+/* --- About Section & 120px Photo --- */
 section { padding: 140px 0; border-top: 1px solid var(--border); }
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
 
 .profile-img-refined { 
-    width: 80px; /* Refined 80px size */
+    width: 120px; /* Updated to 120px as requested */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
@@ -82,27 +101,4 @@ section { padding: 140px 0; border-top: 1px solid var(--border); }
 .content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; text-align: center; }
 
 /* --- Smaller Contact Section --- */
-#contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
-
-.contact-title { 
-    font-size: 1.8rem; /* Scaled down from 2.2rem */
-    font-weight: 500; 
-    margin-bottom: 25px; 
-    color: var(--white);
-}
-
-.phone-link { 
-    font-size: 1.3rem; /* Scaled down from 1.5rem */
-    text-decoration: none; 
-    color: var(--white); 
-}
-
-.social-wrapper { margin-top: 60px; }
-.footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin-bottom: 30px; font-weight: 600; }
-.footer-links a { color: var(--white); text-decoration: none; }
-.rights { font-size: 0.65rem; color: var(--muted); letter-spacing: 1px; }
-
-@media (max-width: 768px) {
-    .hero-name { font-size: 2.5rem; }
-    .contact-title { font-size: 1.5rem; }
-}
+#contact { text-align: center; border-
