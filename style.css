@@ -1,104 +1,27 @@
-:root {
-    --bg: #000000;
-    --white: #ffffff;
-    --muted: #666666;
-    --border: #1a1a1a;
+/* --- About Section & 130px Photo --- */
+section { 
+    padding: 140px 0; 
+    border-top: 1px solid var(--border); 
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body { 
-    background-color: var(--bg); 
-    color: var(--white); 
-    font-family: 'Inter', sans-serif; 
-    line-height: 2.0;
-    -webkit-font-smoothing: antialiased;
+.about-image-wrapper { 
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 50px; 
 }
-
-.container { max-width: 1100px; margin: 0 auto; padding: 0 50px; }
-
-/* --- Navigation --- */
-nav { padding: 60px 0; }
-.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-.brand { font-weight: 600; font-size: 1.1rem; }
-.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
-
-/* --- Hero Section & Animations --- */
-.hero { padding: 120px 0 100px 0; text-align: center; }
-
-.typing-text {
-    font-size: 1.1rem;
-    color: var(--muted);
-    letter-spacing: 2px;
-    overflow: hidden; 
-    white-space: nowrap; 
-    margin: 0 auto 10px auto;
-    width: 0;
-    border-right: 2px solid var(--muted);
-    /* Types for 2 seconds */
-    animation: typing 2s steps(15, end) forwards, blink 0.75s step-end infinite;
-}
-
-@keyframes typing { from { width: 0 } to { width: 110px; } }
-@keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--muted); } }
-
-.hero-name {
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
-    font-weight: 600;
-    margin-bottom: 30px;
-    letter-spacing: -1px;
-    opacity: 0; /* Hidden initially */
-    /* Waits 2s for typing to finish, then fades up */
-    animation: fadeUp 1s ease-out 2s forwards; 
-}
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.availability { 
-    font-size: 0.65rem; 
-    color: #00ff88; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    margin-bottom: 40px;
-    opacity: 0;
-    animation: fadeUp 1s ease-out 2.5s forwards; /* Fades in last */
-}
-
-.btn-pill {
-    display: inline-block;
-    padding: 12px 34px;
-    border: 1px solid var(--white);
-    color: var(--white);
-    text-decoration: none;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    transition: 0.3s;
-    opacity: 0;
-    animation: fadeUp 1s ease-out 2.8s forwards;
-}
-.btn-pill:hover { background: var(--white); color: var(--bg); }
-
-/* --- About Section & 120px Photo --- */
-section { padding: 140px 0; border-top: 1px solid var(--border); }
-.about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
 
 .profile-img-refined { 
-    width: 120px; /* Updated to 120px as requested */
+    width: 130px; /* Updated to 130px */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
     border: none; 
     border-radius: 2px;
+    /* Optional: Keep the subtle fade-in from before if you like it */
+    animation: fadeIn 1.5s ease-out forwards;
 }
 
-.label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
-.content-text { font-size: 1.6rem; line-height: 1.6; max-width: 800px; margin: 0 auto; text-align: center; }
-
-/* --- Smaller Contact Section --- */
-#contact { text-align: center; border-
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
