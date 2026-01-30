@@ -3,6 +3,7 @@
     --white: #ffffff;
     --muted: #666666;
     --border: #1a1a1a;
+    --accent: #00ff88;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,7 +23,8 @@ body {
 nav { padding: 60px 0; }
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
 .brand { font-weight: 600; font-size: 1.1rem; }
-.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
+.nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; transition: 0.3s; }
+.nav-links a:hover { color: var(--white); }
 
 /* --- Hero Section & Animations --- */
 .hero { padding: 120px 0 100px 0; text-align: center; }
@@ -48,7 +50,7 @@ nav { padding: 60px 0; }
     margin-bottom: 30px;
     letter-spacing: -1px;
     opacity: 0; 
-    animation: fadeUp 1s ease-out 2s forwards; /* Waits for typing to finish */
+    animation: fadeUp 1s ease-out 2s forwards; /* Waits for Hello to type */
 }
 
 @keyframes fadeUp {
@@ -58,7 +60,7 @@ nav { padding: 60px 0; }
 
 .availability { 
     font-size: 0.65rem; 
-    color: #00ff88; 
+    color: var(--accent); 
     text-transform: uppercase; 
     letter-spacing: 2px; 
     margin-bottom: 40px;
@@ -87,12 +89,13 @@ section { padding: 140px 0; border-top: 1px solid var(--border); }
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
 
 .profile-img-refined { 
-    width: 130px; 
+    width: 130px; /* Explicitly set to 130px */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
     border: none; 
     border-radius: 2px;
+    display: block;
 }
 
 .label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
@@ -101,8 +104,19 @@ section { padding: 140px 0; border-top: 1px solid var(--border); }
 /* --- Smaller, Centered Contact Section --- */
 #contact { text-align: center; border-bottom: none; padding-bottom: 80px; }
 .contact-title { font-size: 1.8rem; font-weight: 500; margin-bottom: 25px; }
-.phone-link { font-size: 1.3rem; text-decoration: none; color: var(--white); }
+.phone-link { font-size: 1.3rem; text-decoration: none; color: var(--white); transition: 0.3s; }
+.phone-link:hover { color: var(--muted); }
 
 .social-wrapper { margin-top: 60px; }
 .footer-links { display: flex; justify-content: center; gap: 20px; font-size: 0.8rem; margin-bottom: 30px; font-weight: 600; }
-.footer-links a { color: var(--white
+.footer-links a { color: var(--white); text-decoration: none; transition: 0.3s; }
+.footer-links a:hover { color: var(--muted); }
+.sep { color: var(--muted); }
+.rights { font-size: 0.65rem; color: var(--muted); letter-spacing: 1px; }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .container { padding: 0 30px; }
+    .hero-name { font-size: 2.5rem; }
+    .nav-links { display: none; }
+}
