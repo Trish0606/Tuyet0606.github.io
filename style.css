@@ -27,43 +27,66 @@ nav { padding: 60px 0; position: relative; z-index: 10; }
 .nav-links a { margin-left: 40px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-decoration: none; }
 
 /* --- Hero Section & 3D Tech Grid --- */
+/* --- Hero Container --- */
 .hero { 
     position: relative; 
     padding: 180px 0 140px 0; 
     text-align: center; 
     overflow: hidden; 
-    perspective: 1000px; /* Required for the 3D tilt */
+    background: #000;
 }
 
-.tech-grid {
+/* --- The Circuit Board Pattern --- */
+.circuit-overlay {
     position: absolute;
-    top: -50%; 
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* This creates the dots and lines look from your reference image */
     background-image: 
-        linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
-    background-size: 60px 60px;
-    
-    /* This creates the 3D floor effect */
-    transform: rotateX(60deg);
+        radial-gradient(circle, var(--accent) 1px, transparent 1px),
+        linear-gradient(to right, rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 80px 80px;
+    background-position: center;
     
     opacity: 0;
-    /* Fades in and moves forward at the same time as your name */
-    animation: 
-        techFadeIn 2.5s ease-out 2s forwards, 
-        gridDrift 40s linear infinite;
+    /* Move it slowly so it feels like a scanning system */
+    animation: circuitFade 2s ease-out 2s forwards, circuitMove 60s linear infinite;
     
-    /* Fades out the edges so it looks sleek */
-    mask-image: radial-gradient(circle at center, black 20%, transparent 70%);
-    -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 70%);
+    /* Radial mask keeps it focused behind the text */
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
 }
 
-@keyframes techFadeIn { from { opacity: 0; } to { opacity: 0.5; } }
-@keyframes gridDrift { from { background-position: 0 0; } to { background-position: 0 -1000px; } }
+/* Secondary "Neural" layer for extra detail */
+.circuit-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10L90 90M90 10L10 90' stroke='rgba(0,255,136,0.07)' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+    opacity: 0.5;
+}
 
-.hero-content { position: relative; z-index: 2; }
+/* The Green Tech Glow */
+.hero-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    animation: circuitFade 3s ease-out 2.5s forwards;
+    pointer-events: none;
+}
+
+@keyframes circuitFade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Slowly drifts the circuit board diagonally */
+@keyframes circuitMove {
+    from { background-position: 0 0; }
+    to { background-position: 160px 160px; }
+}
+
+.hero-content { position: relative; z-index: 5; }
 
 /* --- Typing & Fade Animations --- */
 .typing-text {
