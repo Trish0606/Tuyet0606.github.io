@@ -47,15 +47,19 @@ nav { padding: 60px 0; }
 }
 .btn-pill:hover { background: var(--white); color: var(--bg); }
 
-/* --- About & 150px Photo --- */
+
+/* --- About & 180px Photo --- */
 section { padding: 140px 0; border-top: 1px solid var(--border); }
 .about-image-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
+
 .profile-img-refined { 
-    width: 150px; 
+    width: 180px; /* Updated to 180px */
     height: auto; 
     aspect-ratio: 3/4; 
     object-fit: cover; 
     border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle "Proof of Change" border */
+    display: block;
 }
 
 .label { display: block; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 50px; letter-spacing: 3px; text-align: center; }
