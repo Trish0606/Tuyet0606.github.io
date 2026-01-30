@@ -22,18 +22,17 @@
     </nav>
 
     <header class="hero" id="hero-section">
-    <div class="circuit-overlay"></div>
-    <div class="hero-glow"></div>
-    <div class="container hero-content">
-        <p class="typing-text">Hello, I'm</p>
-        <h1 class="hero-name">Tuyet Nguyen</h1>
-        <p class="availability">● Available for new opportunities</p>
-        
-        <div class="hero-action">
-            <a href="#contact" class="btn-pill">Get In Touch</a>
+        <div class="circuit-overlay"></div>
+        <div class="hero-glow"></div>
+        <div class="container hero-content">
+            <p class="typing-text">Hello, I'm</p>
+            <h1 class="hero-name">Tuyet Nguyen</h1>
+            <p class="availability">● Available for new opportunities</p>
+            <div class="hero-action">
+                <a href="#contact" class="btn-pill">Get In Touch</a>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <section id="about">
         <div class="container">
@@ -50,11 +49,21 @@
     <section id="experience">
         <div class="container">
             <span class="label">Experience</span>
+            
             <div class="list-item">
                 <div class="meta">2024 — PRESENT</div>
                 <div class="item-info">
                     <h3>Senior Designer</h3>
-                    <p>Shaping digital products and design systems.</p>
+                    <p>Shaping digital products and high-performance design systems.</p>
+                </div>
+                <div class="arrow">→</div>
+            </div>
+
+            <div class="list-item">
+                <div class="meta">2022 — 2024</div>
+                <div class="item-info">
+                    <h3>UI/UX Developer</h3>
+                    <p>Building accessible, code-driven interfaces for global brands.</p>
                 </div>
                 <div class="arrow">→</div>
             </div>
@@ -64,11 +73,21 @@
     <section id="projects">
         <div class="container">
             <span class="label">Selected Work</span>
+            
             <div class="list-item">
                 <div class="meta">WEB DESIGN</div>
                 <div class="item-info">
                     <h3>Project Name One</h3>
-                    <p>Minimalist E-commerce Experience</p>
+                    <p>A minimalist approach to modern e-commerce.</p>
+                </div>
+                <div class="arrow">→</div>
+            </div>
+
+            <div class="list-item">
+                <div class="meta">DEVELOPMENT</div>
+                <div class="item-info">
+                    <h3>Project Name Two</h3>
+                    <p>Interactive data visualization and dashboard design.</p>
                 </div>
                 <div class="arrow">→</div>
             </div>
@@ -81,6 +100,7 @@
             <div class="contact-details">
                 <a href="tel:+19050000000" class="phone-link">(905) 000-0000</a>
             </div>
+            
             <div class="social-wrapper">
                 <div class="footer-links">
                     <a href="#">LINKEDIN</a> <span class="sep">+</span>
@@ -98,19 +118,24 @@
     </button>
 
     <script>
+        let hero = document.getElementById('hero-section');
         const restartBtn = document.getElementById('restart-btn');
-        const hero = document.getElementById('hero-section');
 
         restartBtn.addEventListener('click', () => {
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // 1. Instant jump to top so the user sees the start
+            window.scrollTo({ top: 0, behavior: 'auto' });
+
+            // 2. Clone the hero to reset the CSS animations
+            const heroContainer = hero.parentElement;
+            const newHero = hero.cloneNode(true);
             
-            // Briefly remove the hero and put it back to re-trigger CSS animations
-            const heroClone = hero.cloneNode(true);
-            hero.parentNode.replaceChild(heroClone, hero);
+            // 3. Remove and re-add for a clean reset
+            hero.remove();
             
-            // Refresh the reference to the new clone for next time
-            window.location.hash = ""; // Clear hash
+            setTimeout(() => {
+                heroContainer.prepend(newHero);
+                hero = newHero; // Re-assign for subsequent clicks
+            }, 10);
         });
     </script>
 
