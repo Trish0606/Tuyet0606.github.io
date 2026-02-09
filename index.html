@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuyet Nguyen | Portfolio</title>
+    <title>Tuyet Nguyen Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav class="sticky-nav">
-        <div class="container nav-wrapper">
+        <div class="nav-wrapper">
             <div class="brand">TUYET</div>
             <div class="nav-links">
                 <a href="#about">About</a>
@@ -21,32 +21,34 @@
 
     <header class="hero">
         <div class="butterfly-field">
-            <div class="bf-wrapper" data-speed="0.05"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" data-speed="0.08"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" data-speed="0.03"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" data-speed="0.1"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" data-speed="0.06"><div class="bf-image"></div></div>
+            <div class="bf-container" data-speed="0.04"><div class="bf-inner"></div></div>
+            <div class="bf-container" data-speed="0.08"><div class="bf-inner"></div></div>
+            <div class="bf-container" data-speed="0.05"><div class="bf-inner"></div></div>
+            <div class="bf-container" data-speed="0.12"><div class="bf-inner"></div></div>
+            <div class="bf-container" data-speed="0.06"><div class="bf-inner"></div></div>
         </div>
         
         <div class="hero-content">
-            <p>Hello, I'm</p>
+            <p class="hello-tag">Hello, I'm</p>
             <h1 class="hero-name">Tuyet Nguyen</h1>
-            <a href="mailto:your@email.com" class="btn-pill">Say Hello</a>
+            <a href="mailto:your@email.com" class="say-hello-btn">Say Hello</a>
         </div>
     </header>
 
-    <section id="about" class="section">
+    <section id="about" class="about-section">
         <div class="container">
-            <div class="profile-container">
-                <img src="images/profile.jpg" alt="Tuyet" class="profile-img">
+            <div class="profile-card">
+                <img src="https://ui-avatars.com/api/?name=Tuyet+Nguyen&background=00d4ff&color=fff" alt="Tuyet" class="profile-img">
+                <div class="profile-info">
+                    <h3>Senior Designer</h3>
+                    <p>2024 - PRES.</p>
+                </div>
             </div>
-            <h2 class="section-title">About Me</h2>
-            <p class="content-text">Senior Designer | 2024 - PRES.</p>
         </div>
     </section>
 
     <script>
-        const butterflies = document.querySelectorAll('.bf-wrapper');
+        const bfs = document.querySelectorAll('.bf-container');
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
 
@@ -56,20 +58,14 @@
         });
 
         function animate() {
-            butterflies.forEach((bf) => {
+            bfs.forEach((bf) => {
                 const speed = parseFloat(bf.getAttribute('data-speed'));
-                const rect = bf.getBoundingClientRect();
-                
-                // Current position
-                const currX = rect.left + rect.width / 2;
-                const currY = rect.top + rect.height / 2;
+                const currX = parseFloat(bf.style.left) || window.innerWidth / 2;
+                const currY = parseFloat(bf.style.top) || window.innerHeight / 2;
 
-                // Move slowly toward mouse (The "one-by-one" lag)
-                const nextX = currX + (mouseX - currX) * speed;
-                const nextY = currY + (mouseY - currY) * speed;
-
-                bf.style.left = nextX + 'px';
-                bf.style.top = nextY + 'px';
+                // This math makes them follow the cursor "one-by-one"
+                bf.style.left = (currX + (mouseX - currX) * speed) + 'px';
+                bf.style.top = (currY + (mouseY - currY) * speed) + 'px';
             });
             requestAnimationFrame(animate);
         }
