@@ -8,72 +8,72 @@
 </head>
 <body>
 
-    <nav class="main-nav">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+    <nav class="nav-bar">
+        <div class="nav-links">
+            <a href="#">About</a>
+            <a href="#">Experience</a>
+            <a href="#">Contact</a>
+        </div>
     </nav>
 
-    <header class="hero-header">
-        <div class="butterfly-system">
-            <div class="bf-layer" data-lag="0.05"><div class="bf-sprite"></div></div>
-            <div class="bf-layer" data-lag="0.08"><div class="bf-sprite"></div></div>
-            <div class="bf-layer" data-lag="0.03"><div class="bf-sprite"></div></div>
-            <div class="bf-layer" data-lag="0.1"><div class="bf-sprite"></div></div>
-            <div class="bf-layer" data-lag="0.06"><div class="bf-sprite"></div></div>
+    <header class="hero">
+        <div class="butterfly-field">
+            <div class="bf" data-lag="0.04"></div>
+            <div class="bf" data-lag="0.07"></div>
+            <div class="bf" data-lag="0.05"></div>
+            <div class="bf" data-lag="0.09"></div>
+            <div class="bf" data-lag="0.06"></div>
         </div>
-
-        <div class="hero-text">
-            <p class="sub-head">Hello, I'm</p>
-            <h1 class="main-name">Tuyet Nguyen</h1>
-            <a href="#" class="ghost-btn">Say Hello</a>
+        
+        <div class="hero-content">
+            <p class="greeting">Hello, I'm</p>
+            <h1 class="name">Tuyet Nguyen</h1>
+            <a href="#" class="btn-say-hello">Say Hello</a>
         </div>
     </header>
 
-    <section id="about" class="about-section">
-        <div class="card-container">
-            <h2 class="section-label">About Me</h2>
+    <section class="about-section">
+        <div class="card-wrap">
+            <h2 class="label">About Me</h2>
             <div class="profile-card">
-                <div class="pic-circle">
-                    <img src="images/profile.jpg" alt="Tuyet Nguyen">
+                <div class="profile-pic">
+                    <img src="https://ui-avatars.com/api/?name=Tuyet+Nguyen&background=0D1117&color=fff" alt="Profile">
                 </div>
-                <div class="card-info">
+                <div class="profile-text">
                     <h3>Senior Designer</h3>
-                    <p>2024 - PRES.</p>
+                    <p>2024 — PRES.</p>
                 </div>
-                <div class="arrow-icon">→</div>
+                <div class="arrow">›</div>
             </div>
         </div>
     </section>
 
     <script>
-        const layers = document.querySelectorAll('.bf-layer');
-        let targetX = window.innerWidth / 2;
-        let targetY = window.innerHeight / 2;
+        const butterflies = document.querySelectorAll('.bf');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
 
         document.addEventListener('mousemove', (e) => {
-            targetX = e.clientX;
-            targetY = e.clientY;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
 
-        function smoothFly() {
-            layers.forEach((layer) => {
-                const lag = parseFloat(layer.getAttribute('data-lag'));
-                const rect = layer.getBoundingClientRect();
-                
-                // Get current center
+        function moveButterflies() {
+            butterflies.forEach((bf) => {
+                const lag = parseFloat(bf.getAttribute('data-lag'));
+                const rect = bf.getBoundingClientRect();
                 const currentX = rect.left + rect.width / 2;
                 const currentY = rect.top + rect.height / 2;
 
-                // Move one-by-one with different lag speeds
-                const dx = (targetX - currentX) * lag;
-                const dy = (targetY - currentY) * lag;
+                const dx = (mouseX - currentX) * lag;
+                const dy = (mouseY - currentY) * lag;
 
-                layer.style.transform = `translate(${currentX + dx - rect.width/2}px, ${currentY + dy - rect.height/2}px)`;
+                bf.style.left = (currentX + dx) + 'px';
+                bf.style.top = (currentY + dy) + 'px';
             });
-            requestAnimationFrame(smoothFly);
+            requestAnimationFrame(moveButterflies);
         }
-        smoothFly();
+        moveButterflies();
     </script>
 </body>
 </html>
