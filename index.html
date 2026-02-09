@@ -11,7 +11,7 @@
 
     <nav class="sticky-nav">
         <div class="container nav-wrapper">
-            <div class="brand">TN</div>
+            <div class="brand">Tuyet</div>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#experience">Experience</a>
@@ -22,8 +22,16 @@
     </nav>
 
     <header class="hero" id="hero-section">
-        <div class="circuit-overlay"></div>
+        <div class="butterfly-container">
+            <div class="butterfly b1"></div>
+            <div class="butterfly b2"></div>
+            <div class="butterfly b3"></div>
+            <div class="butterfly b4"></div>
+            <div class="butterfly b5"></div>
+        </div>
+        
         <div class="hero-glow"></div>
+        
         <div class="container hero-content">
             <p class="typing-text">Hello, I'm</p>
             <h1 class="hero-name">Tuyet Nguyen</h1>
@@ -41,7 +49,7 @@
             </div>
             <span class="label">About Me</span>
             <p class="content-text">
-                My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance. I love building products that push the mundane into something extraordinary.
+                My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance.
             </p>
         </div>
     </section>
@@ -49,61 +57,27 @@
     <section id="experience">
         <div class="container">
             <span class="label">Experience</span>
-            
             <div class="list-item">
                 <div class="meta">2024 — PRESENT</div>
                 <div class="item-info">
                     <h3>Senior Designer</h3>
-                    <p>Shaping digital products and high-performance design systems.</p>
-                </div>
-                <div class="arrow">→</div>
-            </div>
-
-            <div class="list-item">
-                <div class="meta">2022 — 2024</div>
-                <div class="item-info">
-                    <h3>UI/UX Developer</h3>
-                    <p>Building accessible, code-driven interfaces for global brands.</p>
+                    <p>Shaping digital products and tech systems.</p>
                 </div>
                 <div class="arrow">→</div>
             </div>
         </div>
     </section>
 
-    <section id="projects">
-        <div class="container">
-            <span class="label">Selected Work</span>
-            
-            <div class="list-item">
-                <div class="meta">WEB DESIGN</div>
-                <div class="item-info">
-                    <h3>Project Name One</h3>
-                    <p>A minimalist approach to modern e-commerce.</p>
-                </div>
-                <div class="arrow">→</div>
-            </div>
-
-            <div class="list-item">
-                <div class="meta">DEVELOPMENT</div>
-                <div class="item-info">
-                    <h3>Project Name Two</h3>
-                    <p>Interactive data visualization and dashboard design.</p>
-                </div>
-                <div class="arrow">→</div>
-            </div>
-        </div>
-    </section>
-
-   <section id="contact">
+    <section id="contact">
         <div class="container">
             <h2 class="contact-title">Shoot me MSG!</h2>
             
-            <div class="contact-action" style="margin-bottom: 30px;">
-                <a href="mailto:tuyet.thien.nguyen@gmail.com" class="btn-pill">Say Hello</a>
+            <div class="contact-action">
+                <a href="mailto:youremail@gmail.com?subject=Hello!" class="btn-pill">Say Hello</a>
             </div>
 
             <div class="contact-details">
-                <a href="tel:+3462970099" class="phone-link">(346) 297-0099</a>
+                <a href="tel:+19050000000" class="phone-link">(905) 000-0000</a>
             </div>
             
             <div class="social-wrapper">
@@ -113,36 +87,48 @@
                     <a href="#">IG</a> <span class="sep">+</span>
                     <a href="#">GITHUB</a>
                 </div>
-                <p class="rights">© 2026 Tuyet ☆ All rights reserved.</p>
+                <p class="rights">© 2026 All rights reserved.</p>
             </div>
         </div>
     </section>
-    
 
     <button id="restart-btn" class="restart-trigger">
         <span class="restart-icon">↺</span> Restart Intro
     </button>
 
     <script>
+        // 1. RESTART LOGIC
         let hero = document.getElementById('hero-section');
         const restartBtn = document.getElementById('restart-btn');
 
         restartBtn.addEventListener('click', () => {
-            // 1. Instant jump to top so the user sees the start
             window.scrollTo({ top: 0, behavior: 'auto' });
-
-            // 2. Clone the hero to reset the CSS animations
             const heroContainer = hero.parentElement;
             const newHero = hero.cloneNode(true);
-            
-            // 3. Remove and re-add for a clean reset
             hero.remove();
-            
             setTimeout(() => {
                 heroContainer.prepend(newHero);
-                hero = newHero; // Re-assign for subsequent clicks
+                hero = newHero; 
+                attachMouseEffect(); // Re-attach mouse effect to the new butterflies
             }, 10);
         });
+
+        // 2. MOUSE INTERACTION LOGIC
+        function attachMouseEffect() {
+            document.addEventListener('mousemove', (e) => {
+                const butterflies = document.querySelectorAll('.butterfly');
+                const x = (e.clientX / window.innerWidth - 0.5) * 40; 
+                const y = (e.clientY / window.innerHeight - 0.5) * 40;
+
+                butterflies.forEach((b, index) => {
+                    const speed = (index + 1) * 0.3;
+                    // Combined flight animation + mouse tracking
+                    b.style.marginLeft = `${x * speed}px`;
+                    b.style.marginTop = `${y * speed}px`;
+                });
+            });
+        }
+        attachMouseEffect();
     </script>
 
 </body>
