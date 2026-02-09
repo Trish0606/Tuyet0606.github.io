@@ -10,49 +10,57 @@ body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-se
 /* --- HERO --- */
 .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 
-/* --- BUTTERFLIES --- */
-.butterfly-field { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-
+/* --- BUTTERFLY MASKING & GLOW --- */
 .bf-wrapper {
     position: absolute;
-    width: 120px; height: 120px;
-    transform: translate(-50%, -50%); /* Centers butterfly on cursor */
-    transition: left 0.5s cubic-bezier(0.1, 0.3, 0.3, 1), top 0.5s cubic-bezier(0.1, 0.3, 0.3, 1);
+    width: 130px; height: 130px;
     z-index: 5;
+    transition: transform 0.4s ease-out; /* Smooth interaction */
 }
 
 .bf-image {
     width: 100%; height: 100%;
-    background-image: url('images/butterfly.png'); /* YOUR IMAGE */
-    background-size: contain;
-    background-repeat: no-repeat;
+    background: var(--accent); /* This provides the blue color */
     
-    /* REMOVES BLACK BACKGROUND & ADDS GLOW */
-    mix-blend-mode: plus-lighter; 
-    filter: drop-shadow(0 0 10px var(--accent));
-
-    /* BENDING WING ANIMATION */
-    animation: flap 0.3s infinite ease-in-out;
-    transform-origin: center;
+    /* THE FIX: Use the image as a mask to remove the black box */
+    -webkit-mask-image: url('images/butterfly.png');
+    mask-image: url('images/butterfly.png');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    
+    /* THE GLOW: Now hugs only the wing edges */
+    filter: drop-shadow(0 0 12px var(--accent));
+    
+    /* THE WING BEND */
+    animation: flap 0.25s infinite ease-in-out;
 }
 
+/* Wing Flapping (3D Bend) */
 @keyframes flap {
-    0%, 100% { transform: rotateY(0deg) scale(1); }
-    50% { transform: rotateY(75deg) scale(0.9); }
+    0%, 100% { transform: rotateY(0deg); }
+    50% { transform: rotateY(70deg); } 
 }
 
-/* Individual Starting Positions (before mouse moves) */
-.b1 { top: 20%; left: 20%; }
-.b2 { top: 40%; left: 80%; }
-.b3 { top: 70%; left: 30%; }
-.b4 { top: 80%; left: 70%; }
+/* Default flight paths when NOT being touched */
+#bf1 { top: 20%; left: 15%; animation: drift 12s infinite alternate ease-in-out; }
+#bf2 { top: 60%; left: 75%; animation: drift 15s infinite alternate-reverse ease-in-out; }
+#bf3 { top: 40%; left: 70%; animation: drift 10s infinite alternate ease-in-out; }
+#bf4 { top: 75%; left: 10%; animation: drift 14s infinite alternate-reverse ease-in-out; }
 
-/* --- PROFILE PIC --- */
+@keyframes drift {
+    from { margin-left: -20px; margin-top: -20px; }
+    to { margin-left: 20px; margin-top: 20px; }
+}
+
+/* --- PROFILE IMAGE SECTION --- */
 .profile-container { margin-bottom: 30px; text-align: center; }
-.profile-img { width: 200px; height: auto; border-radius: 10px; border: 1px solid #222; }
+.profile-img { 
+    width: 220px; 
+    border-radius: 8px; 
+    border: 1px solid #1a1a1a; 
+    display: block;
+    margin: 0 auto;
+}
 
-/* --- TEXT STYLE --- */
-.hero-content { text-align: center; z-index: 10; }
-.hero-name { font-size: 5rem; font-weight: 700; text-shadow: 0 0 20px rgba(0,212,255,0.3); }
 .section { padding: 100px 0; border-top: 1px solid #111; text-align: center; }
-.btn-pill { display: inline-block; padding: 12px 35px; border: 1px solid #fff; color: #fff; text-decoration: none; border-radius: 50px; margin-top: 20px; }
+.hero-name { font-size: 5rem; font-weight: 700; text-shadow: 0 0 20px rgba(0,212,255,0.3); }
