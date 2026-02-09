@@ -1,76 +1,82 @@
 :root {
-    --bg: #0b0e14;
+    --bg: #0d1117;
     --accent: #00d4ff;
-    --white: #ffffff;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-/* --- HERO --- */
+/* --- HERO & BACKGROUND --- */
 .hero { 
     height: 100vh; 
-    position: relative; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    background: radial-gradient(circle at center, #162029 0%, #0b0e14 100%);
+    background: radial-gradient(circle at center, #1a2332 0%, #0d1117 100%);
+    overflow: hidden;
 }
 
-/* --- BUTTERFLIES --- */
-.bf-wrapper {
+.hero-content { text-align: center; z-index: 10; pointer-events: none; }
+.hero-name { font-size: 6rem; font-weight: 800; letter-spacing: -2px; }
+
+/* --- THE BUTTERFLIES (Exact Style) --- */
+.bf-container {
     position: absolute;
-    width: 140px; 
-    height: 140px;
-    z-index: 5;
-    pointer-events: none;
+    width: 180px; 
+    height: 180px;
     transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 5;
 }
 
-.bf-image {
+.bf-inner {
     width: 100%; height: 100%;
-    background-image: url('images/butterfly.png'); /* YOUR IMAGE */
+    /* This is a high-quality hosted neon butterfly sprite */
+    background-image: url('https://i.ibb.co/3W6fFp3/neon-butterfly.png');
     background-size: contain;
     background-repeat: no-repeat;
     
-    /* GLASS EFFECT: Removes black background and adds transparency */
+    /* This deletes the black background and keeps the glass/neon details */
     mix-blend-mode: screen; 
-    opacity: 0.8;
+    filter: drop-shadow(0 0 15px var(--accent));
     
-    /* NEON GLOW */
-    filter: drop-shadow(0 0 10px var(--accent)) brightness(1.2);
-    
-    /* THE FLAP: Bending wings in 3D */
-    animation: flap 0.3s infinite ease-in-out;
+    /* 3D Flapping down the center */
+    animation: flap 0.35s infinite ease-in-out;
 }
 
 @keyframes flap {
-    0%, 100% { transform: perspective(1000px) rotateY(0deg) rotateZ(-10deg); }
-    50% { transform: perspective(1000px) rotateY(70deg) rotateZ(5deg); }
+    0%, 100% { transform: perspective(1000px) rotateY(0deg); }
+    50% { transform: perspective(1000px) rotateY(75deg); } 
 }
 
-/* Tilt each butterfly differently so they look natural */
-.bf-wrapper:nth-child(1) { transform: translate(-50%, -50%) rotate(20deg); }
-.bf-wrapper:nth-child(2) { transform: translate(-50%, -50%) rotate(-15deg); }
-.bf-wrapper:nth-child(3) { transform: translate(-50%, -50%) rotate(45deg); }
+/* Tiling them to look like the image */
+.bf-container:nth-child(1) { transform: translate(-50%, -50%) rotate(15deg); }
+.bf-container:nth-child(2) { transform: translate(-50%, -50%) rotate(-20deg); }
+.bf-container:nth-child(4) { transform: translate(-50%, -50%) rotate(40deg); }
 
-/* --- PROFILE IMAGE --- */
-.profile-container { margin-bottom: 20px; }
-.profile-img { 
-    width: 150px; height: 150px; 
-    border-radius: 50%; 
-    border: 2px solid #222; 
-    object-fit: cover;
+/* --- ABOUT ME SECTION --- */
+.about-section { padding: 100px 0; display: flex; justify-content: center; }
+.profile-card { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    background: rgba(255,255,255,0.05); 
+    padding: 15px 30px; 
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
+.profile-img { width: 60px; height: 60px; border-radius: 50%; }
 
-/* --- TEXT STYLE --- */
-.hero-name { font-size: 5.5rem; font-weight: 700; letter-spacing: -2px; }
-.btn-pill { 
-    display: inline-block; 
-    padding: 12px 30px; 
+/* --- BUTTON & NAV --- */
+.say-hello-btn { 
+    pointer-events: all;
+    padding: 10px 25px; 
     border: 1px solid #fff; 
     color: #fff; 
     text-decoration: none; 
-    margin-top: 20px;
+    margin-top: 20px; 
+    display: inline-block;
 }
-.section { padding: 100px 0; text-align: center; border-top: 1px solid #1a1a1a; }
+.sticky-nav { position: fixed; top: 30px; right: 40px; z-index: 100; }
+.nav-wrapper { display: flex; gap: 25px; }
+.nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
