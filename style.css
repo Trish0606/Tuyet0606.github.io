@@ -1,82 +1,61 @@
 :root {
-    --bg: #0d1117;
-    --accent: #00d4ff;
+    --bg-dark: #0f121a;
+    --neon-blue: #00e5ff;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+body { background-color: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-/* --- HERO & BACKGROUND --- */
-.hero { 
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    background: radial-gradient(circle at center, #1a2332 0%, #0d1117 100%);
-    overflow: hidden;
-}
+/* --- NAV --- */
+.main-nav { position: absolute; top: 30px; right: 50px; display: flex; gap: 30px; z-index: 100; }
+.main-nav a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; opacity: 0.8; }
 
-.hero-content { text-align: center; z-index: 10; pointer-events: none; }
-.hero-name { font-size: 6rem; font-weight: 800; letter-spacing: -2px; }
+/* --- HERO --- */
+.hero-header { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.hero-text { text-align: left; z-index: 10; width: 80%; max-width: 1000px; }
+.sub-head { font-size: 1.8rem; margin-bottom: 5px; font-weight: 300; }
+.main-name { font-size: 6.5rem; font-weight: 700; letter-spacing: -3px; line-height: 1; margin-bottom: 30px; }
+.ghost-btn { display: inline-block; padding: 12px 30px; border: 1px solid white; color: white; text-decoration: none; font-size: 0.9rem; }
 
-/* --- THE BUTTERFLIES (Exact Style) --- */
-.bf-container {
-    position: absolute;
-    width: 180px; 
-    height: 180px;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 5;
-}
+/* --- BUTTERFLIES --- */
+.bf-layer { position: absolute; top: 0; left: 0; width: 180px; height: 180px; pointer-events: none; z-index: 5; will-change: transform; }
 
-.bf-inner {
+.bf-sprite {
     width: 100%; height: 100%;
-    /* This is a high-quality hosted neon butterfly sprite */
+    /* Use the high-res glass butterfly image from your reference */
     background-image: url('https://i.ibb.co/3W6fFp3/neon-butterfly.png');
     background-size: contain;
     background-repeat: no-repeat;
-    
-    /* This deletes the black background and keeps the glass/neon details */
-    mix-blend-mode: screen; 
-    filter: drop-shadow(0 0 15px var(--accent));
-    
-    /* 3D Flapping down the center */
-    animation: flap 0.35s infinite ease-in-out;
+    mix-blend-mode: screen; /* REMOVES BLACK BOX */
+    filter: drop-shadow(0 0 15px var(--neon-blue));
+    animation: wingFlap 0.4s infinite ease-in-out;
 }
 
-@keyframes flap {
+
+
+@keyframes wingFlap {
     0%, 100% { transform: perspective(1000px) rotateY(0deg); }
-    50% { transform: perspective(1000px) rotateY(75deg); } 
+    50% { transform: perspective(1000px) rotateY(70deg); } /* Bends wings down the middle */
 }
 
-/* Tiling them to look like the image */
-.bf-container:nth-child(1) { transform: translate(-50%, -50%) rotate(15deg); }
-.bf-container:nth-child(2) { transform: translate(-50%, -50%) rotate(-20deg); }
-.bf-container:nth-child(4) { transform: translate(-50%, -50%) rotate(40deg); }
+/* Unique Tilts for each butterfly */
+.bf-layer:nth-child(1) { top: 20%; left: 10%; scale: 0.8; rotate: 15deg; }
+.bf-layer:nth-child(2) { top: 60%; left: 70%; scale: 1.1; rotate: -20deg; }
+.bf-layer:nth-child(3) { top: 30%; left: 80%; scale: 0.9; rotate: 45deg; }
+.bf-layer:nth-child(4) { top: 70%; left: 20%; scale: 0.7; rotate: -10deg; }
 
-/* --- ABOUT ME SECTION --- */
-.about-section { padding: 100px 0; display: flex; justify-content: center; }
+/* --- ABOUT SECTION --- */
+.about-section { padding: 80px 0; display: flex; justify-content: center; }
+.card-container { width: 80%; max-width: 1000px; }
+.section-label { font-size: 1.2rem; margin-bottom: 30px; font-weight: 400; }
 .profile-card { 
-    display: flex; 
-    align-items: center; 
-    gap: 20px; 
-    background: rgba(255,255,255,0.05); 
-    padding: 15px 30px; 
-    border-radius: 100px;
-    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; gap: 20px; background: #1a1f2b; 
+    padding: 15px 25px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); 
+    position: relative; transition: 0.3s; cursor: pointer;
 }
-.profile-img { width: 60px; height: 60px; border-radius: 50%; }
-
-/* --- BUTTON & NAV --- */
-.say-hello-btn { 
-    pointer-events: all;
-    padding: 10px 25px; 
-    border: 1px solid #fff; 
-    color: #fff; 
-    text-decoration: none; 
-    margin-top: 20px; 
-    display: inline-block;
-}
-.sticky-nav { position: fixed; top: 30px; right: 40px; z-index: 100; }
-.nav-wrapper { display: flex; gap: 25px; }
-.nav-links a { color: #fff; text-decoration: none; font-size: 0.9rem; opacity: 0.8; }
+.profile-card:hover { background: #232a3a; }
+.pic-circle { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; background: #333; }
+.pic-circle img { width: 100%; height: 100%; object-fit: cover; }
+.card-info h3 { font-size: 1.1rem; font-weight: 500; }
+.card-info p { font-size: 0.8rem; color: #888; }
+.arrow-icon { margin-left: auto; color: #888; font-size: 1.2rem; }
