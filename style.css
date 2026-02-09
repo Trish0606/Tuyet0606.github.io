@@ -1,92 +1,72 @@
 :root {
     --bg: #000000;
-    --accent: #00d4ff;
+    --accent: #00d4ff; /* That specific electric blue */
     --white: #ffffff;
+    --muted: #888888;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
 
-/* --- HERO DESIGN --- */
-.hero { 
-    position: relative; 
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    background: radial-gradient(circle at center, #001a22 0%, #000 70%);
-}
+/* --- NAV --- */
+.sticky-nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 30px 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); }
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 600; letter-spacing: 3px; font-size: 0.9rem; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: 0.7rem; letter-spacing: 2px; margin-left: 30px; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
 
-.butterfly-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
+/* --- HERO & NEON BUTTERFLIES --- */
+.hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.butterfly-container { position: absolute; width: 100%; height: 100%; perspective: 1000px; }
 
-/* THE GENERATED STYLE BUTTERFLY */
 .butterfly {
     position: absolute;
-    width: 100px; /* Bigger, like the images */
-    height: 100px;
-    background-image: url('https://i.ibb.co/Lz6Ym3m/blue-butterfly-glow.png'); /* High-res glow butterfly */
-    background-size: contain;
-    background-repeat: no-repeat;
+    width: 80px; height: 80px;
+    background: var(--accent);
+    /* This creates the butterfly outline shape without an image file */
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20c-2-3-7-4-10-1s2 9 10 5c8 4 13-2 10-5s-8-2-10 1z'/%3E%3Cpath d='M12 20c2-3 7-4 10-1s-2 9-10 5c-8 4-13-2-10-5s8-2 10 1z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20c-2-3-7-4-10-1s2 9 10 5c8 4 13-2 10-5s-8-2-10 1z'/%3E%3Cpath d='M12 20c2-3 7-4 10-1s-2 9-10 5c-8 4-13-2-10-5s8-2 10 1z'/%3E%3C/svg%3E");
+    mask-size: contain; -webkit-mask-size: contain;
+    mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
     filter: drop-shadow(0 0 15px var(--accent));
     opacity: 0;
 }
 
-/* Flight Paths */
-.b1 { top: 15%; left: 10%; animation: float 6s infinite ease-in-out, fadeIn 2s forwards 1s; }
-.b2 { top: 65%; left: 80%; animation: float 8s infinite ease-in-out reverse, fadeIn 2s forwards 1.5s; }
-.b3 { top: 30%; left: 75%; animation: float 7s infinite ease-in-out, fadeIn 2s forwards 2s; }
-.b4 { top: 80%; left: 15%; animation: float 9s infinite ease-in-out reverse, fadeIn 2s forwards 2.5s; }
+/* Flight and Flap Animations */
+.b1 { top: 15%; left: 10%; animation: flap 0.2s infinite, drift 15s infinite ease-in-out, fadeIn 2s forwards 0.5s; }
+.b2 { top: 65%; left: 80%; animation: flap 0.25s infinite, drift 20s infinite ease-in-out reverse, fadeIn 2s forwards 1s; }
+.b3 { top: 30%; left: 75%; animation: flap 0.22s infinite, drift 12s infinite ease-in-out, fadeIn 2s forwards 1.5s; }
+.b4 { top: 80%; left: 15%; animation: flap 0.18s infinite, drift 18s infinite ease-in-out reverse, fadeIn 2s forwards 2s; }
 
-/* Slow, beautiful floating movement */
-@keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-    50% { transform: translateY(-40px) rotate(10deg) scale(1.1); }
+@keyframes flap { 
+    0%, 100% { transform: scaleX(1) rotate(0deg); } 
+    50% { transform: scaleX(0.4) rotate(5deg); } 
 }
 
-@keyframes fadeIn { to { opacity: 1; } }
+@keyframes drift {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 100px -50px; }
+}
 
-/* --- TEXT STYLE --- */
+@keyframes fadeIn { to { opacity: 0.6; } }
+
+/* --- TEXT CONTENT --- */
 .hero-content { position: relative; z-index: 10; text-align: center; }
+.hero-name { font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 700; color: #fff; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s forwards 1.5s; }
+.typing-text { color: var(--muted); font-size: 1rem; width: 0; overflow: hidden; white-space: nowrap; border-right: 2px solid; margin: 0 auto 10px; animation: typing 2s steps(15) forwards; }
+.availability { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; opacity: 0; animation: fadeUp 1s forwards 2s; }
 
-.hero-name { 
-    font-size: 5rem; 
-    color: #fff; 
-    font-weight: 700;
-    letter-spacing: -2px;
-    text-shadow: 0 0 30px rgba(0, 212, 255, 0.4); /* Glow behind name */
-}
+@keyframes typing { from { width: 0 } to { width: 100px } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-.btn-pill {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 15px 40px;
-    border: 2px solid #fff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: 0.3s;
-}
+/* --- BUTTONS --- */
+.btn-pill { display: inline-block; padding: 15px 40px; border: 1px solid #fff; color: #fff; border-radius: 50px; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; transition: 0.4s; margin-top: 30px; opacity: 0; animation: fadeUp 1s forwards 2.5s; }
+.btn-pill:hover { background: #fff; color: #000; box-shadow: 0 0 30px var(--accent); }
 
-.btn-pill:hover {
-    background: #fff;
-    color: #000;
-    box-shadow: 0 0 30px var(--accent);
-}
+/* --- RESTART BUTTON --- */
+.restart-trigger { position: fixed; bottom: 30px; right: 30px; background: none; border: 1px solid #222; color: #444; padding: 10px 20px; border-radius: 50px; cursor: pointer; z-index: 1000; font-size: 0.7rem; }
+.restart-trigger:hover { color: var(--accent); border-color: var(--accent); }
 
-.restart-trigger {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background: none;
-    border: 1px solid #333;
-    color: #666;
-    border-radius: 5px;
-    cursor: pointer;
-}
+section { padding: 150px 0; text-align: center; border-top: 1px solid #111; }
