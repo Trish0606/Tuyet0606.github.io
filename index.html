@@ -21,10 +21,10 @@
 
     <header class="hero" id="hero-section">
         <div class="butterfly-field">
-            <div class="bf-wrapper" id="bf1"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" id="bf2"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" id="bf3"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" id="bf4"><div class="bf-image"></div></div>
+            <div class="bf-wrapper"><div class="bf-image"></div></div>
+            <div class="bf-wrapper"><div class="bf-image"></div></div>
+            <div class="bf-wrapper"><div class="bf-image"></div></div>
+            <div class="bf-wrapper"><div class="bf-image"></div></div>
         </div>
         
         <div class="hero-content">
@@ -45,25 +45,28 @@
     </section>
 
     <script>
-        // INTERACTIVE CURSOR SCRIPT
         const wrappers = document.querySelectorAll('.bf-wrapper');
         
+        // Random starting positions
+        wrappers.forEach(w => {
+            w.style.left = Math.random() * 80 + 10 + "%";
+            w.style.top = Math.random() * 80 + 10 + "%";
+        });
+
         document.addEventListener('mousemove', (e) => {
-            wrappers.forEach((wrapper) => {
+            wrappers.forEach((wrapper, i) => {
                 const rect = wrapper.getBoundingClientRect();
                 const bX = rect.left + rect.width / 2;
                 const bY = rect.top + rect.height / 2;
-                
-                // Calculate distance between mouse and butterfly
                 const dist = Math.hypot(e.clientX - bX, e.clientY - bY);
-                
-                // If cursor is close (within 150px), move that specific butterfly
-                if (dist < 150) {
-                    const angle = Math.atan2(e.clientY - bY, e.clientX - bX);
-                    const moveX = Math.cos(angle) * -20; // Pushes them away slightly
-                    const moveY = Math.sin(angle) * -20;
-                    
-                    wrapper.style.transform = `translate(${e.clientX - bX + moveX}px, ${e.clientY - bY + moveY}px)`;
+
+                // If mouse is near (200px), follow the cursor with a unique delay
+                if (dist < 200) {
+                    const delay = (i + 1) * 100; 
+                    setTimeout(() => {
+                        wrapper.style.left = e.clientX + 'px';
+                        wrapper.style.top = e.clientY + 'px';
+                    }, delay);
                 }
             });
         });
