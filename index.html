@@ -21,11 +21,11 @@
     </nav>
 
     <header class="hero" id="hero-section">
-        <div class="butterfly-container">
-            <div class="butterfly b1"></div>
-            <div class="butterfly b2"></div>
-            <div class="butterfly b3"></div>
-            <div class="butterfly b4"></div>
+        <div class="butterfly-field">
+            <div class="bf-wrapper b1"><div class="bf-image"></div></div>
+            <div class="bf-wrapper b2"><div class="bf-image"></div></div>
+            <div class="bf-wrapper b3"><div class="bf-image"></div></div>
+            <div class="bf-wrapper b4"><div class="bf-image"></div></div>
         </div>
         
         <div class="hero-content">
@@ -38,7 +38,7 @@
 
     <section id="about" class="section">
         <div class="container">
-            <div class="profile-wrapper">
+            <div class="profile-container">
                 <img src="images/profile.jpg" alt="Tuyet" class="profile-img">
             </div>
             <span class="label">About Me</span>
@@ -46,34 +46,19 @@
         </div>
     </section>
 
-    <section id="experience" class="section">
-        <div class="container">
-            <span class="label">Experience</span>
-            <div class="exp-item">
-                <div class="year">2024 — PRES</div>
-                <div class="info">
-                    <h3>Senior Designer</h3>
-                    <p>Building high-end digital experiences and interactive systems.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <script>
-        // MOUSE TRACKING: One-by-one organic movement
         document.addEventListener('mousemove', (e) => {
-            const butterflies = document.querySelectorAll('.butterfly');
-            
-            butterflies.forEach((b, i) => {
-                // Each butterfly reacts with a different delay/speed (i+1)
-                const speed = (i + 1) * 0.15;
-                const x = (e.clientX - window.innerWidth / 2) * speed;
-                const y = (e.clientY - window.innerHeight / 2) * speed;
-                
-                // Rotation adds a 'leaning' effect as they follow you
-                const rotate = x * 0.1;
-                
-                b.style.transform = `translate(${x}px, ${y}px) rotate(${rotate}px)`;
+            const wrappers = document.querySelectorAll('.bf-wrapper');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            wrappers.forEach((wrapper, index) => {
+                // Each butterfly follows at a slightly different speed (lag)
+                const delay = (index + 1) * 20; 
+                setTimeout(() => {
+                    wrapper.style.left = mouseX + 'px';
+                    wrapper.style.top = mouseY + 'px';
+                }, delay);
             });
         });
     </script>
