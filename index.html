@@ -27,7 +27,6 @@
             <div class="butterfly b2"></div>
             <div class="butterfly b3"></div>
             <div class="butterfly b4"></div>
-            <div class="butterfly b5"></div>
         </div>
         
         <div class="hero-glow"></div>
@@ -48,56 +47,25 @@
                 <img src="images/profile.jpg" alt="Tuyet" class="profile-img-refined">
             </div>
             <span class="label">About Me</span>
-            <p class="content-text">
-                My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance.
-            </p>
-        </div>
-    </section>
-
-    <section id="experience">
-        <div class="container">
-            <span class="label">Experience</span>
-            <div class="list-item">
-                <div class="meta">2024 — PRESENT</div>
-                <div class="item-info">
-                    <h3>Senior Designer</h3>
-                    <p>Shaping digital products and tech systems.</p>
-                </div>
-                <div class="arrow">→</div>
-            </div>
+            <p class="content-text">My work is guided by a strong belief that great design must touch both the heart and the mind.</p>
         </div>
     </section>
 
     <section id="contact">
         <div class="container">
             <h2 class="contact-title">Shoot me MSG!</h2>
-            
             <div class="contact-action">
-                <a href="mailto:youremail@gmail.com?subject=Hello!" class="btn-pill">Say Hello</a>
+                <a href="mailto:youremail@gmail.com" class="btn-pill">Say Hello</a>
             </div>
-
             <div class="contact-details">
                 <a href="tel:+19050000000" class="phone-link">(905) 000-0000</a>
-            </div>
-            
-            <div class="social-wrapper">
-                <div class="footer-links">
-                    <a href="#">LINKEDIN</a> <span class="sep">+</span>
-                    <a href="#">RESUME</a> <span class="sep">+</span>
-                    <a href="#">IG</a> <span class="sep">+</span>
-                    <a href="#">GITHUB</a>
-                </div>
-                <p class="rights">© 2026 All rights reserved.</p>
             </div>
         </div>
     </section>
 
-    <button id="restart-btn" class="restart-trigger">
-        <span class="restart-icon">↺</span> Restart Intro
-    </button>
+    <button id="restart-btn" class="restart-trigger">↺ Restart Intro</button>
 
     <script>
-        // 1. RESTART LOGIC
         let hero = document.getElementById('hero-section');
         const restartBtn = document.getElementById('restart-btn');
 
@@ -109,27 +77,8 @@
             setTimeout(() => {
                 heroContainer.prepend(newHero);
                 hero = newHero; 
-                attachMouseEffect(); // Re-attach mouse effect to the new butterflies
             }, 10);
         });
-
-        // 2. MOUSE INTERACTION LOGIC
-        function attachMouseEffect() {
-            document.addEventListener('mousemove', (e) => {
-                const butterflies = document.querySelectorAll('.butterfly');
-                const x = (e.clientX / window.innerWidth - 0.5) * 40; 
-                const y = (e.clientY / window.innerHeight - 0.5) * 40;
-
-                butterflies.forEach((b, index) => {
-                    const speed = (index + 1) * 0.3;
-                    // Combined flight animation + mouse tracking
-                    b.style.marginLeft = `${x * speed}px`;
-                    b.style.marginTop = `${y * speed}px`;
-                });
-            });
-        }
-        attachMouseEffect();
     </script>
-
 </body>
 </html>
