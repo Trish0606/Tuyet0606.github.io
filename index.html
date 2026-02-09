@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuyet Nguyen | Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -14,8 +13,6 @@
             <div class="brand">Tuyet</div>
             <div class="nav-links">
                 <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Work</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -23,10 +20,10 @@
 
     <header class="hero" id="hero-section">
         <div class="butterfly-container">
-            <img src="images/butterfly.png" class="fly-bot b1" alt="butterfly">
-            <img src="images/butterfly.png" class="fly-bot b2" alt="butterfly">
-            <img src="images/butterfly.png" class="fly-bot b3" alt="butterfly">
-            <img src="images/butterfly.png" class="fly-bot b4" alt="butterfly">
+            <div class="butterfly b1"></div>
+            <div class="butterfly b2"></div>
+            <div class="butterfly b3"></div>
+            <div class="butterfly b4"></div>
         </div>
         
         <div class="hero-glow"></div>
@@ -36,48 +33,17 @@
             <h1 class="hero-name">Tuyet Nguyen</h1>
             <p class="availability">● Available for new opportunities</p>
             <div class="hero-action">
-                <a href="#contact" class="btn-pill">Get In Touch</a>
+                <a href="mailto:youremail@gmail.com" class="btn-pill">Say Hello</a>
             </div>
         </div>
     </header>
 
-    <section id="about">
-        <div class="container">
-            <div class="about-image-wrapper">
-                <img src="images/profile.jpg" alt="Tuyet" class="profile-img-refined">
-            </div>
-            <span class="label">About Me</span>
-            <p class="content-text">My work is guided by a strong belief that great design must touch both the heart and the mind.</p>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2 class="contact-title">Shoot me MSG!</h2>
-            <div class="contact-action">
-                <a href="mailto:youremail@gmail.com" class="btn-pill">Say Hello</a>
-            </div>
-            <div class="contact-details">
-                <a href="tel:+19050000000" class="phone-link">(905) 000-0000</a>
-            </div>
-        </div>
-    </section>
-
     <button id="restart-btn" class="restart-trigger">↺ Restart Intro</button>
 
     <script>
-        let hero = document.getElementById('hero-section');
         const restartBtn = document.getElementById('restart-btn');
-
         restartBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'auto' });
-            const heroContainer = hero.parentElement;
-            const newHero = hero.cloneNode(true);
-            hero.remove();
-            setTimeout(() => {
-                heroContainer.prepend(newHero);
-                hero = newHero; 
-            }, 10);
+            location.reload(); // Simple way to replay all animations
         });
     </script>
 </body>
