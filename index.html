@@ -38,10 +38,11 @@
 
     <section id="about" class="section">
         <div class="container">
+            <div class="profile-wrapper">
+                <img src="images/profile.jpg" alt="Tuyet" class="profile-img">
+            </div>
             <span class="label">About Me</span>
-            <p class="content-text">
-                My work is guided by a strong belief that great design must touch both the heart and the mind for it to have lasting relevance.
-            </p>
+            <p class="content-text">My work is guided by a strong belief that great design must touch both the heart and the mind.</p>
         </div>
     </section>
 
@@ -52,33 +53,27 @@
                 <div class="year">2024 — PRES</div>
                 <div class="info">
                     <h3>Senior Designer</h3>
-                    <p>Leading digital transformation and visual systems.</p>
+                    <p>Building high-end digital experiences and interactive systems.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="contact-title">Shoot me a message!</h2>
-            <a href="mailto:your@email.com" class="btn-pill">Say Hello</a>
-            <div class="footer-links">
-                <a href="#">LINKEDIN</a> + <a href="#">RESUME</a> + <a href="#">GITHUB</a>
-            </div>
-        </div>
-    </section>
-
     <script>
-        // MOUSE TRACKING: Makes butterflies follow your cursor
+        // MOUSE TRACKING: One-by-one organic movement
         document.addEventListener('mousemove', (e) => {
             const butterflies = document.querySelectorAll('.butterfly');
-            const x = (e.clientX / window.innerWidth - 0.5) * 60;
-            const y = (e.clientY / window.innerHeight - 0.5) * 60;
-
+            
             butterflies.forEach((b, i) => {
-                const factor = (i + 1) * 0.5;
-                b.style.marginLeft = `${x * factor}px`;
-                b.style.marginTop = `${y * factor}px`;
+                // Each butterfly reacts with a different delay/speed (i+1)
+                const speed = (i + 1) * 0.15;
+                const x = (e.clientX - window.innerWidth / 2) * speed;
+                const y = (e.clientY - window.innerHeight / 2) * speed;
+                
+                // Rotation adds a 'leaning' effect as they follow you
+                const rotate = x * 0.1;
+                
+                b.style.transform = `translate(${x}px, ${y}px) rotate(${rotate}px)`;
             });
         });
     </script>
