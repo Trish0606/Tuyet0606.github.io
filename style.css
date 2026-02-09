@@ -7,58 +7,56 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
+/* --- NAV --- */
+.sticky-nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 20px 0; background: rgba(0,0,0,0.8); }
+.nav-wrapper { display: flex; justify-content: space-between; max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+.nav-links a { color: #888; text-decoration: none; margin-left: 20px; font-size: 0.8rem; }
+
 /* --- HERO --- */
 .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 
-/* --- BUTTERFLY FIX --- */
+/* --- THE BUTTERFLY FIX --- */
 .bf-wrapper {
     position: absolute;
-    width: 140px; height: 140px;
+    width: 180px; /* Adjust size here */
+    height: auto;
     z-index: 5;
-    transition: left 0.6s cubic-bezier(0.2, 0, 0.2, 1), top 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+    transition: left 0.6s cubic-bezier(0.1, 0.3, 0.3, 1), top 0.6s cubic-bezier(0.1, 0.3, 0.3, 1);
     transform: translate(-50%, -50%);
     pointer-events: none;
 }
 
 .bf-image {
-    width: 100%; height: 100%;
-    background-color: var(--accent); /* This color fills the butterfly shape */
+    width: 100%;
+    height: auto;
     
-    /* THE BLACK BOX REMOVER: Uses your image as a stencil */
-    -webkit-mask-image: url('images/butterfly.png');
-    mask-image: url('images/butterfly.png');
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    mask-repeat: no-repeat;
+    /* 1. REMOVES THE BLACK BOX */
+    mix-blend-mode: screen; 
+    
+    /* 2. THE GLOW (Hugs the wings, not the box) */
+    filter: drop-shadow(0 0 15px var(--accent));
 
-    /* THE GLOW: Now only appears around the wings, not the box */
-    filter: drop-shadow(0 0 15px var(--accent)) brightness(1.5);
-    
-    /* THE 3D WING BEND */
+    /* 3. THE WING BEND (flapping) */
     animation: flap 0.3s infinite ease-in-out;
     transform-origin: center;
 }
 
 @keyframes flap {
-    0%, 100% { transform: rotateY(0deg); }
-    50% { transform: rotateY(75deg); } /* Adjust to 75deg for a deep wing bend */
+    0%, 100% { transform: perspective(1000px) rotateY(0deg); }
+    50% { transform: perspective(1000px) rotateY(70deg); } /* Bends the wings */
 }
 
 /* Default Starting Positions */
-#bf1 { top: 20%; left: 15%; }
-#bf2 { top: 60%; left: 80%; }
-#bf3 { top: 30%; left: 75%; }
-#bf4 { top: 80%; left: 20%; }
+#bf1 { top: 20%; left: 20%; }
+#bf2 { top: 70%; left: 80%; }
+#bf3 { top: 30%; left: 70%; }
+#bf4 { top: 80%; left: 15%; }
 
 /* --- PROFILE IMAGE --- */
 .profile-container { margin-bottom: 40px; text-align: center; }
-.profile-img { 
-    width: 220px; 
-    border-radius: 8px; 
-    border: 1px solid #222;
-}
+.profile-img { width: 200px; border-radius: 10px; border: 1px solid #222; }
 
 /* --- TEXT STYLE --- */
 .hero-name { font-size: 5rem; font-weight: 700; text-shadow: 0 0 20px rgba(0,212,255,0.3); }
 .section { padding: 100px 0; border-top: 1px solid #111; text-align: center; }
-.btn-pill { display: inline-block; padding: 14px 35px; border: 1px solid #fff; color: #fff; text-decoration: none; border-radius: 50px; margin-top: 20px; }
+.btn-pill { display: inline-block; padding: 12px 35px; border: 1px solid #fff; color: #fff; text-decoration: none; border-radius: 50px; margin-top: 20px; }
