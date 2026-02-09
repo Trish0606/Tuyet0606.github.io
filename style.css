@@ -1,61 +1,65 @@
 :root {
-    --bg-dark: #0f121a;
-    --neon-blue: #00e5ff;
+    --bg: #0D1117;
+    --neon: #00D4FF;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background-color: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-
-/* --- NAV --- */
-.main-nav { position: absolute; top: 30px; right: 50px; display: flex; gap: 30px; z-index: 100; }
-.main-nav a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; opacity: 0.8; }
+body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
 /* --- HERO --- */
-.hero-header { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-.hero-text { text-align: left; z-index: 10; width: 80%; max-width: 1000px; }
-.sub-head { font-size: 1.8rem; margin-bottom: 5px; font-weight: 300; }
-.main-name { font-size: 6.5rem; font-weight: 700; letter-spacing: -3px; line-height: 1; margin-bottom: 30px; }
-.ghost-btn { display: inline-block; padding: 12px 30px; border: 1px solid white; color: white; text-decoration: none; font-size: 0.9rem; }
-
-/* --- BUTTERFLIES --- */
-.bf-layer { position: absolute; top: 0; left: 0; width: 180px; height: 180px; pointer-events: none; z-index: 5; will-change: transform; }
-
-.bf-sprite {
-    width: 100%; height: 100%;
-    /* Use the high-res glass butterfly image from your reference */
-    background-image: url('https://i.ibb.co/3W6fFp3/neon-butterfly.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    mix-blend-mode: screen; /* REMOVES BLACK BOX */
-    filter: drop-shadow(0 0 15px var(--neon-blue));
-    animation: wingFlap 0.4s infinite ease-in-out;
+.hero { 
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    position: relative;
+    background: radial-gradient(circle at center, #1A2332 0%, #0D1117 100%);
 }
 
-
-
-@keyframes wingFlap {
-    0%, 100% { transform: perspective(1000px) rotateY(0deg); }
-    50% { transform: perspective(1000px) rotateY(70deg); } /* Bends wings down the middle */
+.hero-content { text-align: left; width: 80%; max-width: 1000px; z-index: 10; }
+.name { font-size: clamp(3rem, 10vw, 6rem); font-weight: 800; letter-spacing: -3px; }
+.btn-say-hello { 
+    display: inline-block; padding: 10px 25px; border: 1px solid white; 
+    color: white; text-decoration: none; margin-top: 20px; 
 }
 
-/* Unique Tilts for each butterfly */
-.bf-layer:nth-child(1) { top: 20%; left: 10%; scale: 0.8; rotate: 15deg; }
-.bf-layer:nth-child(2) { top: 60%; left: 70%; scale: 1.1; rotate: -20deg; }
-.bf-layer:nth-child(3) { top: 30%; left: 80%; scale: 0.9; rotate: 45deg; }
-.bf-layer:nth-child(4) { top: 70%; left: 20%; scale: 0.7; rotate: -10deg; }
+/* --- THE BUTTERFLY (CRYSTAL EFFECT) --- */
+.bf {
+    position: absolute;
+    width: 150px; height: 150px;
+    pointer-events: none;
+    z-index: 5;
+    background: var(--neon);
+    
+    /* This SVG code draws the butterfly shape and removes the black box automatically */
+    -webkit-mask: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjUwIDI1MEMyNTAgMjUwIDEwMCAxNTAgNTAgMjAwQzAgMjUwIDUwIDMwMCAxMDAgMzUwQzE1MCA0MDAgMjUwIDI1MCAyNTAgMjUwWk0yNTAgMjUwQzI1MCAyNTAgNDAwIDE1MCA0NTAgMjAwQzUwMCAyNTAgNDUwIDMwMCA0MDAgMzUwQzM1MCA0MDAgMjUwIDI1MCAyNTAgMjUwWiIgZmlsbD0iYmxhY2siLz48L3N2Zz4=") no-repeat center;
+    mask: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTAwIDUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjUwIDI1MEMyNTAgMjUwIDEwMCAxNTAgNTAgMjAwQzAgMjUwIDUwIDMwMCAxMDAgMzUwQzE1MCA0MDAgMjUwIDI1MCAyNTAgMjUwWk0yNTAgMjUwQzI1MCAyNTAgNDAwIDE1MCA0NTAgMjAwQzUwMCAyNTAgNDUwIDMwMCA0MDAgMzUwQzM1MCA0MDAgMjUwIDI1MCAyNTAgMjUwWiIgZmlsbD0iYmxhY2siLz48L3N2Zz4=") no-repeat center;
+    
+    filter: drop-shadow(0 0 20px var(--neon));
+    animation: flap 0.3s infinite ease-in-out;
+}
 
-/* --- ABOUT SECTION --- */
+@keyframes flap {
+    0%, 100% { transform: translate(-50%, -50%) perspective(1000px) rotateY(0deg) rotateZ(-10deg); }
+    50% { transform: translate(-50%, -50%) perspective(1000px) rotateY(75deg) rotateZ(5deg); }
+}
+
+/* Tiling the butterflies like the image */
+.bf:nth-child(1) { top: 20%; left: 15%; rotate: 20deg; }
+.bf:nth-child(2) { top: 70%; left: 80%; rotate: -15deg; }
+
+/* --- ABOUT ME CARD --- */
 .about-section { padding: 80px 0; display: flex; justify-content: center; }
-.card-container { width: 80%; max-width: 1000px; }
-.section-label { font-size: 1.2rem; margin-bottom: 30px; font-weight: 400; }
+.card-wrap { width: 80%; max-width: 1000px; }
 .profile-card { 
-    display: flex; align-items: center; gap: 20px; background: #1a1f2b; 
-    padding: 15px 25px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); 
-    position: relative; transition: 0.3s; cursor: pointer;
+    display: flex; align-items: center; gap: 20px; 
+    background: #161B22; padding: 15px 25px; 
+    border-radius: 100px; border: 1px solid #30363D; 
 }
-.profile-card:hover { background: #232a3a; }
-.pic-circle { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; background: #333; }
-.pic-circle img { width: 100%; height: 100%; object-fit: cover; }
-.card-info h3 { font-size: 1.1rem; font-weight: 500; }
-.card-info p { font-size: 0.8rem; color: #888; }
-.arrow-icon { margin-left: auto; color: #888; font-size: 1.2rem; }
+.profile-pic { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; }
+.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+.arrow { margin-left: auto; color: #8B949E; font-size: 1.5rem; }
+
+/* --- NAV --- */
+.nav-bar { position: absolute; top: 40px; right: 80px; }
+.nav-links a { color: white; text-decoration: none; margin-left: 30px; font-weight: 500; opacity: 0.8; }
