@@ -3,21 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuyet Nguyen | Portfolio</title>
+    <title>Tuyet Nguyen Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <nav class="sticky-nav">
-        <div class="container nav-wrapper">
-            <div class="brand">TUYET</div>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
-    </nav>
 
     <header class="hero" id="hero-section">
         <div class="butterfly-container">
@@ -26,35 +15,14 @@
             <div class="butterfly b3"></div>
             <div class="butterfly b4"></div>
         </div>
-        
-        <div class="hero-glow"></div>
-        
-        <div class="container hero-content">
-            <p class="typing-text">Hello, I'm</p>
-            <h1 class="hero-name">Tuyet Nguyen</h1>
-            <p class="availability">● Available for new opportunities</p>
-            <div class="hero-action">
-                <a href="#contact" class="btn-pill">Get In Touch</a>
-            </div>
+
+        <div class="hero-content">
+            <p class="intro-text">Hello, I'm</p>
+            <h1 class="name">Tuyet Nguyen</h1>
+            <p class="status">● Available for new opportunities</p>
+            <a href="mailto:your@email.com" class="contact-btn">Get In Touch</a>
         </div>
     </header>
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="contact-title">Shoot me a message</h2>
-            <div class="contact-action">
-                <a href="mailto:yourname@email.com" class="btn-pill large">Say Hello</a>
-            </div>
-        </div>
-    </section>
-
-    <button id="restart-btn" class="restart-trigger">↺ Restart Intro</button>
-
-    <script>
-        const restartBtn = document.getElementById('restart-btn');
-        restartBtn.addEventListener('click', () => {
-            location.reload(); 
-        });
-    </script>
 </body>
 </html>
