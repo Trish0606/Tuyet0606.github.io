@@ -1,103 +1,82 @@
 :root {
     --bg: #000000;
     --accent: #00d4ff;
+    --white: #ffffff;
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    font-family: 'Inter', sans-serif;
-    overflow: hidden; /* Keeps butterflies inside the screen */
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow: hidden; }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
+/* --- HERO SECTION --- */
+.hero { 
+    position: relative; 
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
     justify-content: center;
-    position: relative;
-    background: radial-gradient(circle at center, #00151a 0%, #000 80%);
+    background: radial-gradient(circle at center, #001a22 0%, #000 80%);
 }
 
 .butterfly-container {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     perspective: 1000px;
-}
-
-/* THE DETAILED BUTTERFLY */
-.butterfly {
-    position: absolute;
-    width: 120px; /* Large and detailed */
-    height: 120px;
-    /* This points to a high-quality glowing blue butterfly sprite */
-    background-image: url('https://i.ibb.co/Lz6Ym3m/blue-butterfly-glow.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    filter: drop-shadow(0 0 15px var(--accent));
-    opacity: 0;
     z-index: 1;
 }
 
-/* 3D Wing Flap - This makes the image feel alive */
+/* --- THE EXACT BUTTERFLY LOOK --- */
+.butterfly {
+    position: absolute;
+    width: 150px; /* Large enough to see the wireframe detail */
+    height: 150px;
+    background-image: url('images/butterfly.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    /* IMPORTANT: This removes the black background from your image */
+    mix-blend-mode: screen; 
+    
+    /* Adds extra neon punch */
+    filter: drop-shadow(0 0 10px var(--accent));
+    
+    opacity: 0;
+}
+
+/* Individual Flight Speeds */
+.b1 { top: 10%; left: 5%; animation: flap 0.2s infinite, drift 20s infinite linear, fadeIn 2s forwards 0.5s; }
+.b2 { top: 55%; left: 75%; animation: flap 0.25s infinite, drift 25s infinite linear reverse, fadeIn 2s forwards 1s; }
+.b3 { top: 25%; left: 80%; animation: flap 0.22s infinite, drift 18s infinite linear, fadeIn 2s forwards 1.5s; }
+.b4 { top: 75%; left: 10%; animation: flap 0.3s infinite, drift 22s infinite linear reverse, fadeIn 2s forwards 2s; }
+
+/* 3D Wing Flap Animation */
 @keyframes flap {
     0%, 100% { transform: rotateY(0deg); }
-    50% { transform: rotateY(70deg); }
+    50% { transform: rotateY(65deg); }
 }
 
-/* Organic Floating Movement */
+/* Drifting Path */
 @keyframes drift {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(150px, -100px) rotate(10deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
+    0% { translate: 0 0; rotate: 0deg; }
+    50% { translate: 150px -100px; rotate: 10deg; }
+    100% { translate: 0 0; rotate: 0deg; }
 }
 
-@keyframes fadeIn {
-    to { opacity: 0.9; }
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* --- TEXT STYLE --- */
+.hero-content { position: relative; z-index: 10; text-align: center; }
+.hero-name { 
+    font-size: 5.5rem; 
+    font-weight: 700; 
+    text-shadow: 0 0 40px rgba(0, 212, 255, 0.4); 
+    margin-bottom: 20px;
 }
-
-/* Individual Timing */
-.b1 { top: 15%; left: 10%; animation: flap 0.2s infinite, drift 20s infinite linear, fadeIn 2s forwards 1s; }
-.b2 { top: 60%; left: 80%; animation: flap 0.25s infinite, drift 25s infinite linear reverse, fadeIn 2s forwards 1.5s; }
-.b3 { top: 30%; left: 70%; animation: flap 0.22s infinite, drift 18s infinite linear, fadeIn 2s forwards 2s; }
-.b4 { top: 80%; left: 20%; animation: flap 0.3s infinite, drift 22s infinite linear reverse, fadeIn 2s forwards 2.5s; }
-
-/* TEXT STYLING */
-.hero-content {
-    text-align: center;
-    z-index: 10;
-    color: white;
-}
-
-.name {
-    font-size: 5rem;
-    margin: 10px 0;
-    letter-spacing: -2px;
-    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-}
-
-.status {
-    color: var(--accent);
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-}
-
-.contact-btn {
-    display: inline-block;
-    margin-top: 30px;
+.btn-pill {
     padding: 15px 40px;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid #fff;
+    color: #fff;
     text-decoration: none;
     border-radius: 50px;
     transition: 0.3s;
 }
-
-.contact-btn:hover {
-    background: white;
-    color: black;
-    box-shadow: 0 0 30px var(--accent);
-}
+.btn-pill:hover { background: #fff; color: #000; box-shadow: 0 0 30px var(--accent); }
