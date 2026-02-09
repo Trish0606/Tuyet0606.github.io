@@ -12,25 +12,24 @@
         <div class="container nav-wrapper">
             <div class="brand">TUYET</div>
             <div class="nav-links">
-                <a href="#about">About</a>
+                <a href="#about">About Me</a>
                 <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero" id="hero-section">
+    <header class="hero">
         <div class="butterfly-field">
-            <div class="bf-wrapper" id="bf1"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" id="bf2"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" id="bf3"><div class="bf-image"></div></div>
-            <div class="bf-wrapper" id="bf4"><div class="bf-image"></div></div>
+            <div class="bf-wrapper" id="bf1"><img src="images/butterfly.png" class="bf-image"></div>
+            <div class="bf-wrapper" id="bf2"><img src="images/butterfly.png" class="bf-image"></div>
+            <div class="bf-wrapper" id="bf3"><img src="images/butterfly.png" class="bf-image"></div>
+            <div class="bf-wrapper" id="bf4"><img src="images/butterfly.png" class="bf-image"></div>
         </div>
         
         <div class="hero-content">
-            <p class="typing-text">Hello, I'm</p>
+            <p>Hello, I'm</p>
             <h1 class="hero-name">Tuyet Nguyen</h1>
-            <a href="#contact" class="btn-pill">Get In Touch</a>
+            <a href="mailto:your@email.com" class="btn-pill">Say Hello</a>
         </div>
     </header>
 
@@ -52,16 +51,11 @@
                 const rect = wrapper.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
-                
-                // Calculate distance from mouse to THIS butterfly
                 const distance = Math.hypot(e.clientX - centerX, e.clientY - centerY);
 
-                // Only move if mouse is close (interactive feel)
-                if (distance < 150) {
-                    const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-                    // Each butterfly has a slightly different "reaction" speed
-                    const delay = (i + 1) * 50; 
-                    
+                // Moves them one-by-one only when you get close
+                if (distance < 200) {
+                    const delay = (i + 1) * 70; 
                     setTimeout(() => {
                         wrapper.style.left = e.clientX + 'px';
                         wrapper.style.top = e.clientY + 'px';
