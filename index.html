@@ -21,10 +21,10 @@
 
     <header class="hero" id="hero-section">
         <div class="butterfly-field">
-            <div class="bf-wrapper"><div class="bf-image"></div></div>
-            <div class="bf-wrapper"><div class="bf-image"></div></div>
-            <div class="bf-wrapper"><div class="bf-image"></div></div>
-            <div class="bf-wrapper"><div class="bf-image"></div></div>
+            <div class="bf-wrapper" id="bf1"><div class="bf-image"></div></div>
+            <div class="bf-wrapper" id="bf2"><div class="bf-image"></div></div>
+            <div class="bf-wrapper" id="bf3"><div class="bf-image"></div></div>
+            <div class="bf-wrapper" id="bf4"><div class="bf-image"></div></div>
         </div>
         
         <div class="hero-content">
@@ -47,22 +47,21 @@
     <script>
         const wrappers = document.querySelectorAll('.bf-wrapper');
         
-        // Random starting positions
-        wrappers.forEach(w => {
-            w.style.left = Math.random() * 80 + 10 + "%";
-            w.style.top = Math.random() * 80 + 10 + "%";
-        });
-
         document.addEventListener('mousemove', (e) => {
             wrappers.forEach((wrapper, i) => {
                 const rect = wrapper.getBoundingClientRect();
-                const bX = rect.left + rect.width / 2;
-                const bY = rect.top + rect.height / 2;
-                const dist = Math.hypot(e.clientX - bX, e.clientY - bY);
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                // Calculate distance from mouse to THIS butterfly
+                const distance = Math.hypot(e.clientX - centerX, e.clientY - centerY);
 
-                // If mouse is near (200px), follow the cursor with a unique delay
-                if (dist < 200) {
-                    const delay = (i + 1) * 100; 
+                // Only move if mouse is close (interactive feel)
+                if (distance < 150) {
+                    const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+                    // Each butterfly has a slightly different "reaction" speed
+                    const delay = (i + 1) * 50; 
+                    
                     setTimeout(() => {
                         wrapper.style.left = e.clientX + 'px';
                         wrapper.style.top = e.clientY + 'px';
