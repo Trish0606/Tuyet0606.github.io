@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuyet Nguyen | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <nav class="sticky-nav">
         <div class="container nav-wrapper">
-            <div class="brand">Tuyet</div>
+            <div class="brand">TUYET</div>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
@@ -33,17 +34,26 @@
             <h1 class="hero-name">Tuyet Nguyen</h1>
             <p class="availability">● Available for new opportunities</p>
             <div class="hero-action">
-                <a href="mailto:youremail@gmail.com" class="btn-pill">Say Hello</a>
+                <a href="#contact" class="btn-pill">Get In Touch</a>
             </div>
         </div>
     </header>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="contact-title">Shoot me a message</h2>
+            <div class="contact-action">
+                <a href="mailto:yourname@email.com" class="btn-pill large">Say Hello</a>
+            </div>
+        </div>
+    </section>
 
     <button id="restart-btn" class="restart-trigger">↺ Restart Intro</button>
 
     <script>
         const restartBtn = document.getElementById('restart-btn');
         restartBtn.addEventListener('click', () => {
-            location.reload(); // Simple way to replay all animations
+            location.reload(); 
         });
     </script>
 </body>
