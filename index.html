@@ -9,7 +9,11 @@
 </head>
 <body>
 
-    <button class="replay-btn" onclick="replayIntro()">↺ Replay Intro</button>
+    <script>
+        window.onbeforeunload = function () { window.scrollTo(0, 0); }
+    </script>
+
+    <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
 
     <nav class="taskbar">
         <div class="taskbar-inner">
@@ -21,15 +25,15 @@
     </nav>
 
     <header class="hero" id="hero">
-        <div class="grid-background"></div>
-        <div class="vignette"></div>
+        <div class="mesh-gradient"></div>
+        <div class="noise-overlay"></div>
         
         <div class="butterfly-field">
-            <div class="bf" data-home-x="25" data-home-y="30"><span></span></div>
-            <div class="bf" data-home-x="75" data-home-y="25"><span></span></div>
-            <div class="bf" data-home-x="50" data-home-y="55"><span></span></div>
-            <div class="bf" data-home-x="15" data-home-y="75"><span></span></div>
-            <div class="bf" data-home-x="85" data-home-y="80"><span></span></div>
+            <div class="bf" data-home-x="20" data-home-y="30"><span></span></div>
+            <div class="bf" data-home-x="80" data-home-y="25"><span></span></div>
+            <div class="bf" data-home-x="50" data-home-y="50"><span></span></div>
+            <div class="bf" data-home-x="15" data-home-y="70"><span></span></div>
+            <div class="bf" data-home-x="85" data-home-y="75"><span></span></div>
         </div>
 
         <div class="hero-content">
@@ -43,63 +47,42 @@
     </header>
 
     <main class="content-wrapper">
-        
         <section id="about" class="section reveal">
             <div class="container">
-                <h2 class="section-label">01 // About</h2>
+                <h2 class="section-label">About Me</h2>
                 <div class="profile-card">
                     <div class="profile-img"><img src="images/profile.jpg" alt="Profile"></div>
                     <div class="profile-text">
                         <h3>Creative Designer</h3>
-                        <p>Specializing in interactive digital experiences.</p>
+                        <p>2024 — PRES.</p>
                     </div>
                     <div class="card-arrow">→</div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="section reveal">
-            <div class="container">
-                <h2 class="section-label">02 // Selected Work</h2>
-                <div class="project-list">
-                    <div class="project-row"><h3>Visual Branding</h3><span>2026</span></div>
-                    <div class="project-row"><h3>Web Interaction</h3><span>2025</span></div>
-                </div>
-            </div>
-        </section>
+        </main>
 
-        <section id="experience" class="section reveal">
-            <div class="container">
-                <h2 class="section-label">03 // Experience</h2>
-                <div class="exp-row">
-                    <span class="year">Current</span>
-                    <p>Senior Visual Lead — Innovative Systems</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer id="contact" class="footer">
-        <div class="footer-center-content reveal">
-            <h2 class="footer-big-text">Shoot me a msg</h2>
-            <div class="footer-links">
-                <a href="mailto:hello@tuyetnguyen.com" class="main-contact">hello@tuyetnguyen.com</a>
-                <a href="tel:+15550000000" class="main-contact">+1 (555) 000-0000</a>
-            </div>
+    <footer id="contact" class="footer reveal">
+        <div class="footer-container">
+            <h2 class="footer-msg">Shoot me a msg</h2>
+            <p class="footer-phone">+1 (555) 000-0000</p>
             
-            <div class="footer-bottom-bar">
-                <p>© 2026 Tuyet Nguyen</p>
-                <div class="socials">
-                    <a href="#">LinkedIn</a>
-                    <a href="#">Instagram</a>
-                </div>
+            <div class="footer-social-row">
+                <a href="#">LINKEDIN</a>
+                <span class="sep">+</span>
+                <a href="#">RESUME</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copy">© 2026 TUYET NGUYEN</p>
+                <p class="tagline">DESIGNED TO INSPIRE</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Butterfly Interaction Engine
+        // Butterfly Movement
         const bfs = document.querySelectorAll('.bf');
         let mX = -2000, mY = -2000;
         document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
@@ -126,8 +109,7 @@
         }
         requestAnimationFrame(animate);
 
-        function replayIntro() { window.location.reload(); }
-
+        // Reveal Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
