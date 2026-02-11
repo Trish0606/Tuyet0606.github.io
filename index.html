@@ -9,7 +9,10 @@
 </head>
 <body>
 
-    <script>window.onbeforeunload = function () { window.scrollTo(0, 0); }</script>
+    <script>
+        if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+    </script>
 
     <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
 
@@ -24,14 +27,15 @@
 
     <header class="hero">
         <div class="garden-glow"></div>
-        <div class="noise-filter"></div>
         
         <div class="butterfly-container">
-            <div class="bf" data-home-x="20" data-home-y="25"><span></span></div>
-            <div class="bf" data-home-x="80" data-home-y="20"><span></span></div>
-            <div class="bf" data-home-x="50" data-home-y="50"><span></span></div>
-            <div class="bf" data-home-x="15" data-home-y="75"><span></span></div>
-            <div class="bf" data-home-x="85" data-home-y="80"><span></span></div>
+            <div class="bf" style="width:140px;height:140px" data-home-x="15" data-home-y="20"><span></span></div>
+            <div class="bf" style="width:100px;height:100px" data-home-x="85" data-home-y="15"><span></span></div>
+            <div class="bf" style="width:160px;height:160px" data-home-x="50" data-home-y="50"><span></span></div>
+            <div class="bf" style="width:120px;height:120px" data-home-x="20" data-home-y="80"><span></span></div>
+            <div class="bf" style="width:150px;height:150px" data-home-x="80" data-home-y="85"><span></span></div>
+            <div class="bf" style="width:90px;height:90px"   data-home-x="40" data-home-y="20"><span></span></div>
+            <div class="bf" style="width:110px;height:110px" data-home-x="60" data-home-y="80"><span></span></div>
         </div>
 
         <div class="hero-content">
@@ -44,40 +48,61 @@
         </div>
     </header>
 
-    <section id="about" class="section reveal">
-        <div class="about-wrap">
-            <div class="profile-frame">
-                <img src="images/profile.jpg" alt="Tuyet">
+    <main class="content-wrapper">
+        <section id="about" class="section reveal">
+            <div class="about-wrap">
+                <div class="profile-square">
+                    <img src="images/profile.jpg" alt="Tuyet">
+                </div>
+                <h2 class="about-header">About Me</h2>
+                <p class="about-text">
+                    I am a Senior Designer focused on creating high-end digital experiences. 
+                    I blend organic textures with precise technology to tell unique brand stories.
+                </p>
             </div>
-            <h2 class="about-header">About Me</h2>
-            <p class="about-text">
-                Senior Designer based in the digital realm. I specialize in 
-                creating aesthetic, interactive experiences that bridge the gap 
-                between nature and technology.
-            </p>
-        </div>
-    </section>
+        </section>
+
+        <section id="projects" class="section reveal">
+            <div class="container">
+                <h2 class="section-label">Selected Work</h2>
+                <div class="project-grid">
+                    <div class="project-card"><h3>Digital Identity</h3><span>2026</span></div>
+                    <div class="project-card"><h3>Interactive Motion</h3><span>2025</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section reveal">
+            <div class="container">
+                <h2 class="section-label">Experience</h2>
+                <div class="exp-row">
+                    <span class="exp-year">Present</span>
+                    <div class="exp-info">
+                        <h3>Creative Lead</h3>
+                        <p>Designing the future of interactive web design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer id="contact" class="footer reveal">
         <div class="footer-content">
             <h2 class="footer-msg">Shoot me a msg</h2>
             <p class="footer-phone">+1 (555) 000-0000</p>
-            
             <div class="footer-social-row">
                 <a href="#">LINKEDIN</a>
                 <span class="plus">+</span>
                 <a href="#">RESUME</a>
             </div>
-
             <div class="footer-bottom">
                 <p>© 2026 TUYET NGUYEN</p>
-                <p class="tagline">DESIGNED TO INSPIRE</p>
+                <p>SHARP EDGES // ORGANIC FLOW</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Butterfly Interaction Script
         const bfs = document.querySelectorAll('.bf');
         let mX = -2000, mY = -2000;
         document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
@@ -86,14 +111,14 @@
             bfs.forEach((bf, i) => {
                 const hX = (window.innerWidth * bf.dataset.homeX) / 100;
                 const hY = (window.innerHeight * bf.dataset.homeY) / 100;
-                const driftX = hX + Math.sin(time * 0.001 + i) * 120;
-                const driftY = hY + Math.cos(time * 0.0008 + i) * 120;
+                const driftX = hX + Math.sin(time * 0.001 + i) * 100;
+                const driftY = hY + Math.cos(time * 0.0008 + i) * 100;
                 let curX = parseFloat(bf.style.left) || hX;
                 let curY = parseFloat(bf.style.top) || hY;
                 const dist = Math.hypot(mX - curX, mY - curY);
-                let targetX, targetY, lerp;
-                if (dist < 280) { targetX = mX; targetY = mY; lerp = 0.08; }
-                else { targetX = driftX; targetY = driftY; lerp = 0.02; }
+                let targetX = (dist < 280) ? mX : driftX;
+                let targetY = (dist < 280) ? mY : driftY;
+                let lerp = (dist < 280) ? 0.08 : 0.02;
                 const finalX = curX + (targetX - curX) * lerp;
                 const finalY = curY + (targetY - curY) * lerp;
                 bf.style.left = finalX + 'px'; bf.style.top = finalY + 'px';
@@ -104,7 +129,6 @@
         }
         requestAnimationFrame(animate);
 
-        // Reveal Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
