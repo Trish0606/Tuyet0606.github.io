@@ -10,11 +10,12 @@
 <body class="lock-scroll">
 
     <script>
+        // Force scroll to top and lock for intro
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
-            setTimeout(() => { document.body.classList.remove('lock-scroll'); }, 3500); 
+            setTimeout(() => { document.body.classList.remove('lock-scroll'); }, 3800); 
         });
     </script>
 
@@ -30,20 +31,20 @@
     </nav>
 
     <header class="hero">
-        <div class="bg-fade-layer">
-            <div class="garden-glow"></div>
-            <canvas id="trailCanvas"></canvas>
-            
-            <div class="butterfly-container">
-                <div class="bf" style="width:130px;height:130px" data-home-x="15" data-home-y="20"><span></span></div>
-                <div class="bf" style="width:90px;height:90px"   data-home-x="80" data-home-y="15"><span></span></div>
-                <div class="bf" style="width:150px;height:150px" data-home-x="50" data-home-y="40"><span></span></div>
-                <div class="bf" style="width:110px;height:110px" data-home-x="20" data-home-y="80"><span></span></div>
-                <div class="bf" style="width:140px;height:140px" data-home-x="70" data-home-y="75"><span></span></div>
-                <div class="bf" style="width:80px;height:80px"   data-home-x="45" data-home-y="10"><span></span></div>
-                <div class="bf" style="width:100px;height:100px" data-home-x="65" data-home-y="85"><span></span></div>
-                <div class="bf" style="width:120px;height:120px" data-home-x="85" data-home-y="50"><span></span></div>
-            </div>
+        <canvas id="trailCanvas"></canvas>
+        <div class="butterfly-container">
+            <div class="bf" data-home-x="15" data-home-y="25"><span></span></div>
+            <div class="bf" data-home-x="80" data-home-y="20"><span></span></div>
+            <div class="bf" data-home-x="50" data-home-y="50"><span></span></div>
+            <div class="bf" data-home-x="20" data-home-y="75"><span></span></div>
+            <div class="bf" data-home-x="75" data-home-y="80"><span></span></div>
+            <div class="bf" data-home-x="40" data-home-y="15"><span></span></div>
+            <div class="bf" data-home-x="85" data-home-y="50"><span></span></div>
+            <div class="bf" data-home-x="10" data-home-y="55"><span></span></div>
+            <div class="bf" data-home-x="60" data-home-y="10"><span></span></div>
+            <div class="bf" data-home-x="30" data-home-y="40"><span></span></div>
+            <div class="bf" data-home-x="70" data-home-y="60"><span></span></div>
+            <div class="bf" data-home-x="25" data-home-y="85"><span></span></div>
         </div>
 
         <div class="hero-content">
@@ -59,22 +60,57 @@
     </header>
 
     <div class="hero-barrier"></div>
+
     <main class="content-wrapper">
         <section id="about" class="section-block reveal">
             <div class="container">
                 <div class="about-grid">
-                    <div class="profile-rectangle"><img src="images/profile.jpg" alt="Tuyet"></div>
+                    <div class="profile-rectangle">
+                        <img src="images/profile.jpg" alt="Profile Image">
+                    </div>
                     <div class="about-info">
                         <span class="section-tag">01 / Profile</span>
                         <h2 class="section-title">About Me</h2>
-                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences.</p>
+                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences. I blend organic textures with precise technology.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section-block reveal">
+            <div class="section-border-top"></div>
+            <div class="container">
+                <span class="section-tag">02 / Journey</span>
+                <h2 class="section-title">Experience</h2>
+                <div class="experience-grid">
+                    <div class="exp-item">
+                        <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
+                        <p>Studio Meta • Interactive Design & Art Direction</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section-block reveal">
+            <div class="section-border-top"></div>
+            <div class="container">
+                <span class="section-tag">03 / Selected Work</span>
+                <h2 class="section-title">Projects</h2>
+                <div class="project-columns">
+                    <div class="project-box"><div class="p-img"></div><h3>Digital Identity</h3></div>
+                    <div class="project-box"><div class="p-img"></div><h3>Interactive Motion</h3></div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer id="contact" class="footer reveal">
+        <div class="section-border-top"></div>
+        <div class="footer-content">
+            <h2 class="footer-msg">Shoot me a msg</h2>
+            <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
+        </div>
+        
         <div class="copyright-bar">
             <p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p>
         </div>
@@ -100,15 +136,72 @@
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.size = Math.random() * 2 + 1;
-                this.opacity = 1;
-                this.vX = (Math.random() - 0.5) * 0.5;
-                this.vY = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 3 + 1;
+                this.opacity = 0.8;
+                this.vX = (Math.random() - 0.5) * 0.8;
+                this.vY = (Math.random() - 0.5) * 0.8;
             }
             update() {
                 this.x += this.vX;
                 this.y += this.vY;
-                this.opacity -= 0.015; // Speed of fading
+                this.opacity -= 0.012;
+                this.size *= 0.98;
             }
             draw() {
-                ctx.fillStyle = `rgba(0, 212, 255, ${
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = "rgba(0, 212, 255, 0.5)";
+                ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function animate(time) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            bfs.forEach((bf, i) => {
+                const hX = (window.innerWidth * bf.dataset.homeX) / 100;
+                const hY = (window.innerHeight * bf.dataset.homeY) / 100;
+                
+                // Natural organic drift
+                const driftX = hX + Math.sin(time * 0.0008 + i * 500) * 120;
+                const driftY = hY + Math.cos(time * 0.0006 + i * 300) * 120;
+                
+                let curX = parseFloat(bf.style.left) || hX;
+                let curY = parseFloat(bf.style.top) || hY;
+                
+                const dist = Math.hypot(mX - curX, mY - curY);
+                let targetX = (dist < 250) ? mX : driftX;
+                let targetY = (dist < 250) ? mY : driftY;
+                let lerp = (dist < 250) ? 0.07 : 0.02;
+                
+                const nextX = curX + (targetX - curX) * lerp;
+                const nextY = curY + (targetY - curY) * lerp;
+                const angle = Math.atan2(nextY - curY, nextX - curX) * (180 / Math.PI);
+                
+                bf.style.left = nextX + 'px';
+                bf.style.top = nextY + 'px';
+                bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
+
+                // Create particles
+                if (Math.random() > 0.4) particles.push(new Particle(nextX, nextY));
+            });
+
+            particles.forEach((p, idx) => {
+                p.update();
+                p.draw();
+                if (p.opacity <= 0) particles.splice(idx, 1);
+            });
+
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
