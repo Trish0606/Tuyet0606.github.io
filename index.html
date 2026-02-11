@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
 </head>
-<body>
-
-    <script>
-        if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
+<body class="is-loading"> <script>
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
+        
+        // Unlock scroll after the intro completes (approx 3 seconds)
+        setTimeout(() => {
+            document.body.classList.remove('is-loading');
+        }, 3000);
     </script>
 
     <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
@@ -26,32 +29,44 @@
     </nav>
 
     <header class="hero">
-        <div class="garden-glow"></div>
-        
-        <div class="butterfly-container">
-            <div class="bf" style="width:140px;height:140px" data-home-x="15" data-home-y="20"><span></span></div>
-            <div class="bf" style="width:100px;height:100px" data-home-x="85" data-home-y="15"><span></span></div>
-            <div class="bf" style="width:160px;height:160px" data-home-x="50" data-home-y="50"><span></span></div>
-            <div class="bf" style="width:120px;height:120px" data-home-x="20" data-home-y="80"><span></span></div>
-            <div class="bf" style="width:150px;height:150px" data-home-x="80" data-home-y="85"><span></span></div>
-            <div class="bf" style="width:90px;height:90px"   data-home-x="40" data-home-y="20"><span></span></div>
-            <div class="bf" style="width:110px;height:110px" data-home-x="60" data-home-y="80"><span></span></div>
+        <div class="intro-fade-group">
+            <div class="garden-glow"></div>
+            <div class="butterfly-container">
+                <div class="bf" style="width:130px;height:130px" data-home-x="10" data-home-y="15"><span></span></div>
+                <div class="bf" style="width:90px;height:90px"   data-home-x="85" data-home-y="10"><span></span></div>
+                <div class="bf" style="width:150px;height:150px" data-home-x="50" data-home-y="45"><span></span></div>
+                <div class="bf" style="width:110px;height:110px" data-home-x="15" data-home-y="85"><span></span></div>
+                <div class="bf" style="width:140px;height:140px" data-home-x="75" data-home-y="80"><span></span></div>
+                <div class="bf" style="width:80px;height:80px"   data-home-x="40" data-home-y="15"><span></span></div>
+                <div class="bf" style="width:100px;height:100px" data-home-x="60" data-home-y="85"><span></span></div>
+                <div class="bf" style="width:120px;height:120px" data-home-x="90" data-home-y="40"><span></span></div>
+                <div class="bf" style="width:100px;height:100px" data-home-x="10" data-home-y="50"><span></span></div>
+            </div>
         </div>
 
         <div class="hero-content">
             <p class="type-hello">Hello, I'm</p>
-            <h1 class="fade-name">Tuyet Nguyen</h1>
-            <div class="hero-actions">
-                <a href="#contact" class="btn-primary">Contact Me</a>
-                <a href="#projects" class="btn-secondary">View My Work</a>
+            <div class="intro-fade-group">
+                <h1 class="fade-name">Tuyet Nguyen</h1>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary">Contact Me</a>
+                    <a href="#projects" class="btn-secondary">View My Work</a>
+                </div>
             </div>
         </div>
+
+        <div class="scroll-arrow intro-fade-group">
+            <div class="line"></div>
+            <span>SCROLL</span>
+        </div>
     </header>
+
+    <div class="section-divider"></div>
 
     <main class="content-wrapper">
         <section id="about" class="section reveal">
             <div class="about-wrap">
-                <div class="profile-square">
+                <div class="profile-rectangle">
                     <img src="images/profile.jpg" alt="Tuyet">
                 </div>
                 <h2 class="about-header">About Me</h2>
@@ -77,10 +92,7 @@
                 <h2 class="section-label">Experience</h2>
                 <div class="exp-row">
                     <span class="exp-year">Present</span>
-                    <div class="exp-info">
-                        <h3>Creative Lead</h3>
-                        <p>Designing the future of interactive web design.</p>
-                    </div>
+                    <div class="exp-info"><h3>Creative Lead</h3><p>Web Solutions Agency</p></div>
                 </div>
             </div>
         </section>
@@ -97,12 +109,12 @@
             </div>
             <div class="footer-bottom">
                 <p>© 2026 TUYET NGUYEN</p>
-                <p>SHARP EDGES // ORGANIC FLOW</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Butterfly Interaction Script
         const bfs = document.querySelectorAll('.bf');
         let mX = -2000, mY = -2000;
         document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
@@ -116,9 +128,9 @@
                 let curX = parseFloat(bf.style.left) || hX;
                 let curY = parseFloat(bf.style.top) || hY;
                 const dist = Math.hypot(mX - curX, mY - curY);
-                let targetX = (dist < 280) ? mX : driftX;
-                let targetY = (dist < 280) ? mY : driftY;
-                let lerp = (dist < 280) ? 0.08 : 0.02;
+                let targetX = (dist < 250) ? mX : driftX;
+                let targetY = (dist < 250) ? mY : driftY;
+                let lerp = (dist < 250) ? 0.08 : 0.02;
                 const finalX = curX + (targetX - curX) * lerp;
                 const finalY = curY + (targetY - curY) * lerp;
                 bf.style.left = finalX + 'px'; bf.style.top = finalY + 'px';
