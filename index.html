@@ -32,19 +32,17 @@
     <header class="hero">
         <canvas id="trailCanvas"></canvas>
         <div class="butterfly-container">
-            <div class="bf" style="width:140px;height:140px" data-home-x="15" data-home-y="20"><span></span></div>
-            <div class="bf" style="width:90px;height:90px"   data-home-x="80" data-home-y="15"><span></span></div>
-            <div class="bf" style="width:160px;height:160px" data-home-x="50" data-home-y="45"><span></span></div>
+            <div class="bf" style="width:130px;height:130px" data-home-x="15" data-home-y="25"><span></span></div>
+            <div class="bf" style="width:90px;height:90px"   data-home-x="80" data-home-y="20"><span></span></div>
+            <div class="bf" style="width:160px;height:160px" data-home-x="50" data-home-y="50"><span></span></div>
             <div class="bf" style="width:110px;height:110px" data-home-x="20" data-home-y="80"><span></span></div>
-            <div class="bf" style="width:150px;height:150px" data-home-x="80" data-home-y="85"><span></span></div>
-            <div class="bf" style="width:100px;height:100px" data-home-x="40" data-home-y="10"><span></span></div>
+            <div class="bf" style="width:150px;height:150px" data-home-x="75" data-home-y="85"><span></span></div>
+            <div class="bf" style="width:120px;height:120px" data-home-x="85" data-home-y="50"><span></span></div>
         </div>
 
         <div class="hero-content">
-            <div class="hero-text-wrap">
-                <p class="type-hello">Hello, I'm</p>
-                <h1 class="fade-name">Tuyet Nguyen</h1>
-            </div>
+            <p class="type-hello">Hello, I'm</p>
+            <h1 class="fade-name">Tuyet Nguyen</h1>
             <div class="bg-fade-layer">
                 <div class="hero-actions">
                     <a href="mailto:hello@tuyetnguyen.com" class="btn-primary">Say Hello</a>
@@ -54,11 +52,15 @@
         </div>
     </header>
 
+    <div class="hero-barrier"></div>
+
     <main class="content-wrapper">
         <section id="about" class="section-block reveal">
             <div class="container">
                 <div class="about-grid">
-                    <div class="profile-rectangle"><img src="images/profile.jpg" alt="Tuyet"></div>
+                    <div class="profile-rectangle">
+                        <img src="images/profile.jpg" alt="Tuyet">
+                    </div>
                     <div class="about-info">
                         <span class="section-tag"><span class="blue-num">01 /</span> Profile</span>
                         <h2 class="section-title">About Me</h2>
@@ -76,11 +78,11 @@
                 <div class="project-grid">
                     <div class="project-card">
                         <div class="project-image"></div>
-                        <div class="project-info"><h3>Digital Identity</h3><span>Branding / 2026</span></div>
+                        <div class="project-info"><h3>Digital Identity</h3><span>2026</span></div>
                     </div>
                     <div class="project-card">
                         <div class="project-image"></div>
-                        <div class="project-info"><h3>Interactive Motion</h3><span>Web Design / 2025</span></div>
+                        <div class="project-info"><h3>Motion Design</h3><span>2025</span></div>
                     </div>
                 </div>
             </div>
@@ -89,7 +91,7 @@
 
     <footer id="contact" class="footer reveal">
         <div class="section-border-top"></div>
-        <div class="container footer-container">
+        <div class="container">
             <h2 class="footer-msg">Shoot me a msg</h2>
             <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
             <div class="footer-social-row">
@@ -98,9 +100,77 @@
                 <a href="#">IG</a>
             </div>
         </div>
-        <div class="copyright-bar"><p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p></div>
+        <div class="copyright-bar">
+            <p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // SCRIPT TO ENSURE BUTTERFLIES & TRAILS ARE VISIBLE
+        const canvas = document.getElementById('trailCanvas');
+        const ctx = canvas.getContext('2d');
+        const bfs = document.querySelectorAll('.bf');
+        let particles = [];
+        let mX = -2000, mY = -2000;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x; this.y = y;
+                this.size = Math.random() * 2 + 1;
+                this.opacity = 1;
+                this.vX = (Math.random() - 0.5) * 0.5;
+                this.vY = (Math.random() - 0.5) * 0.5;
+            }
+            update() { this.x += this.vX; this.y += this.vY; this.opacity -= 0.015; }
+            draw() {
+                ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+
+        function animate(time) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            bfs.forEach((bf, i) => {
+                const hX = (window.innerWidth * bf.dataset.homeX) / 100;
+                const hY = (window.innerHeight * bf.dataset.homeY) / 100;
+                
+                // Natural Flight Flutter
+                const fX = Math.sin(time * 0.002 + i) * 20 + Math.sin(time * 0.0005 + i) * 70;
+                const fY = Math.cos(time * 0.002 + i) * 20 + Math.cos(time * 0.0005 + i) * 70;
+
+                let curX = parseFloat(bf.style.left) || hX;
+                let curY = parseFloat(bf.style.top) || hY;
+                const d = Math.hypot(mX - curX, mY - curY);
+                let tX = (d < 200) ? mX : hX + fX;
+                let tY = (d < 200) ? mY : hY + fY;
+                let l = (d < 200) ? 0.08 : 0.02;
+                
+                const nX = curX + (tX - curX) * l;
+                const nY = curY + (tY - curY) * l;
+                const a = Math.atan2(nY - curY, nX - curX) * (180 / Math.PI);
+                
+                bf.style.left = nX + 'px'; bf.style.top = nY + 'px';
+                bf.style.transform = `translate(-50%, -50%) rotate(${a + 90}deg)`;
+                if (Math.random() > 0.4) particles.push(new Particle(nX, nY));
+            });
+            particles.forEach((p, i) => { p.update(); p.draw(); if (p.opacity <= 0) particles.splice(i, 1); });
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
