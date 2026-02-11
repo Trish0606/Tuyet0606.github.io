@@ -17,25 +17,27 @@
     </nav>
 
     <header class="hero">
-        <div class="bf" data-home-x="15" data-home-y="20"><span></span></div>
-        <div class="bf" data-home-x="85" data-home-y="25"><span></span></div>
-        <div class="bf" data-home-x="50" data-home-y="75"><span></span></div>
-        <div class="bf" data-home-x="20" data-home-y="80"><span></span></div>
-        <div class="bf" data-home-x="80" data-home-y="85"><span></span></div>
+        <div class="butterfly-system">
+            <div class="bf" data-home-x="10" data-home-y="20"><span></span></div>
+            <div class="bf" data-home-x="80" data-home-y="15"><span></span></div>
+            <div class="bf" data-home-x="50" data-home-y="80"><span></span></div>
+            <div class="bf" data-home-x="15" data-home-y="75"><span></span></div>
+            <div class="bf" data-home-x="85" data-home-y="85"><span></span></div>
+        </div>
 
         <div class="hero-content">
-            <p class="greeting">Hello, I'm</p>
-            <h1 class="main-name">Tuyet Nguyen</h1>
-            <a href="#" class="btn-say-hello">Say Hello</a>
+            <p class="typing-text">Hello, I'm</p>
+            <h1 class="main-name typing-text-delayed">Tuyet Nguyen</h1>
+            <a href="#contact" class="btn-pill">Say Hello</a>
         </div>
     </header>
 
-    <section id="about" class="about-section">
-        <div class="card-container">
+    <section id="about" class="section">
+        <div class="container">
             <h2 class="section-label">About Me</h2>
             <div class="profile-card">
                 <div class="profile-pic">
-                    <img src="images/profile.jpg" alt="Tuyet">
+                    <img src="images/profile.jpg" alt="Profile">
                 </div>
                 <div class="profile-info">
                     <h3>Senior Designer</h3>
@@ -46,10 +48,31 @@
         </div>
     </section>
 
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-label">Experience</h2>
+            <div class="exp-item">
+                <span class="year">2023</span>
+                <p>Lead Creative — Digital Studio</p>
+            </div>
+            <div class="exp-item">
+                <span class="year">2021</span>
+                <p>Visual Designer — Freelance</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <p>© 2026 Tuyet Nguyen</p>
+        <div class="socials">
+            <a href="#">LinkedIn</a>
+            <a href="#">Dribbble</a>
+        </div>
+    </footer>
+
     <script>
         const bfs = document.querySelectorAll('.bf');
-        let mX = -2000; 
-        let mY = -2000;
+        let mX = -2000, mY = -2000;
 
         document.addEventListener('mousemove', (e) => {
             mX = e.clientX;
@@ -60,8 +83,6 @@
             bfs.forEach((bf, i) => {
                 const hX = (window.innerWidth * bf.dataset.homeX) / 100;
                 const hY = (window.innerHeight * bf.dataset.homeY) / 100;
-
-                // Unique idle drift for each butterfly
                 const driftX = hX + Math.sin(time * 0.001 + i) * 150;
                 const driftY = hY + Math.cos(time * 0.0008 + i) * 150;
 
@@ -72,11 +93,9 @@
                 let targetX, targetY, lerp;
 
                 if (dist < 250) {
-                    targetX = mX; targetY = mY;
-                    lerp = 0.07; // Snappy follow
+                    targetX = mX; targetY = mY; lerp = 0.07;
                 } else {
-                    targetX = driftX; targetY = driftY;
-                    lerp = 0.02; // Graceful return
+                    targetX = driftX; targetY = driftY; lerp = 0.02;
                 }
 
                 const finalX = curX + (targetX - curX) * lerp;
