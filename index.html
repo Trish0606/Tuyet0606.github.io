@@ -7,11 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
 </head>
-<body>
-
-    <script>
+<body class="lock-scroll"> <script>
+        // Force scroll to top instantly
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
+
+        // Unlock scroll only after the intro animation finishes (approx 3.5s)
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+                document.body.classList.remove('lock-scroll');
+            }, 3500); 
+        });
     </script>
 
     <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
@@ -56,9 +63,10 @@
         </div>
     </header>
 
+    <div class="hero-barrier"></div>
+
     <main class="content-wrapper">
         <section id="about" class="section-block reveal">
-            <div class="section-border-top"></div>
             <div class="container">
                 <div class="about-grid">
                     <div class="profile-rectangle">
@@ -136,13 +144,9 @@
                 let targetX = (dist < 200) ? mX : driftX;
                 let targetY = (dist < 200) ? mY : driftY;
                 let lerp = (dist < 200) ? 0.08 : 0.02;
-                
                 const nextX = curX + (targetX - curX) * lerp;
                 const nextY = curY + (targetY - curY) * lerp;
-                
-                // RESTORED ROTATION LOGIC
                 const angle = Math.atan2(nextY - curY, nextX - curX) * (180 / Math.PI);
-                
                 bf.style.left = nextX + 'px';
                 bf.style.top = nextY + 'px';
                 bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
