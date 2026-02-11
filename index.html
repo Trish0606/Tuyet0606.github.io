@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuyet Nguyen | Portfolio</title>
+    <title>Tuyet Nguyen Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="hero">
         <div class="butterfly-field">
-            <div class="bf" data-seed="1.1"></div>
-            <div class="bf" data-seed="2.5"></div>
-            <div class="bf" data-seed="3.8"></div>
-            <div class="bf" data-seed="5.2"></div>
-            <div class="bf" data-seed="7.9"></div>
+            <div class="bf" data-speed="0.03" style="top: 15%; left: 10%;"></div>
+            <div class="bf" data-speed="0.05" style="top: 65%; left: 80%;"></div>
+            <div class="bf" data-speed="0.04" style="top: 25%; left: 75%;"></div>
+            <div class="bf" data-speed="0.06" style="top: 80%; left: 20%;"></div>
+            <div class="bf" data-speed="0.04" style="top: 45%; left: 45%;"></div>
         </div>
         
         <div class="hero-content">
@@ -26,8 +26,8 @@
 
     <script>
         const bfs = document.querySelectorAll('.bf');
-        let mX = -1000; // Start mouse off-screen
-        let mY = -1000;
+        let mX = -2000; 
+        let mY = -2000;
 
         document.addEventListener('mousemove', (e) => {
             mX = e.clientX;
@@ -36,41 +36,40 @@
 
         function animate(time) {
             bfs.forEach((bf, i) => {
-                const seed = parseFloat(bf.getAttribute('data-seed'));
                 const rect = bf.getBoundingClientRect();
+                const speed = parseFloat(bf.getAttribute('data-speed'));
                 
-                // 1. Natural Flight Path (Idle)
-                // We use Math.sin and Math.cos to create a figure-eight/circular drift
-                const idleX = (window.innerWidth / 2) + Math.cos(time * 0.001 * seed) * (window.innerWidth * 0.3);
-                const idleY = (window.innerHeight / 2) + Math.sin(time * 0.0015 * seed) * (window.innerHeight * 0.3);
+                // Get the 'Home' position from the initial CSS style
+                const homeX = (window.innerWidth * (parseInt(bf.style.left) / 100));
+                const homeY = (window.innerHeight * (parseInt(bf.style.top) / 100));
 
-                // 2. Check distance to mouse
+                // 1. Erratic Idle Flight (Unique per butterfly)
+                const driftX = homeX + Math.sin(time * 0.001 + i) * 150;
+                const driftY = homeY + Math.cos(time * 0.0008 + i) * 150;
+
                 const curX = rect.left + rect.width / 2;
                 const curY = rect.top + rect.height / 2;
                 const dist = Math.hypot(mX - curX, mY - curY);
 
-                let targetX, targetY, lerpSpeed;
+                let targetX, targetY, lerp;
 
-                if (dist < 200) {
-                    // CATCHED: Follow mouse
+                if (dist < 250) {
                     targetX = mX;
                     targetY = mY;
-                    lerpSpeed = 0.08; // Quick response
+                    lerp = speed * 2; // Follow speed
                 } else {
-                    // IDLE: Go back to flying around
-                    targetX = idleX;
-                    targetY = idleY;
-                    lerpSpeed = 0.02; // Slow, graceful drift back
+                    targetX = driftX;
+                    targetY = driftY;
+                    lerp = 0.02; // Drift back speed
                 }
 
-                // Apply the movement
-                const finalX = curX + (targetX - curX) * lerpSpeed;
-                const finalY = curY + (targetY - curY) * lerpSpeed;
+                const finalX = curX + (targetX - curX) * lerp;
+                const finalY = curY + (targetY - curY) * lerp;
 
                 bf.style.left = finalX + 'px';
                 bf.style.top = finalY + 'px';
-                
-                // Dynamic Rotation based on movement direction
+
+                // Rotate towards movement
                 const angle = Math.atan2(targetY - curY, targetX - curX) * (180 / Math.PI);
                 bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
             });
