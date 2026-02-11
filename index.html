@@ -10,10 +10,11 @@
 
     <header class="hero">
         <div class="butterfly-field">
-            <div class="bf" data-lag="0.04"></div>
-            <div class="bf" data-lag="0.07"></div>
-            <div class="bf" data-lag="0.05"></div>
-            <div class="bf" data-lag="0.10"></div>
+            <div class="bf" data-seed="1.1"></div>
+            <div class="bf" data-seed="2.5"></div>
+            <div class="bf" data-seed="3.8"></div>
+            <div class="bf" data-seed="5.2"></div>
+            <div class="bf" data-seed="7.9"></div>
         </div>
         
         <div class="hero-content">
@@ -23,41 +24,59 @@
         </div>
     </header>
 
-    <section class="about-section">
-        <div class="profile-card">
-            <img src="images/profile.jpg" alt="Tuyet" class="profile-pic">
-            <div class="profile-info">
-                <h3>Senior Designer</h3>
-                <p>2024 — PRES.</p>
-            </div>
-            <div class="arrow">→</div>
-        </div>
-    </section>
-
     <script>
         const bfs = document.querySelectorAll('.bf');
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
+        let mX = -1000; // Start mouse off-screen
+        let mY = -1000;
 
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            mX = e.clientX;
+            mY = e.clientY;
         });
 
-        function animate() {
-            bfs.forEach((bf) => {
-                const lag = parseFloat(bf.getAttribute('data-lag'));
+        function animate(time) {
+            bfs.forEach((bf, i) => {
+                const seed = parseFloat(bf.getAttribute('data-seed'));
                 const rect = bf.getBoundingClientRect();
+                
+                // 1. Natural Flight Path (Idle)
+                // We use Math.sin and Math.cos to create a figure-eight/circular drift
+                const idleX = (window.innerWidth / 2) + Math.cos(time * 0.001 * seed) * (window.innerWidth * 0.3);
+                const idleY = (window.innerHeight / 2) + Math.sin(time * 0.0015 * seed) * (window.innerHeight * 0.3);
+
+                // 2. Check distance to mouse
                 const curX = rect.left + rect.width / 2;
                 const curY = rect.top + rect.height / 2;
+                const dist = Math.hypot(mX - curX, mY - curY);
 
-                // The 'one-by-one' glide math
-                bf.style.left = (curX + (mouseX - curX) * lag) + 'px';
-                bf.style.top = (curY + (mouseY - curY) * lag) + 'px';
+                let targetX, targetY, lerpSpeed;
+
+                if (dist < 200) {
+                    // CATCHED: Follow mouse
+                    targetX = mX;
+                    targetY = mY;
+                    lerpSpeed = 0.08; // Quick response
+                } else {
+                    // IDLE: Go back to flying around
+                    targetX = idleX;
+                    targetY = idleY;
+                    lerpSpeed = 0.02; // Slow, graceful drift back
+                }
+
+                // Apply the movement
+                const finalX = curX + (targetX - curX) * lerpSpeed;
+                const finalY = curY + (targetY - curY) * lerpSpeed;
+
+                bf.style.left = finalX + 'px';
+                bf.style.top = finalY + 'px';
+                
+                // Dynamic Rotation based on movement direction
+                const angle = Math.atan2(targetY - curY, targetX - curX) * (180 / Math.PI);
+                bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
             });
             requestAnimationFrame(animate);
         }
-        animate();
+        requestAnimationFrame(animate);
     </script>
 </body>
 </html>
