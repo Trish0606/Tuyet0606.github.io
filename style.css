@@ -1,84 +1,120 @@
 :root {
     --bg: #0b0e14;
     --accent: #00d4ff;
+    --white: #ffffff;
+    --card-bg: #161b22;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* SMOOTH SCROLLING */
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+body { 
+    background: var(--bg); 
+    color: var(--white); 
+    font-family: 'Inter', sans-serif; 
+    overflow-x: hidden; 
+}
 
 /* --- NAVIGATION --- */
-.sticky-nav { position: fixed; top: 30px; right: 50px; z-index: 1000; }
-.nav-links a { color: white; text-decoration: none; margin-left: 25px; font-size: 0.9rem; opacity: 0.7; }
+.sticky-nav { 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    padding: 30px 60px;
+    background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
+}
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 800; letter-spacing: 2px; color: var(--accent); }
+.nav-links a { color: #fff; text-decoration: none; margin-left: 30px; font-size: 0.9rem; opacity: 0.7; transition: 0.3s; }
+.nav-links a:hover { opacity: 1; color: var(--accent); }
 
-/* --- HERO & LAYERING --- */
+/* --- HERO & Z-INDEX LAYERING --- */
 .hero { 
     height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
     background: radial-gradient(circle at center, #162029 0%, #0b0e14 100%);
     overflow: hidden;
 }
 
-.butterfly-system {
+.butterfly-field {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 1; /* Lowest Layer */
+    z-index: 1; /* Lowest: Behind text */
 }
 
 .hero-content { 
-    position: relative; z-index: 10; /* Higher Layer */
-    text-align: left; width: 80%; max-width: 1100px;
+    position: relative; 
+    z-index: 10; /* Highest: Above butterflies */
+    text-align: left; 
+    width: 80%; 
+    max-width: 1100px;
     pointer-events: none;
 }
 
-/* --- TYPING ANIMATION --- */
-.typing-text {
-    overflow: hidden; border-right: 2px solid var(--accent); white-space: nowrap;
-    width: 0; animation: typing 1.5s steps(30, end) forwards, blink 0.7s infinite;
-    font-size: 1.8rem; font-weight: 300;
+/* --- TYPING EFFECTS --- */
+.type-hello {
+    font-size: 1.8rem; font-weight: 300; opacity: 0.9;
+    overflow: hidden; white-space: nowrap; width: 0;
+    border-right: 2px solid var(--accent);
+    animation: typing 1.2s steps(20, end) forwards, blink 0.8s infinite;
 }
-.typing-text-delayed {
-    overflow: hidden; border-right: 2px solid var(--accent); white-space: nowrap;
-    width: 0; animation: typing 1.5s steps(30, end) 1.5s forwards, blink 0.7s infinite;
-    font-size: clamp(3rem, 10vw, 6.5rem); font-weight: 800; letter-spacing: -3px;
+.type-name {
+    font-size: clamp(3rem, 12vw, 7rem); font-weight: 800; letter-spacing: -4px;
+    overflow: hidden; white-space: nowrap; width: 0;
+    border-right: 2px solid var(--accent);
+    animation: typing 1.5s steps(25, end) 1.2s forwards, blink 0.8s infinite;
 }
 
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink { 50% { border-color: transparent } }
 
-/* --- BUTTERFLY --- */
+/* --- BUTTERFLY GRAPHICS --- */
 .bf { position: absolute; width: 130px; height: 130px; transform-style: preserve-3d; pointer-events: none; }
 .bf span {
     display: block; width: 100%; height: 100%;
-    background-image: url('images/butterfly.png'); background-size: contain; background-repeat: no-repeat;
+    background-image: url('images/butterfly.png'); /* LOCAL IMAGE */
+    background-size: contain; background-repeat: no-repeat; background-position: center;
     mix-blend-mode: screen; filter: drop-shadow(0 0 10px var(--accent));
-    backface-visibility: hidden; -webkit-backface-visibility: hidden;
-    animation: flap 0.3s infinite ease-in-out;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    animation: flap 0.35s infinite ease-in-out;
 }
 
 @keyframes flap {
     0%, 100% { transform: perspective(1000px) rotateY(0deg); }
-    50% { transform: perspective(1000px) rotateY(80deg); }
+    50% { transform: perspective(1000px) rotateY(78deg); }
 }
 
-/* --- SECTIONS & CARDS --- */
-.section { padding: 120px 0; display: flex; justify-content: center; }
+/* --- SECTION REVEAL ANIMATION --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* --- CONTENT SECTIONS --- */
+.section { padding: 140px 0; display: flex; justify-content: center; }
 .container { width: 80%; max-width: 1100px; }
-.section-label { font-size: 1.1rem; margin-bottom: 40px; color: #888; text-transform: uppercase; letter-spacing: 2px; }
+.section-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; color: #555; margin-bottom: 50px; }
 
 .profile-card { 
-    display: flex; align-items: center; gap: 20px; 
-    background: #161b22; padding: 20px 40px; border-radius: 100px; border: 1px solid #333;
+    display: flex; align-items: center; gap: 25px; 
+    background: var(--card-bg); padding: 25px 45px; border-radius: 100px; border: 1px solid #333;
     width: fit-content;
 }
-.profile-pic { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; }
-.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
-.arrow { margin-left: auto; color: #555; font-size: 1.5rem; }
+.profile-img-wrap { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent); }
+.profile-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.card-arrow { margin-left: 60px; color: #444; font-size: 1.5rem; transition: 0.3s; }
+.profile-card:hover .card-arrow { color: var(--accent); transform: translateX(10px); }
 
-.btn-pill { 
-    display: inline-block; padding: 12px 35px; border: 1px solid white; 
-    color: white; text-decoration: none; margin-top: 30px; pointer-events: all; 
+.say-hello-btn { 
+    display: inline-block; padding: 14px 40px; border: 1px solid white; 
+    color: white; text-decoration: none; margin-top: 45px; pointer-events: all; 
+    transition: 0.3s;
 }
+.say-hello-btn:hover { background: white; color: black; }
 
-.exp-item { border-bottom: 1px solid #222; padding: 20px 0; display: flex; gap: 40px; }
-.year { color: var(--accent); font-weight: 600; }
+.exp-item { border-bottom: 1px solid #222; padding: 35px 0; display: flex; gap: 60px; }
+.exp-year { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+.exp-details h3 { font-size: 1.4rem; margin-bottom: 5px; }
+.exp-details p { color: #888; font-size: 0.95rem; }
 
-.footer { padding: 60px; text-align: center; border-top: 1px solid #222; color: #555; }
+.footer { padding: 80px; text-align: center; color: #444; border-top: 1px solid #222; font-size: 0.85rem; }
