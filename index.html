@@ -7,16 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
 </head>
-<body class="lock-scroll"> <script>
-        // Force scroll to top instantly
+<body class="lock-scroll">
+
+    <script>
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
-        // Unlock scroll only after the intro animation finishes (approx 3.5s)
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
             setTimeout(() => {
                 document.body.classList.remove('lock-scroll');
+                // Reveal the scroll indicator
+                document.querySelector('.scroll-hint').classList.add('visible');
             }, 3500); 
         });
     </script>
@@ -60,6 +62,11 @@
                     <a href="#projects" class="btn-secondary">View My Work</a>
                 </div>
             </div>
+        </div>
+
+        <div class="scroll-hint">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
         </div>
     </header>
 
