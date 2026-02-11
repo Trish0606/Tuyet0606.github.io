@@ -2,32 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuyet Nguyen Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="hero">
-        <div class="butterfly-field">
-            <div class="bf" data-speed="0.03" style="top: 15%; left: 10%;"></div>
-            <div class="bf" data-speed="0.05" style="top: 65%; left: 80%;"></div>
-            <div class="bf" data-speed="0.04" style="top: 25%; left: 75%;"></div>
-            <div class="bf" data-speed="0.06" style="top: 80%; left: 20%;"></div>
-            <div class="bf" data-speed="0.04" style="top: 45%; left: 45%;"></div>
-        </div>
-        
         <div class="hero-content">
-            <p>Hello, I'm</p>
-            <h1 class="hero-name">Tuyet Nguyen</h1>
-            <a href="#" class="btn-say-hello">Say Hello</a>
+            <h1>Tuyet Nguyen</h1>
         </div>
+
+        <div class="bf" data-home-x="20" data-home-y="20"><span></span></div>
+        <div class="bf" data-home-x="80" data-home-y="20"><span></span></div>
+        <div class="bf" data-home-x="50" data-home-y="50"><span></span></div>
+        <div class="bf" data-home-x="20" data-home-y="80"><span></span></div>
+        <div class="bf" data-home-x="80" data-home-y="80"><span></span></div>
     </header>
 
     <script>
         const bfs = document.querySelectorAll('.bf');
-        let mX = -2000; 
-        let mY = -2000;
+        let mX = -1000;
+        let mY = -1000;
 
         document.addEventListener('mousemove', (e) => {
             mX = e.clientX;
@@ -36,38 +31,39 @@
 
         function animate(time) {
             bfs.forEach((bf, i) => {
-                const rect = bf.getBoundingClientRect();
-                const speed = parseFloat(bf.getAttribute('data-speed'));
-                
-                // Get the 'Home' position from the initial CSS style
-                const homeX = (window.innerWidth * (parseInt(bf.style.left) / 100));
-                const homeY = (window.innerHeight * (parseInt(bf.style.top) / 100));
+                // Get Home position in pixels
+                const hX = (window.innerWidth * bf.dataset.homeX) / 100;
+                const hY = (window.innerHeight * bf.dataset.homeY) / 100;
 
-                // 1. Erratic Idle Flight (Unique per butterfly)
-                const driftX = homeX + Math.sin(time * 0.001 + i) * 150;
-                const driftY = homeY + Math.cos(time * 0.0008 + i) * 150;
+                // 1. Natural Drift (Keeps them moving but stays in their area)
+                const driftX = hX + Math.sin(time * 0.001 + i) * 100;
+                const driftY = hY + Math.cos(time * 0.001 + i) * 100;
 
-                const curX = rect.left + rect.width / 2;
-                const curY = rect.top + rect.height / 2;
+                // 2. Current Position
+                let curX = parseFloat(bf.style.left) || hX;
+                let curY = parseFloat(bf.style.top) || hY;
+
+                // 3. Distance to Mouse
                 const dist = Math.hypot(mX - curX, mY - curY);
-
-                let targetX, targetY, lerp;
+                
+                let targetX, targetY, speed;
 
                 if (dist < 250) {
                     targetX = mX;
                     targetY = mY;
-                    lerp = speed * 2; // Follow speed
+                    speed = 0.08; // Catch speed
                 } else {
                     targetX = driftX;
                     targetY = driftY;
-                    lerp = 0.02; // Drift back speed
+                    speed = 0.02; // Return speed
                 }
 
-                const finalX = curX + (targetX - curX) * lerp;
-                const finalY = curY + (targetY - curY) * lerp;
+                // Smoothly move to target
+                const newX = curX + (targetX - curX) * speed;
+                const newY = curY + (targetY - curY) * speed;
 
-                bf.style.left = finalX + 'px';
-                bf.style.top = finalY + 'px';
+                bf.style.left = newX + 'px';
+                bf.style.top = newY + 'px';
 
                 // Rotate towards movement
                 const angle = Math.atan2(targetY - curY, targetX - curX) * (180 / Math.PI);
