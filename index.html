@@ -22,18 +22,16 @@
         </div>
     </nav>
 
-    <header class="hero" id="hero">
-        <div class="garden-bloom bloom-1"></div>
-        <div class="garden-bloom bloom-2"></div>
-        <div class="garden-bloom bloom-3"></div>
-        <div class="noise-overlay"></div>
+    <header class="hero">
+        <div class="garden-glow"></div>
+        <div class="noise-filter"></div>
         
-        <div class="butterfly-field">
-            <div class="bf" data-home-x="20" data-home-y="30"><span></span></div>
-            <div class="bf" data-home-x="80" data-home-y="25"><span></span></div>
+        <div class="butterfly-container">
+            <div class="bf" data-home-x="20" data-home-y="25"><span></span></div>
+            <div class="bf" data-home-x="80" data-home-y="20"><span></span></div>
             <div class="bf" data-home-x="50" data-home-y="50"><span></span></div>
-            <div class="bf" data-home-x="15" data-home-y="70"><span></span></div>
-            <div class="bf" data-home-x="85" data-home-y="75"><span></span></div>
+            <div class="bf" data-home-x="15" data-home-y="75"><span></span></div>
+            <div class="bf" data-home-x="85" data-home-y="80"><span></span></div>
         </div>
 
         <div class="hero-content">
@@ -46,57 +44,40 @@
         </div>
     </header>
 
-    <main class="content-wrapper">
-        <section id="about" class="section reveal about-centered">
-            <div class="container">
-                <div class="profile-main-img">
-                    <img src="images/profile.jpg" alt="Tuyet Nguyen">
-                </div>
-                <h2 class="about-title">About Me</h2>
-                <p class="about-desc">
-                    I am a Senior Designer passionate about blending organic aesthetics with 
-                    clean, functional technology. With over 5 years of experience, I strive 
-                    to create digital spaces that feel as natural as they do innovative.
-                </p>
+    <section id="about" class="section reveal">
+        <div class="about-wrap">
+            <div class="profile-frame">
+                <img src="images/profile.jpg" alt="Tuyet">
             </div>
-        </section>
-
-        <section id="experience" class="section reveal">
-            <div class="container">
-                <h2 class="section-label">Experience</h2>
-                <div class="exp-list">
-                    <div class="exp-item">
-                        <span class="year">2024 — PRES.</span>
-                        <p>Senior Designer • Digital Arts Studio</p>
-                    </div>
-                    <div class="exp-item">
-                        <span class="year">2021 — 2023</span>
-                        <p>Visual Lead • Freelance Interactive</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+            <h2 class="about-header">About Me</h2>
+            <p class="about-text">
+                Senior Designer based in the digital realm. I specialize in 
+                creating aesthetic, interactive experiences that bridge the gap 
+                between nature and technology.
+            </p>
+        </div>
+    </section>
 
     <footer id="contact" class="footer reveal">
-        <div class="footer-container">
+        <div class="footer-content">
             <h2 class="footer-msg">Shoot me a msg</h2>
             <p class="footer-phone">+1 (555) 000-0000</p>
             
             <div class="footer-social-row">
                 <a href="#">LINKEDIN</a>
-                <span class="sep">+</span>
+                <span class="plus">+</span>
                 <a href="#">RESUME</a>
             </div>
 
             <div class="footer-bottom">
-                <p class="copy">© 2026 TUYET NGUYEN</p>
+                <p>© 2026 TUYET NGUYEN</p>
                 <p class="tagline">DESIGNED TO INSPIRE</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Butterfly Interaction Script
         const bfs = document.querySelectorAll('.bf');
         let mX = -2000, mY = -2000;
         document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
@@ -111,7 +92,7 @@
                 let curY = parseFloat(bf.style.top) || hY;
                 const dist = Math.hypot(mX - curX, mY - curY);
                 let targetX, targetY, lerp;
-                if (dist < 280) { targetX = mX; targetY = mY; lerp = 0.07; }
+                if (dist < 280) { targetX = mX; targetY = mY; lerp = 0.08; }
                 else { targetX = driftX; targetY = driftY; lerp = 0.02; }
                 const finalX = curX + (targetX - curX) * lerp;
                 const finalY = curY + (targetY - curY) * lerp;
@@ -123,6 +104,7 @@
         }
         requestAnimationFrame(animate);
 
+        // Reveal Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
