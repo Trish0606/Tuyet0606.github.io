@@ -9,65 +9,66 @@
 <body>
 
     <nav class="sticky-nav">
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
+        <div class="nav-wrapper">
+            <div class="brand">TUYET</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="butterfly-system">
-            <div class="bf" data-home-x="10" data-home-y="20"><span></span></div>
-            <div class="bf" data-home-x="80" data-home-y="15"><span></span></div>
-            <div class="bf" data-home-x="50" data-home-y="80"><span></span></div>
-            <div class="bf" data-home-x="15" data-home-y="75"><span></span></div>
-            <div class="bf" data-home-x="85" data-home-y="85"><span></span></div>
+        <div class="butterfly-field">
+            <div class="bf" data-home-x="15" data-home-y="25"><span></span></div>
+            <div class="bf" data-home-x="85" data-home-y="20"><span></span></div>
+            <div class="bf" data-home-x="50" data-home-y="75"><span></span></div>
+            <div class="bf" data-home-x="20" data-home-y="80"><span></span></div>
+            <div class="bf" data-home-x="80" data-home-y="85"><span></span></div>
         </div>
 
         <div class="hero-content">
-            <p class="typing-text">Hello, I'm</p>
-            <h1 class="main-name typing-text-delayed">Tuyet Nguyen</h1>
-            <a href="#contact" class="btn-pill">Say Hello</a>
+            <p class="type-hello">Hello, I'm</p>
+            <h1 class="type-name">Tuyet Nguyen</h1>
+            <a href="mailto:your@email.com" class="say-hello-btn">Say Hello</a>
         </div>
     </header>
 
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-label">About Me</h2>
+            <h2 class="section-title">About Me</h2>
             <div class="profile-card">
-                <div class="profile-pic">
-                    <img src="images/profile.jpg" alt="Profile">
+                <div class="profile-img-wrap">
+                    <img src="images/profile.jpg" alt="Tuyet">
                 </div>
                 <div class="profile-info">
                     <h3>Senior Designer</h3>
-                    <p>2024 — PRES.</p>
+                    <p>2024 - PRES.</p>
                 </div>
-                <div class="arrow">→</div>
+                <div class="card-arrow">→</div>
             </div>
         </div>
     </section>
 
     <section id="experience" class="section">
         <div class="container">
-            <h2 class="section-label">Experience</h2>
-            <div class="exp-item">
-                <span class="year">2023</span>
-                <p>Lead Creative — Digital Studio</p>
-            </div>
-            <div class="exp-item">
-                <span class="year">2021</span>
-                <p>Visual Designer — Freelance</p>
+            <h2 class="section-title">Experience</h2>
+            <div class="exp-list">
+                <div class="exp-item">
+                    <span class="exp-year">2026</span>
+                    <p>Creative Lead — Web Design Studio</p>
+                </div>
+                <div class="exp-item">
+                    <span class="exp-year">2024</span>
+                    <p>Visual Brand Designer — Freelance</p>
+                </div>
             </div>
         </div>
     </section>
 
     <footer id="contact" class="footer">
         <p>© 2026 Tuyet Nguyen</p>
-        <div class="socials">
-            <a href="#">LinkedIn</a>
-            <a href="#">Dribbble</a>
-        </div>
     </footer>
 
     <script>
@@ -83,6 +84,7 @@
             bfs.forEach((bf, i) => {
                 const hX = (window.innerWidth * bf.dataset.homeX) / 100;
                 const hY = (window.innerHeight * bf.dataset.homeY) / 100;
+                
                 const driftX = hX + Math.sin(time * 0.001 + i) * 150;
                 const driftY = hY + Math.cos(time * 0.0008 + i) * 150;
 
@@ -92,7 +94,7 @@
                 const dist = Math.hypot(mX - curX, mY - curY);
                 let targetX, targetY, lerp;
 
-                if (dist < 250) {
+                if (dist < 280) {
                     targetX = mX; targetY = mY; lerp = 0.07;
                 } else {
                     targetX = driftX; targetY = driftY; lerp = 0.02;
