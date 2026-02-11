@@ -35,7 +35,7 @@
         </div>
     </header>
 
-    <section id="about" class="section">
+    <section id="about" class="section reveal">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="profile-card">
@@ -51,27 +51,34 @@
         </div>
     </section>
 
-    <section id="experience" class="section">
+    <section id="experience" class="section reveal">
         <div class="container">
             <h2 class="section-title">Experience</h2>
             <div class="exp-list">
                 <div class="exp-item">
                     <span class="exp-year">2026</span>
-                    <p>Creative Lead — Web Design Studio</p>
+                    <div class="exp-details">
+                        <h3>Creative Lead</h3>
+                        <p>Web Design Studio — Specializing in interactive experiences.</p>
+                    </div>
                 </div>
                 <div class="exp-item">
                     <span class="exp-year">2024</span>
-                    <p>Visual Brand Designer — Freelance</p>
+                    <div class="exp-details">
+                        <h3>Visual Brand Designer</h3>
+                        <p>Freelance — Crafting unique identities for digital brands.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <footer id="contact" class="footer">
-        <p>© 2026 Tuyet Nguyen</p>
+        <p>© 2026 Tuyet Nguyen • Built with Glass-Butterfly Physics</p>
     </footer>
 
     <script>
+        // 1. BUTTERFLY ENGINE
         const bfs = document.querySelectorAll('.bf');
         let mX = -2000, mY = -2000;
 
@@ -112,6 +119,17 @@
             requestAnimationFrame(animate);
         }
         requestAnimationFrame(animate);
+
+        // 2. REVEAL ON SCROLL ENGINE
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
