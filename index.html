@@ -10,18 +10,19 @@
 <body class="lock-scroll">
 
     <script>
-        // Force the browser to start at the top before anything renders
-        window.onbeforeunload = function () { window.scrollTo(0, 0); };
-        history.scrollRestoration = "manual";
+        // Force scroll to top instantly on load
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
-        // Unlock scroll after intro
-        setTimeout(() => {
-            document.body.classList.remove('lock-scroll');
-        }, 3800);
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+                document.body.classList.remove('lock-scroll');
+            }, 3500); 
+        });
     </script>
 
-    <button class="replay-btn" onclick="window.scrollTo(0,0); location.reload();">↺ Replay Intro</button>
+    <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
 
     <nav class="taskbar">
         <div class="taskbar-inner">
@@ -69,11 +70,13 @@
         <section id="about" class="section-block reveal">
             <div class="container">
                 <div class="about-grid">
-                    <div class="profile-rectangle"><img src="images/profile.jpg" alt="Profile"></div>
+                    <div class="profile-rectangle">
+                        <img src="images/profile.jpg" alt="Tuyet">
+                    </div>
                     <div class="about-info">
                         <span class="section-tag">01 / Profile</span>
                         <h2 class="section-title">About Me</h2>
-                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences.</p>
+                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences. I blend organic textures with precise technology.</p>
                     </div>
                 </div>
             </div>
@@ -84,8 +87,11 @@
             <div class="container">
                 <span class="section-tag">02 / Journey</span>
                 <h2 class="section-title">Experience</h2>
-                <div class="exp-item">
-                    <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
+                <div class="experience-grid">
+                    <div class="exp-item">
+                        <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
+                        <p>Studio Meta • Interactive Design & Art Direction</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -97,7 +103,7 @@
                 <h2 class="section-title">Projects</h2>
                 <div class="project-columns">
                     <div class="project-box"><div class="p-img"></div><h3>Digital Identity</h3></div>
-                    <div class="project-box"><div class="p-img"></div><h3>Motion Graphics</h3></div>
+                    <div class="project-box"><div class="p-img"></div><h3>Interactive Motion</h3></div>
                 </div>
             </div>
         </section>
