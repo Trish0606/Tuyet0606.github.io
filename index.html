@@ -2,27 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tuyet Nguyen Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyet Nguyen | Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Tuyet Nguyen</h1>
+    <nav class="sticky-nav">
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
         </div>
+    </nav>
 
-        <div class="bf" data-home-x="20" data-home-y="20"><span></span></div>
-        <div class="bf" data-home-x="80" data-home-y="20"><span></span></div>
-        <div class="bf" data-home-x="50" data-home-y="50"><span></span></div>
+    <header class="hero">
+        <div class="bf" data-home-x="15" data-home-y="20"><span></span></div>
+        <div class="bf" data-home-x="85" data-home-y="25"><span></span></div>
+        <div class="bf" data-home-x="50" data-home-y="75"><span></span></div>
         <div class="bf" data-home-x="20" data-home-y="80"><span></span></div>
-        <div class="bf" data-home-x="80" data-home-y="80"><span></span></div>
+        <div class="bf" data-home-x="80" data-home-y="85"><span></span></div>
+
+        <div class="hero-content">
+            <p class="greeting">Hello, I'm</p>
+            <h1 class="main-name">Tuyet Nguyen</h1>
+            <a href="#" class="btn-say-hello">Say Hello</a>
+        </div>
     </header>
+
+    <section id="about" class="about-section">
+        <div class="card-container">
+            <h2 class="section-label">About Me</h2>
+            <div class="profile-card">
+                <div class="profile-pic">
+                    <img src="images/profile.jpg" alt="Tuyet">
+                </div>
+                <div class="profile-info">
+                    <h3>Senior Designer</h3>
+                    <p>2024 — PRES.</p>
+                </div>
+                <div class="arrow">→</div>
+            </div>
+        </div>
+    </section>
 
     <script>
         const bfs = document.querySelectorAll('.bf');
-        let mX = -1000;
-        let mY = -1000;
+        let mX = -2000; 
+        let mY = -2000;
 
         document.addEventListener('mousemove', (e) => {
             mX = e.clientX;
@@ -31,41 +58,33 @@
 
         function animate(time) {
             bfs.forEach((bf, i) => {
-                // Get Home position in pixels
                 const hX = (window.innerWidth * bf.dataset.homeX) / 100;
                 const hY = (window.innerHeight * bf.dataset.homeY) / 100;
 
-                // 1. Natural Drift (Keeps them moving but stays in their area)
-                const driftX = hX + Math.sin(time * 0.001 + i) * 100;
-                const driftY = hY + Math.cos(time * 0.001 + i) * 100;
+                // Unique idle drift for each butterfly
+                const driftX = hX + Math.sin(time * 0.001 + i) * 150;
+                const driftY = hY + Math.cos(time * 0.0008 + i) * 150;
 
-                // 2. Current Position
                 let curX = parseFloat(bf.style.left) || hX;
                 let curY = parseFloat(bf.style.top) || hY;
 
-                // 3. Distance to Mouse
                 const dist = Math.hypot(mX - curX, mY - curY);
-                
-                let targetX, targetY, speed;
+                let targetX, targetY, lerp;
 
                 if (dist < 250) {
-                    targetX = mX;
-                    targetY = mY;
-                    speed = 0.08; // Catch speed
+                    targetX = mX; targetY = mY;
+                    lerp = 0.07; // Snappy follow
                 } else {
-                    targetX = driftX;
-                    targetY = driftY;
-                    speed = 0.02; // Return speed
+                    targetX = driftX; targetY = driftY;
+                    lerp = 0.02; // Graceful return
                 }
 
-                // Smoothly move to target
-                const newX = curX + (targetX - curX) * speed;
-                const newY = curY + (targetY - curY) * speed;
+                const finalX = curX + (targetX - curX) * lerp;
+                const finalY = curY + (targetY - curY) * lerp;
 
-                bf.style.left = newX + 'px';
-                bf.style.top = newY + 'px';
+                bf.style.left = finalX + 'px';
+                bf.style.top = finalY + 'px';
 
-                // Rotate towards movement
                 const angle = Math.atan2(targetY - curY, targetX - curX) * (180 / Math.PI);
                 bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
             });
