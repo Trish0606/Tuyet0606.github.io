@@ -4,44 +4,46 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow: hidden; }
 
 .hero { 
     height: 100vh; display: flex; align-items: center; justify-content: center; 
     background: radial-gradient(circle at center, #1A2332 0%, #0D1117 100%);
-    position: relative; overflow: hidden;
+    position: relative;
 }
 
-.hero-name { font-size: 6rem; font-weight: 800; letter-spacing: -3px; }
+.hero-name { font-size: 6rem; font-weight: 800; letter-spacing: -3px; z-index: 10; pointer-events: none;}
 
-/* THE BUTTERFLY MAGIC */
+/* THE BUTTERFLY */
 .bf {
     position: absolute;
-    width: 160px; height: 160px;
-    transform: translate(-50%, -50%);
+    width: 120px; height: 120px;
     pointer-events: none;
-    background-image: url('images/butterfly.png'); /* YOUR SAVED CRYSTAL IMAGE */
+    background-image: url('images/butterfly.png'); /* YOUR CRYSTAL IMAGE */
     background-size: contain;
     background-repeat: no-repeat;
-    
-    /* This makes the black background disappear and the crystal glow */
     mix-blend-mode: screen; 
-    filter: drop-shadow(0 0 15px var(--neon)) brightness(1.2);
-    
-    animation: flap 0.35s infinite ease-in-out;
+    filter: drop-shadow(0 0 15px var(--neon));
+    z-index: 5;
+    /* Smooth rotation when changing directions */
+    transition: transform 0.5s cubic-bezier(0.1, 0.3, 0.3, 1);
+}
+
+/* Wing flapping is independent of movement */
+.bf::after {
+    content: '';
+    display: block;
+    width: 100%; height: 100%;
+    background: inherit;
+    animation: flap 0.3s infinite ease-in-out;
 }
 
 @keyframes flap {
-    0%, 100% { transform: translate(-50%, -50%) perspective(1000px) rotateY(0deg); }
-    50% { transform: translate(-50%, -50%) perspective(1000px) rotateY(70deg); }
+    0%, 100% { transform: perspective(1000px) rotateY(0deg); }
+    50% { transform: perspective(1000px) rotateY(75deg); }
 }
 
-/* ABOUT CARD STYLE FROM IMAGE */
-.about-section { padding: 100px 0; display: flex; justify-content: center; }
-.profile-card { 
-    display: flex; align-items: center; gap: 20px; 
-    background: #161B22; padding: 15px 30px; 
-    border-radius: 100px; border: 1px solid #30363D; 
+.btn-say-hello { 
+    display: inline-block; padding: 10px 25px; border: 1px solid white; 
+    color: white; text-decoration: none; margin-top: 20px; pointer-events: all;
 }
-.profile-pic { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
-.btn-say-hello { display: inline-block; padding: 10px 25px; border: 1px solid white; color: white; text-decoration: none; margin-top: 20px; }
