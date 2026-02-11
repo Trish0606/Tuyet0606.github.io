@@ -49,7 +49,7 @@
             <h1 class="fade-name">Tuyet Nguyen</h1>
             <div class="bg-fade-layer">
                 <div class="hero-actions">
-                    <a href="mailto:yourname@email.com" class="btn-primary">Say Hello</a>
+                    <a href="mailto:hello@tuyetnguyen.com" class="btn-primary">Say Hello</a>
                     <a href="#projects" class="btn-secondary">View My Work</a>
                 </div>
             </div>
@@ -67,10 +67,7 @@
                     <div class="about-info">
                         <span class="section-tag">01 / Profile</span>
                         <h2 class="section-title">About Me</h2>
-                        <p class="section-text">
-                            I am a Senior Designer focused on creating high-end digital experiences. 
-                            I blend organic textures with precise technology.
-                        </p>
+                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences. I blend organic textures with precise technology.</p>
                     </div>
                 </div>
             </div>
@@ -83,10 +80,7 @@
                 <h2 class="section-title">Experience</h2>
                 <div class="experience-grid">
                     <div class="exp-item">
-                        <div class="exp-header">
-                            <h3>Creative Lead</h3>
-                            <span>2024 — Pres</span>
-                        </div>
+                        <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
                         <p>Studio Meta • Interactive Design & Art Direction</p>
                     </div>
                 </div>
@@ -110,17 +104,17 @@
         <div class="section-border-top"></div>
         <div class="footer-content">
             <h2 class="footer-msg">Shoot me a msg</h2>
-            <a href="mailto:yourname@email.com" class="footer-email-btn">SAY HELLO</a>
-            
+            <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
             <div class="footer-social-row">
-                <a href="#">LINKEDIN</a>
-                <span class="plus">+</span>
-                <a href="#">RESUME</a>
-                <span class="plus">+</span>
+                <a href="#">LINKEDIN</a> <span class="plus">+</span>
+                <a href="#">RESUME</a> <span class="plus">+</span>
                 <a href="#">IG</a>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 TUYET NGUYEN</p>
+        </div>
+        
+        <div class="footer-bottom-bar">
+            <div class="container">
+                <p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p>
             </div>
         </div>
     </footer>
@@ -142,8 +136,16 @@
                 let targetX = (dist < 200) ? mX : driftX;
                 let targetY = (dist < 200) ? mY : driftY;
                 let lerp = (dist < 200) ? 0.08 : 0.02;
-                bf.style.left = (curX + (targetX - curX) * lerp) + 'px';
-                bf.style.top = (curY + (targetY - curY) * lerp) + 'px';
+                
+                const nextX = curX + (targetX - curX) * lerp;
+                const nextY = curY + (targetY - curY) * lerp;
+                
+                // RESTORED ROTATION LOGIC
+                const angle = Math.atan2(nextY - curY, nextX - curX) * (180 / Math.PI);
+                
+                bf.style.left = nextX + 'px';
+                bf.style.top = nextY + 'px';
+                bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
             });
             requestAnimationFrame(animate);
         }
