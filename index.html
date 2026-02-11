@@ -10,15 +10,11 @@
 <body class="lock-scroll">
 
     <script>
-        // Force scroll to top instantly on load
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
-
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
-            setTimeout(() => {
-                document.body.classList.remove('lock-scroll');
-            }, 3500); 
+            setTimeout(() => { document.body.classList.remove('lock-scroll'); }, 3500); 
         });
     </script>
 
@@ -37,18 +33,18 @@
         <div class="bg-fade-layer">
             <div class="garden-glow"></div>
             <div class="butterfly-container">
-                <div class="bf" style="width:130px;height:130px" data-home-x="10" data-home-y="15"><span></span></div>
-                <div class="bf" style="width:90px;height:90px"   data-home-x="85" data-home-y="10"><span></span></div>
-                <div class="bf" style="width:150px;height:150px" data-home-x="50" data-home-y="45"><span></span></div>
-                <div class="bf" style="width:110px;height:110px" data-home-x="15" data-home-y="85"><span></span></div>
-                <div class="bf" style="width:140px;height:140px" data-home-x="75" data-home-y="80"><span></span></div>
-                <div class="bf" style="width:80px;height:80px"   data-home-x="40" data-home-y="15"><span></span></div>
-                <div class="bf" style="width:100px;height:100px" data-home-x="60" data-home-y="85"><span></span></div>
-                <div class="bf" style="width:120px;height:120px" data-home-x="90" data-home-y="40"><span></span></div>
-                <div class="bf" style="width:100px;height:100px" data-home-x="10" data-home-y="50"><span></span></div>
-                <div class="bf" style="width:140px;height:140px" data-home-x="30" data-home-y="40"><span></span></div>
-                <div class="bf" style="width:110px;height:110px" data-home-x="70" data-home-y="60"><span></span></div>
-                <div class="bf" style="width:130px;height:130px" data-home-x="25" data-home-y="70"><span></span></div>
+                <div class="bf" style="width:130px;height:130px" data-home-x="15" data-home-y="20"><span></span></div>
+                <div class="bf" style="width:90px;height:90px"   data-home-x="80" data-home-y="15"><span></span></div>
+                <div class="bf" style="width:150px;height:150px" data-home-x="50" data-home-y="40"><span></span></div>
+                <div class="bf" style="width:110px;height:110px" data-home-x="20" data-home-y="80"><span></span></div>
+                <div class="bf" style="width:140px;height:140px" data-home-x="70" data-home-y="75"><span></span></div>
+                <div class="bf" style="width:80px;height:80px"   data-home-x="45" data-home-y="10"><span></span></div>
+                <div class="bf" style="width:100px;height:100px" data-home-x="65" data-home-y="85"><span></span></div>
+                <div class="bf" style="width:120px;height:120px" data-home-x="85" data-home-y="50"><span></span></div>
+                <div class="bf" style="width:100px;height:100px" data-home-x="10" data-home-y="60"><span></span></div>
+                <div class="bf" style="width:140px;height:140px" data-home-x="35" data-home-y="30"><span></span></div>
+                <div class="bf" style="width:110px;height:110px" data-home-x="75" data-home-y="60"><span></span></div>
+                <div class="bf" style="width:130px;height:130px" data-home-x="30" data-home-y="65"><span></span></div>
             </div>
         </div>
 
@@ -131,23 +127,42 @@
         let mX = -2000, mY = -2000;
         document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
 
+        // Initialize positions to home to prevent jumpy start
+        bfs.forEach(bf => {
+            bf.style.left = (window.innerWidth * bf.dataset.homeX / 100) + 'px';
+            bf.style.top = (window.innerHeight * bf.dataset.homeY / 100) + 'px';
+        });
+
         function animate(time) {
             bfs.forEach((bf, i) => {
-                const hX = (window.innerWidth * bf.dataset.homeX) / 100;
-                const hY = (window.innerHeight * bf.dataset.homeY) / 100;
-                const driftX = hX + Math.sin(time * 0.001 + i) * 80;
-                const driftY = hY + Math.cos(time * 0.0008 + i) * 80;
-                let curX = parseFloat(bf.style.left) || hX;
-                let curY = parseFloat(bf.style.top) || hY;
-                const dist = Math.hypot(mX - curX, mY - curY);
-                let targetX = (dist < 200) ? mX : driftX;
-                let targetY = (dist < 200) ? mY : driftY;
-                let lerp = (dist < 200) ? 0.08 : 0.02;
-                const nextX = curX + (targetX - curX) * lerp;
-                const nextY = curY + (targetY - curY) * lerp;
+                const homeX = (window.innerWidth * bf.dataset.homeX) / 100;
+                const homeY = (window.innerHeight * bf.dataset.homeY) / 100;
+                
+                // RESTORED: Hover/Drift movement (sine waves)
+                const driftX = homeX + Math.sin(time * 0.001 + i * 500) * 100;
+                const driftY = homeY + Math.cos(time * 0.0007 + i * 300) * 100;
+                
+                let curX = parseFloat(bf.style.left);
+                let curY = parseFloat(bf.style.top);
+                
+                const distToMouse = Math.hypot(mX - curX, mY - curY);
+                
+                // If mouse is near, target the mouse, otherwise target the drifting home spot
+                let targetX = (distToMouse < 250) ? mX : driftX;
+                let targetY = (distToMouse < 250) ? mY : driftY;
+                
+                // LERP: Smooth transition
+                let ease = (distToMouse < 250) ? 0.06 : 0.015;
+                
+                const nextX = curX + (targetX - curX) * ease;
+                const nextY = curY + (targetY - curY) * ease;
+                
+                // RESTORED: Rotation to face direction of travel
                 const angle = Math.atan2(nextY - curY, nextX - curX) * (180 / Math.PI);
+                
                 bf.style.left = nextX + 'px';
                 bf.style.top = nextY + 'px';
+                // The +90 aligns the butterfly image correctly to its flight path
                 bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
             });
             requestAnimationFrame(animate);
