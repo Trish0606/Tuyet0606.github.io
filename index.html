@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuyet Nguyen | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="sticky-nav">
-        <div class="nav-wrapper">
-            <div class="brand">TUYET</div>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
+    <button class="replay-btn" onclick="replayIntro()">↺ Replay Intro</button>
+
+    <nav class="taskbar">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <header class="hero">
+    <header class="hero" id="hero">
         <div class="butterfly-field">
             <div class="bf" data-home-x="15" data-home-y="25"><span></span></div>
             <div class="bf" data-home-x="85" data-home-y="20"><span></span></div>
@@ -30,89 +29,95 @@
 
         <div class="hero-content">
             <p class="type-hello">Hello, I'm</p>
-            <h1 class="type-name">Tuyet Nguyen</h1>
-            <a href="mailto:your@email.com" class="say-hello-btn">Say Hello</a>
+            <h1 class="fade-name">Tuyet Nguyen</h1>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">Contact Me</a>
+            </div>
         </div>
     </header>
 
-    <section id="about" class="section reveal">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="profile-card">
-                <div class="profile-img-wrap">
-                    <img src="images/profile.jpg" alt="Tuyet">
+    <main class="content-wrapper">
+        
+        <section id="about" class="section reveal">
+            <div class="container">
+                <h2 class="section-label">About Me</h2>
+                <div class="profile-card">
+                    <div class="profile-img">
+                        <img src="images/profile.jpg" alt="Tuyet">
+                    </div>
+                    <div class="profile-text">
+                        <h3>Senior Designer</h3>
+                        <p>2024 — PRES.</p>
+                    </div>
+                    <div class="card-arrow">→</div>
                 </div>
-                <div class="profile-info">
-                    <h3>Senior Designer</h3>
-                    <p>2024 - PRES.</p>
-                </div>
-                <div class="card-arrow">→</div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="experience" class="section reveal">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="exp-list">
-                <div class="exp-item">
-                    <span class="exp-year">2026</span>
-                    <div class="exp-details">
-                        <h3>Creative Lead</h3>
-                        <p>Web Design Studio — Specializing in interactive experiences.</p>
-                    </div>
-                </div>
-                <div class="exp-item">
-                    <span class="exp-year">2024</span>
-                    <div class="exp-details">
-                        <h3>Visual Brand Designer</h3>
-                        <p>Freelance — Crafting unique identities for digital brands.</p>
-                    </div>
+        <section id="projects" class="section reveal">
+            <div class="container">
+                <h2 class="section-label">Projects</h2>
+                <div class="project-grid">
+                    <div class="project-item"><span>Digital Branding</span></div>
+                    <div class="project-item"><span>Interactive UI</span></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="experience" class="section reveal">
+            <div class="container">
+                <h2 class="section-label">Experience</h2>
+                <div class="exp-row">
+                    <span class="year">2026</span>
+                    <p>Creative Lead — Design Systems</p>
+                </div>
+                <div class="exp-row">
+                    <span class="year">2024</span>
+                    <p>Visual Designer — Brand Strategy</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <footer id="contact" class="footer">
-        <p>© 2026 Tuyet Nguyen • Built with Glass-Butterfly Physics</p>
+        <div class="container">
+            <h2 class="footer-head">Shoot me a msg</h2>
+            <div class="contact-details">
+                <p class="phone">+1 (555) 000-0000</p>
+                <p class="email">hello@tuyetnguyen.com</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Tuyet Nguyen</p>
+                <div class="social-links">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // 1. BUTTERFLY ENGINE
+        // 1. Butterfly Engine
         const bfs = document.querySelectorAll('.bf');
         let mX = -2000, mY = -2000;
-
-        document.addEventListener('mousemove', (e) => {
-            mX = e.clientX;
-            mY = e.clientY;
-        });
+        document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
 
         function animate(time) {
             bfs.forEach((bf, i) => {
                 const hX = (window.innerWidth * bf.dataset.homeX) / 100;
                 const hY = (window.innerHeight * bf.dataset.homeY) / 100;
-                
-                const driftX = hX + Math.sin(time * 0.001 + i) * 150;
-                const driftY = hY + Math.cos(time * 0.0008 + i) * 150;
-
+                const driftX = hX + Math.sin(time * 0.001 + i) * 120;
+                const driftY = hY + Math.cos(time * 0.0008 + i) * 120;
                 let curX = parseFloat(bf.style.left) || hX;
                 let curY = parseFloat(bf.style.top) || hY;
-
                 const dist = Math.hypot(mX - curX, mY - curY);
                 let targetX, targetY, lerp;
-
-                if (dist < 280) {
-                    targetX = mX; targetY = mY; lerp = 0.07;
-                } else {
-                    targetX = driftX; targetY = driftY; lerp = 0.02;
-                }
-
+                if (dist < 280) { targetX = mX; targetY = mY; lerp = 0.07; }
+                else { targetX = driftX; targetY = driftY; lerp = 0.02; }
                 const finalX = curX + (targetX - curX) * lerp;
                 const finalY = curY + (targetY - curY) * lerp;
-
-                bf.style.left = finalX + 'px';
-                bf.style.top = finalY + 'px';
-
+                bf.style.left = finalX + 'px'; bf.style.top = finalY + 'px';
                 const angle = Math.atan2(targetY - curY, targetX - curX) * (180 / Math.PI);
                 bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
             });
@@ -120,15 +125,21 @@
         }
         requestAnimationFrame(animate);
 
-        // 2. REVEAL ON SCROLL ENGINE
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
+        // 2. Replay Logic
+        function replayIntro() {
+            const hello = document.querySelector('.type-hello');
+            const name = document.querySelector('.fade-name');
+            hello.style.animation = 'none';
+            name.style.animation = 'none';
+            void hello.offsetWidth; // Trigger reflow
+            hello.style.animation = null;
+            name.style.animation = null;
+        }
 
+        // 3. Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
