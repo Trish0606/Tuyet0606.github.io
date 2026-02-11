@@ -8,72 +8,73 @@
 </head>
 <body>
 
-    <nav class="nav-bar">
+    <nav class="top-nav">
         <div class="nav-links">
-            <a href="#">About</a>
-            <a href="#">Experience</a>
-            <a href="#">Contact</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <header class="hero">
         <div class="butterfly-field">
-            <div class="bf" data-lag="0.04"></div>
-            <div class="bf" data-lag="0.07"></div>
-            <div class="bf" data-lag="0.05"></div>
-            <div class="bf" data-lag="0.09"></div>
-            <div class="bf" data-lag="0.06"></div>
+            <div class="bf-wrap" data-speed="0.04"><div class="bf-body"></div></div>
+            <div class="bf-wrap" data-speed="0.08"><div class="bf-body"></div></div>
+            <div class="bf-wrap" data-speed="0.05"><div class="bf-body"></div></div>
+            <div class="bf-wrap" data-speed="0.12"><div class="bf-body"></div></div>
+            <div class="bf-wrap" data-speed="0.07"><div class="bf-body"></div></div>
         </div>
         
         <div class="hero-content">
-            <p class="greeting">Hello, I'm</p>
-            <h1 class="name">Tuyet Nguyen</h1>
-            <a href="#" class="btn-say-hello">Say Hello</a>
+            <p class="intro">Hello, I'm</p>
+            <h1 class="main-name">Tuyet Nguyen</h1>
+            <a href="#" class="btn-outline">Say Hello</a>
         </div>
     </header>
 
-    <section class="about-section">
-        <div class="card-wrap">
-            <h2 class="label">About Me</h2>
+    <section id="about" class="about-section">
+        <div class="card-container">
+            <h2 class="section-label">About Me</h2>
             <div class="profile-card">
                 <div class="profile-pic">
-                    <img src="https://ui-avatars.com/api/?name=Tuyet+Nguyen&background=0D1117&color=fff" alt="Profile">
+                    <img src="https://ui-avatars.com/api/?name=Tuyet+Nguyen&background=0D1117&color=00D4FF" alt="Tuyet">
                 </div>
-                <div class="profile-text">
+                <div class="profile-info">
                     <h3>Senior Designer</h3>
                     <p>2024 — PRES.</p>
                 </div>
-                <div class="arrow">›</div>
+                <div class="card-arrow">→</div>
             </div>
         </div>
     </section>
 
     <script>
-        const butterflies = document.querySelectorAll('.bf');
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
+        const bfs = document.querySelectorAll('.bf-wrap');
+        let mX = window.innerWidth / 2;
+        let mY = window.innerHeight / 2;
 
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            mX = e.clientX;
+            mY = e.clientY;
         });
 
-        function moveButterflies() {
-            butterflies.forEach((bf) => {
-                const lag = parseFloat(bf.getAttribute('data-lag'));
+        function animate() {
+            bfs.forEach((bf) => {
+                const speed = parseFloat(bf.getAttribute('data-speed'));
                 const rect = bf.getBoundingClientRect();
-                const currentX = rect.left + rect.width / 2;
-                const currentY = rect.top + rect.height / 2;
+                const currX = rect.left + rect.width / 2;
+                const currY = rect.top + rect.height / 2;
 
-                const dx = (mouseX - currentX) * lag;
-                const dy = (mouseY - currentY) * lag;
+                // Smoothing math (Lerp) for the one-by-one follow effect
+                const nextX = currX + (mX - currX) * speed;
+                const nextY = currY + (mY - currY) * speed;
 
-                bf.style.left = (currentX + dx) + 'px';
-                bf.style.top = (currentY + dy) + 'px';
+                bf.style.left = nextX + 'px';
+                bf.style.top = nextY + 'px';
             });
-            requestAnimationFrame(moveButterflies);
+            requestAnimationFrame(animate);
         }
-        moveButterflies();
+        animate();
     </script>
 </body>
 </html>
