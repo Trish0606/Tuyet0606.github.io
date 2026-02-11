@@ -1,78 +1,123 @@
+/* --- 1. CORE VARIABLES & RESET --- */
 :root {
     --bg: #0b0e14;
     --bg-light: #161b22;
-    --accent: #00d4ff;
+    --accent: #00d4ff; /* Trail & Butterfly Glow */
     --pure-white: #ffffff;
     --dull-white: #c5c5c5;
     --border: rgba(255, 255, 255, 0.08);
+    --text-gray: #888;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+/* --- 2. LAYOUT & SCROLL LOCK --- */
 body.lock-scroll { height: 100vh; overflow: hidden; }
-body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-
-/* REPLAY BUTTON */
-.replay-btn {
-    position: fixed; bottom: 30px; right: 30px; z-index: 1000;
-    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-    color: var(--dull-white); padding: 10px 20px; border-radius: 30px;
-    cursor: pointer; font-size: 11px; backdrop-filter: blur(10px); transition: 0.3s;
+body { 
+    background: var(--bg); 
+    color: white; 
+    font-family: 'Inter', sans-serif; 
+    overflow-x: hidden; 
 }
-.replay-btn:hover { background: white; color: black; }
 
-/* HERO */
-.hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+/* --- 3. HERO & SPECIAL EFFECTS --- */
+.hero { 
+    height: 100vh; 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    overflow: hidden;
+}
+
+#trailCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2; /* Under butterflies, above background */
+}
+
+.butterfly-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.bf { 
+    position: absolute; 
+    transform-style: preserve-3d; 
+    will-change: left, top, transform;
+}
+
+.bf span { 
+    display: block; 
+    width: 100%; 
+    height: 100%; 
+    background: url('images/butterfly.png') no-repeat center/contain; 
+    mix-blend-mode: screen; 
+    filter: drop-shadow(0 0 12px var(--accent)); 
+    animation: flap 0.35s infinite ease-in-out; 
+}
+
+@keyframes flap { 
+    0%, 100% { transform: rotateY(0deg); } 
+    50% { transform: rotateY(75deg); } 
+}
+
+/* --- 4. INTRO TEXT ANIMATIONS --- */
 .hero-content { position: relative; z-index: 10; width: 100%; }
-.hero-actions { margin-top: 50px; display: flex; justify-content: center; gap: 20px; }
 
-.fade-name { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 800; color: var(--pure-white); opacity: 0; animation: simpleFade 1s ease forwards 1.2s; }
-.type-hello { font-size: 1.4rem; font-weight: 300; border-right: 2px solid var(--accent); white-space: nowrap; overflow: hidden; width: 0; margin: 0 auto 15px; animation: typing 1s steps(20) forwards, blink 0.8s infinite; }
-.bg-fade-layer { opacity: 0; animation: simpleFade 1.5s ease forwards 2.2s; }
+.type-hello { 
+    font-size: 1.4rem; 
+    font-weight: 300; 
+    border-right: 2px solid var(--accent); 
+    white-space: nowrap; 
+    overflow: hidden; 
+    width: 0; 
+    margin: 0 auto 15px; 
+    animation: typing 1s steps(20) forwards, blink 0.8s infinite; 
+}
+
+.fade-name { 
+    font-size: clamp(3.5rem, 10vw, 8rem); 
+    font-weight: 800; 
+    color: var(--pure-white); 
+    opacity: 0; 
+    animation: simpleFade 1s ease forwards 1.2s; 
+}
+
+.bg-fade-layer { 
+    opacity: 0; 
+    animation: simpleFade 1.5s ease forwards 2.2s; 
+}
 
 @keyframes typing { from { width: 0 } to { width: 140px } }
+@keyframes blink { 50% { border-color: transparent; } }
 @keyframes simpleFade { to { opacity: 1; } }
 
-/* BUTTERFLIES */
-.butterfly-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; pointer-events: none; }
-.bf { position: absolute; transform-style: preserve-3d; will-change: left, top, transform; }
-.bf span { display: block; width: 100%; height: 100%; background: url('images/butterfly.png') no-repeat center/contain; mix-blend-mode: screen; filter: drop-shadow(0 0 10px var(--accent)); animation: flap 0.35s infinite ease-in-out; }
-@keyframes flap { 0%, 100% { transform: rotateY(0deg); } 50% { transform: rotateY(75deg); } }
-
-/* SECTION LAYOUTS */
-.section-block { position: relative; padding: 120px 0; width: 100%; display: flex; justify-content: center; }
-.section-border-top { position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: var(--border); }
-.section-title { font-size: 3rem; font-weight: 800; margin-bottom: 40px; color: var(--dull-white); }
-.section-tag { color: var(--accent); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
-
-.container { width: 85%; max-width: 1100px; }
-.about-grid { display: grid; grid-template-columns: 350px 1fr; gap: 60px; align-items: center; }
-.profile-rectangle { width: 100%; height: 450px; border: 1px solid var(--border); overflow: hidden; }
-.profile-rectangle img { width: 100%; height: 100%; object-fit: cover; }
-
-/* FOOTER & COPYRIGHT */
-.footer { padding-top: 120px; text-align: center; position: relative; }
-.footer-msg { font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; color: var(--pure-white); margin-bottom: 30px; }
-.footer-email-btn { display: inline-block; font-size: 1.1rem; border: 1px solid white; color: white; text-decoration: none; padding: 15px 45px; margin-bottom: 60px; }
-
-.copyright-bar {
-    background: var(--bg-light);
-    border-top: 1px solid var(--border);
-    padding: 50px 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* --- 5. NAVIGATION & REPLAY --- */
+.taskbar { 
+    position: fixed; 
+    top: 30px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 1000; 
 }
-.copyright-bar p { color: #555; font-size: 12px; letter-spacing: 2px; text-align: center; margin: 0; }
 
-/* MISC */
-.hero-barrier { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin-bottom: 50px; }
-.btn-primary, .btn-secondary { display: inline-block; padding: 15px 40px; text-decoration: none; font-size: 13px; font-weight: 600; }
-.btn-primary { background: white; color: black; }
-.btn-secondary { border: 1px solid rgba(255,255,255,0.2); color: white; }
-.taskbar { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 1000; }
-.taskbar-inner { background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(20px); padding: 12px 35px; border-radius: 100px; border: 1px solid var(--border); display: flex; gap: 25px; }
-.reveal { opacity: 0; transform: translateY(30px); transition: 1.2s ease-out; }
-.reveal.active { opacity: 1; transform: translateY(0); }
+.taskbar-inner { 
+    background: rgba(22, 27, 34, 0.8); 
+    backdrop-filter: blur(20px); 
+    padding: 12px 35px; 
+    border-radius: 100px; 
+    border: 1px solid var(--border); 
+    display: flex; 
+    gap: 25px;
