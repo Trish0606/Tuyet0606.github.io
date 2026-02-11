@@ -10,11 +10,8 @@
 <body>
 
     <script>
-        // Force browser to ignore previous scroll position
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
-        // Backup: Force top on load
-        window.onload = function() { setTimeout(function() { window.scrollTo(0, 0); }, 10); };
     </script>
 
     <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
@@ -22,95 +19,105 @@
     <nav class="taskbar">
         <div class="taskbar-inner">
             <a href="#about">About</a>
-            <a href="#projects">Projects</a>
             <a href="#experience">Experience</a>
+            <a href="#projects">Work</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="intro-fade-group">
+        <div class="bg-fade-layer">
             <div class="garden-glow"></div>
             <div class="butterfly-container">
-                <div class="bf" style="width:130px;height:130px" data-home-x="10" data-home-y="15"><span></span></div>
+                <div class="bf" style="width:130px;height:130px" data-home-x="12" data-home-y="18"><span></span></div>
                 <div class="bf" style="width:150px;height:150px" data-home-x="50" data-home-y="45"><span></span></div>
-                <div class="bf" style="width:140px;height:140px" data-home-x="80" data-home-y="20"><span></span></div>
-                <div class="bf" style="width:110px;height:110px" data-home-x="15" data-home-y="85"><span></span></div>
-                <div class="bf" style="width:140px;height:140px" data-home-x="75" data-home-y="80"><span></span></div>
-                <div class="bf" style="width:100px;height:100px" data-home-x="90" data-home-y="40"><span></span></div>
-                <div class="bf" style="width:100px;height:100px" data-home-x="10" data-home-y="50"><span></span></div>
-                <div class="bf" style="width:120px;height:120px" data-home-x="40" data-home-y="80"><span></span></div>
+                <div class="bf" style="width:140px;height:140px" data-home-x="85" data-home-y="25"><span></span></div>
+                <div class="bf" style="width:110px;height:110px" data-home-x="18" data-home-y="82"><span></span></div>
+                <div class="bf" style="width:100px;height:100px" data-home-x="82" data-home-y="75"><span></span></div>
             </div>
         </div>
 
         <div class="hero-content">
             <p class="type-hello">Hello, I'm</p>
-            <div class="intro-fade-group">
-                <h1 class="fade-name">Tuyet Nguyen</h1>
+            
+            <h1 class="fade-name">Tuyet Nguyen</h1>
+            
+            <div class="bg-fade-layer">
                 <div class="hero-actions">
                     <a href="#contact" class="btn-primary">Contact Me</a>
-                    <a href="#projects" class="btn-secondary">View My Work</a>
+                    <a href="#experience" class="btn-secondary">View My Work</a>
                 </div>
             </div>
         </div>
     </header>
 
     <main class="content-wrapper">
-        <section id="about" class="section reveal">
-            <div class="about-wrap">
-                <div class="profile-rectangle">
-                    <img src="images/profile.jpg" alt="Tuyet">
-                </div>
-                <h2 class="about-header">About Me</h2>
-                <p class="about-text">
-                    I am a Senior Designer focused on creating high-end digital experiences. 
-                    I blend organic textures with precise technology to tell unique brand stories.
-                </p>
-            </div>
-        </section>
-
-        <section id="projects" class="section reveal project-section">
+        
+        <section id="about" class="section-block reveal">
+            <div class="section-border-top"></div>
             <div class="container">
-                <div class="section-heading">
-                    <span class="step-num">01</span>
-                    <h2 class="main-label">PROJECTS</h2>
-                </div>
-                <div class="project-list">
-                    <div class="project-item">
-                        <div class="p-info"><h3>LUXE BRANDING</h3><p>Identity & Design</p></div>
-                        <div class="p-year">2026</div>
+                <div class="about-grid">
+                    <div class="profile-rectangle">
+                        <img src="images/profile.jpg" alt="Tuyet">
                     </div>
-                    <div class="project-item">
-                        <div class="p-info"><h3>INTERACTIVE WEB</h3><p>Development & Motion</p></div>
-                        <div class="p-year">2025</div>
+                    <div class="about-info">
+                        <span class="section-tag">01 / Profile</span>
+                        <h2 class="section-title">About Me</h2>
+                        <p class="section-text">
+                            I am a Senior Designer focused on creating high-end digital experiences. 
+                            I blend organic textures with precise technology to tell unique brand stories.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="section reveal experience-section">
+        <section id="experience" class="section-block reveal">
+            <div class="section-border-top"></div>
             <div class="container">
-                <div class="section-heading">
-                    <span class="step-num">02</span>
-                    <h2 class="main-label">EXPERIENCE</h2>
-                </div>
-                <div class="exp-table">
-                    <div class="exp-row">
-                        <span class="role">CREATIVE LEAD</span>
-                        <span class="company">DESIGN STUDIO</span>
-                        <span class="date">2024 — PRES</span>
+                <span class="section-tag">02 / Journey</span>
+                <h2 class="section-title">Experience</h2>
+                <div class="experience-grid">
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <h3>Creative Lead</h3>
+                            <span>2024 — Pres</span>
+                        </div>
+                        <p>Studio Meta • Interactive Design & Art Direction</p>
                     </div>
-                    <div class="exp-row">
-                        <span class="role">VISUAL DESIGNER</span>
-                        <span class="company">FREELANCE</span>
-                        <span class="date">2021 — 2023</span>
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <h3>Visual Designer</h3>
+                            <span>2021 — 2023</span>
+                        </div>
+                        <p>Freelance • Digital Identity & Motion Graphics</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="projects" class="section-block reveal">
+            <div class="section-border-top"></div>
+            <div class="container">
+                <span class="section-tag">03 / Selected Work</span>
+                <h2 class="section-title">Projects</h2>
+                <div class="project-columns">
+                    <div class="project-box">
+                        <div class="p-img"></div>
+                        <h3>Luxe Branding</h3>
+                    </div>
+                    <div class="project-box">
+                        <div class="p-img"></div>
+                        <h3>Interactive Motion</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer id="contact" class="footer reveal">
+        <div class="section-border-top"></div>
         <div class="footer-content">
             <h2 class="footer-msg">Shoot me a msg</h2>
             <p class="footer-phone">+1 (555) 000-0000</p>
@@ -126,7 +133,6 @@
     </footer>
 
     <script>
-        // Butterfly logic contained to Hero
         const bfs = document.querySelectorAll('.bf');
         let mX = -2000, mY = -2000;
         document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
@@ -142,12 +148,9 @@
                 const dist = Math.hypot(mX - curX, mY - curY);
                 let targetX = (dist < 200) ? mX : driftX;
                 let targetY = (dist < 200) ? mY : driftY;
-                let lerp = (dist < 200) ? 0.1 : 0.02;
-                const finalX = curX + (targetX - curX) * lerp;
-                const finalY = curY + (targetY - curY) * lerp;
-                bf.style.left = finalX + 'px'; bf.style.top = finalY + 'px';
-                const angle = Math.atan2(targetY - curY, targetX - curX) * (180 / Math.PI);
-                bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
+                let lerp = (dist < 200) ? 0.08 : 0.02;
+                bf.style.left = (curX + (targetX - curX) * lerp) + 'px';
+                bf.style.top = (curY + (targetY - curY) * lerp) + 'px';
             });
             requestAnimationFrame(animate);
         }
