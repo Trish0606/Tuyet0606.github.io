@@ -9,9 +9,7 @@
 </head>
 <body>
 
-    <script>
-        window.onbeforeunload = function () { window.scrollTo(0, 0); }
-    </script>
+    <script>window.onbeforeunload = function () { window.scrollTo(0, 0); }</script>
 
     <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
 
@@ -25,7 +23,9 @@
     </nav>
 
     <header class="hero" id="hero">
-        <div class="mesh-gradient"></div>
+        <div class="garden-bloom bloom-1"></div>
+        <div class="garden-bloom bloom-2"></div>
+        <div class="garden-bloom bloom-3"></div>
         <div class="noise-overlay"></div>
         
         <div class="butterfly-field">
@@ -47,21 +47,36 @@
     </header>
 
     <main class="content-wrapper">
-        <section id="about" class="section reveal">
+        <section id="about" class="section reveal about-centered">
             <div class="container">
-                <h2 class="section-label">About Me</h2>
-                <div class="profile-card">
-                    <div class="profile-img"><img src="images/profile.jpg" alt="Profile"></div>
-                    <div class="profile-text">
-                        <h3>Creative Designer</h3>
-                        <p>2024 — PRES.</p>
-                    </div>
-                    <div class="card-arrow">→</div>
+                <div class="profile-main-img">
+                    <img src="images/profile.jpg" alt="Tuyet Nguyen">
                 </div>
+                <h2 class="about-title">About Me</h2>
+                <p class="about-desc">
+                    I am a Senior Designer passionate about blending organic aesthetics with 
+                    clean, functional technology. With over 5 years of experience, I strive 
+                    to create digital spaces that feel as natural as they do innovative.
+                </p>
             </div>
         </section>
 
-        </main>
+        <section id="experience" class="section reveal">
+            <div class="container">
+                <h2 class="section-label">Experience</h2>
+                <div class="exp-list">
+                    <div class="exp-item">
+                        <span class="year">2024 — PRES.</span>
+                        <p>Senior Designer • Digital Arts Studio</p>
+                    </div>
+                    <div class="exp-item">
+                        <span class="year">2021 — 2023</span>
+                        <p>Visual Lead • Freelance Interactive</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer id="contact" class="footer reveal">
         <div class="footer-container">
@@ -82,7 +97,6 @@
     </footer>
 
     <script>
-        // Butterfly Movement
         const bfs = document.querySelectorAll('.bf');
         let mX = -2000, mY = -2000;
         document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
@@ -109,7 +123,6 @@
         }
         requestAnimationFrame(animate);
 
-        // Reveal Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
