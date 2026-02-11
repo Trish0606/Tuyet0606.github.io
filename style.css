@@ -4,52 +4,45 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow: hidden; }
+body { background: var(--bg); color: white; overflow: hidden; font-family: sans-serif; }
 
 .hero { 
-    height: 100vh; display: flex; align-items: center; justify-content: center; 
-    background: radial-gradient(circle at center, #162029 0%, #0b0e14 100%);
-    position: relative;
+    height: 100vh; width: 100vw; position: relative; 
+    display: flex; align-items: center; justify-content: center;
 }
 
-.hero-name { font-size: 6rem; font-weight: 800; letter-spacing: -3px; z-index: 10; pointer-events: none; }
-
+/* THE CONTAINER (Handles Position & Rotation) */
 .bf {
     position: absolute;
-    width: 140px; height: 140px;
-    pointer-events: none;
-    background-image: url('images/butterfly.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    mix-blend-mode: screen; 
-    filter: drop-shadow(0 0 15px var(--neon));
+    width: 120px; height: 120px;
     z-index: 5;
-    
-    /* FIX: Prevent the 'extra layer' look when folding */
     transform-style: preserve-3d;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    pointer-events: none;
+    will-change: left, top, transform;
 }
 
-/* The actual wing flap animation */
-.bf::after {
-    content: '';
+/* THE INNER WING (Handles Flapping) */
+.bf span {
     display: block;
     width: 100%; height: 100%;
-    background: inherit;
-    /* FIX: Use backface-visibility here too to keep the wing 'flat' */
+    background-image: url('images/butterfly.png'); /* YOUR IMAGE */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    mix-blend-mode: screen; 
+    filter: drop-shadow(0 0 12px var(--neon));
+    
+    /* FIX: This stops the 'double layer' look */
     backface-visibility: hidden;
-    animation: flap 0.3s infinite ease-in-out;
+    -webkit-backface-visibility: hidden;
+    
+    animation: flap 0.35s infinite ease-in-out;
 }
 
 
 
 @keyframes flap {
     0%, 100% { transform: perspective(1000px) rotateY(0deg); }
-    50% { transform: perspective(1000px) rotateY(80deg); } /* Clean fold */
-}
-
-.btn-say-hello { 
-    display: inline-block; padding: 10px 25px; border: 1px solid white; 
-    color: white; text-decoration: none; margin-top: 20px; pointer-events: all;
+    50% { transform: perspective(1000px) rotateY(75deg); } 
 }
