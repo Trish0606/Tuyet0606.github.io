@@ -30,10 +30,7 @@
     </nav>
 
     <header class="hero">
-        <div class="garden-glow"></div>
-        
         <canvas id="trailCanvas"></canvas>
-        
         <div class="butterfly-container">
             <div class="bf" style="width:130px;height:130px" data-home-x="15" data-home-y="25"><span></span></div>
             <div class="bf" style="width:90px;height:90px"   data-home-x="80" data-home-y="20"><span></span></div>
@@ -80,10 +77,37 @@
             <div class="container">
                 <span class="section-tag">02 / Journey</span>
                 <h2 class="section-title">Experience</h2>
-                <div class="experience-grid">
+                <div class="experience-list">
                     <div class="exp-item">
-                        <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
-                        <p>Studio Meta • Interactive Design & Art Direction</p>
+                        <div class="exp-header">
+                            <h3>Creative Lead</h3>
+                            <span class="exp-date">2024 — Pres</span>
+                        </div>
+                        <p class="exp-sub">Studio Meta • Interactive Design</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section-block reveal">
+            <div class="section-border-top"></div>
+            <div class="container">
+                <span class="section-tag">03 / Selected Work</span>
+                <h2 class="section-title">Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-image"></div>
+                        <div class="project-info">
+                            <h3>Digital Identity</h3>
+                            <span>Branding / 2026</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image"></div>
+                        <div class="project-info">
+                            <h3>Interactive Motion</h3>
+                            <span>Web Design / 2025</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,96 +116,22 @@
 
     <footer id="contact" class="footer reveal">
         <div class="section-border-top"></div>
-        <div class="footer-content">
-            <h2 class="footer-msg">Shoot me a msg</h2>
-            <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
+        <div class="container">
+            <div class="footer-content">
+                <h2 class="footer-msg">Shoot me a msg</h2>
+                <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
+                <div class="footer-social-row">
+                    <a href="#">LINKEDIN</a> <span class="plus">+</span>
+                    <a href="#">RESUME</a> <span class="plus">+</span>
+                    <a href="#">IG</a>
+                </div>
+            </div>
         </div>
         <div class="copyright-bar">
             <p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p>
         </div>
     </footer>
 
-    <script>
-        const canvas = document.getElementById('trailCanvas');
-        const ctx = canvas.getContext('2d');
-        const bfs = document.querySelectorAll('.bf');
-        let particles = [];
-        let mX = -2000, mY = -2000;
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x; this.y = y;
-                this.size = Math.random() * 2 + 1;
-                this.opacity = 0.8;
-                this.vX = (Math.random() - 0.5) * 0.5;
-                this.vY = (Math.random() - 0.5) * 0.5;
-            }
-            update() { this.x += this.vX; this.y += this.vY; this.opacity -= 0.015; }
-            draw() {
-                ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-            }
-        }
-
-        function animate(time) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            bfs.forEach((bf, i) => {
-                const hX = (window.innerWidth * bf.dataset.homeX) / 100;
-                const hY = (window.innerHeight * bf.dataset.homeY) / 100;
-                
-                // NATURAL FLIGHT LOGIC
-                // We add multiple layers of noise to make it feel non-linear
-                const flutterX = Math.sin(time * 0.002 + i) * 30; // Quick twitch
-                const driftX = Math.sin(time * 0.0005 + i) * 100; // Large drift
-                
-                const flutterY = Math.cos(time * 0.0025 + i) * 30;
-                const driftY = Math.cos(time * 0.0004 + i) * 100;
-
-                let curX = parseFloat(bf.style.left) || hX;
-                let curY = parseFloat(bf.style.top) || hY;
-                
-                const dist = Math.hypot(mX - curX, mY - curY);
-                let targetX = (dist < 200) ? mX : hX + driftX + flutterX;
-                let targetY = (dist < 200) ? mY : hY + driftY + flutterY;
-                
-                let lerp = (dist < 200) ? 0.08 : 0.025;
-                
-                const nextX = curX + (targetX - curX) * lerp;
-                const nextY = curY + (targetY - curY) * lerp;
-                
-                // Facing direction
-                const angle = Math.atan2(nextY - curY, nextX - curX) * (180 / Math.PI);
-                
-                bf.style.left = nextX + 'px';
-                bf.style.top = nextY + 'px';
-                bf.style.transform = `translate(-50%, -50%) rotate(${angle + 90}deg)`;
-
-                if (Math.random() > 0.4) particles.push(new Particle(nextX, nextY));
-            });
-
-            particles.forEach((p, idx) => {
-                p.update(); p.draw();
-                if (p.opacity <= 0) particles.splice(idx, 1);
-            });
-
-            requestAnimationFrame(animate);
-        }
-        requestAnimationFrame(animate);
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
