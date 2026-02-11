@@ -1,72 +1,47 @@
 :root {
-    --dark: #0D1117;
-    --cyan: #00D4FF;
+    --bg: #0D1117;
+    --neon: #00D4FF;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-/* --- HERO --- */
 .hero { 
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    height: 100vh; display: flex; align-items: center; justify-content: center; 
     background: radial-gradient(circle at center, #1A2332 0%, #0D1117 100%);
-    overflow: hidden;
+    position: relative; overflow: hidden;
 }
 
-.hero-content { width: 80%; max-width: 1000px; z-index: 10; pointer-events: none; }
-.main-name { font-size: clamp(3rem, 10vw, 6.5rem); font-weight: 800; letter-spacing: -4px; line-height: 1; }
-.btn-outline { 
-    pointer-events: all;
-    display: inline-block; padding: 12px 28px; border: 1px solid white; 
-    color: white; text-decoration: none; margin-top: 30px; font-size: 0.9rem;
-}
+.hero-name { font-size: 6rem; font-weight: 800; letter-spacing: -3px; }
 
-/* --- THE CRYSTAL BUTTERFLIES --- */
-.bf-wrap {
+/* THE BUTTERFLY MAGIC */
+.bf {
     position: absolute;
     width: 160px; height: 160px;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 5;
-}
-
-.bf-body {
-    width: 100%; height: 100%;
-    /* Hosted Crystal Butterfly PNG */
-    background-image: url('https://i.ibb.co/3W6fFp3/neon-butterfly.png');
+    background-image: url('images/butterfly.png'); /* YOUR SAVED CRYSTAL IMAGE */
     background-size: contain;
     background-repeat: no-repeat;
     
-    /* REMOVES BLACK BACKGROUND & CREATES GLASS EFFECT */
+    /* This makes the black background disappear and the crystal glow */
     mix-blend-mode: screen; 
-    filter: drop-shadow(0 0 15px var(--cyan)) brightness(1.2);
+    filter: drop-shadow(0 0 15px var(--neon)) brightness(1.2);
     
-    /* 3D WING FLAP */
     animation: flap 0.35s infinite ease-in-out;
 }
 
-
-
 @keyframes flap {
-    0%, 100% { transform: perspective(1000px) rotateY(0deg) rotateZ(-10deg); }
-    50% { transform: perspective(1000px) rotateY(70deg) rotateZ(5deg); }
+    0%, 100% { transform: translate(-50%, -50%) perspective(1000px) rotateY(0deg); }
+    50% { transform: translate(-50%, -50%) perspective(1000px) rotateY(70deg); }
 }
 
-/* --- ABOUT ME CARD --- */
+/* ABOUT CARD STYLE FROM IMAGE */
 .about-section { padding: 100px 0; display: flex; justify-content: center; }
-.card-container { width: 80%; max-width: 1000px; }
 .profile-card { 
     display: flex; align-items: center; gap: 20px; 
     background: #161B22; padding: 15px 30px; 
     border-radius: 100px; border: 1px solid #30363D; 
 }
-.profile-pic { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; }
-.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
-.card-arrow { margin-left: auto; color: #8B949E; font-size: 1.5rem; }
-
-/* --- NAV --- */
-.top-nav { position: absolute; top: 40px; right: 80px; z-index: 100; }
-.nav-links a { color: white; text-decoration: none; margin-left: 30px; opacity: 0.7; font-size: 0.9rem; }
+.profile-pic { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+.btn-say-hello { display: inline-block; padding: 10px 25px; border: 1px solid white; color: white; text-decoration: none; margin-top: 20px; }
