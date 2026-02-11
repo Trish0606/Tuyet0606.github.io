@@ -1,13 +1,17 @@
 :root {
     --bg: #0b0e14;
-    --bg-light: #161b22; /* Lighter black for copyright */
+    --bg-light: #161b22;
     --accent: #00d4ff;
-    --dull-white: #c5c5c5;
+    --pure-white: #ffffff; /* Restored for Name & Footer Msg */
+    --dull-white: #c5c5c5; /* Kept for section headers */
     --border: rgba(255, 255, 255, 0.08);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
+/* SCRIPTS LOCK THE SCROLL HERE */
+body.lock-scroll { height: 100vh; overflow: hidden; }
 body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
 /* --- HERO CENTERED --- */
@@ -15,12 +19,21 @@ body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; ov
 .hero-content { position: relative; z-index: 10; width: 100%; }
 .hero-actions { margin-top: 50px; display: flex; justify-content: center; gap: 20px; }
 
-.fade-name { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 800; color: var(--dull-white); opacity: 0; animation: simpleFade 1s ease forwards 1.2s; }
+/* NAME RESTORED TO PURE WHITE */
+.fade-name { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 800; color: var(--pure-white); opacity: 0; animation: simpleFade 1s ease forwards 1.2s; }
 .type-hello { font-size: 1.4rem; font-weight: 300; border-right: 2px solid var(--accent); white-space: nowrap; overflow: hidden; width: 0; margin: 0 auto 15px; animation: typing 1s steps(20) forwards, blink 0.8s infinite; }
 .bg-fade-layer { opacity: 0; animation: simpleFade 1.5s ease forwards 2.2s; }
 
 @keyframes typing { from { width: 0 } to { width: 140px } }
 @keyframes simpleFade { to { opacity: 1; } }
+
+/* --- THE BARRIER --- */
+.hero-barrier {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin-bottom: 50px;
+}
 
 /* --- BUTTERFLIES --- */
 .butterfly-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; pointer-events: none; }
@@ -34,26 +47,22 @@ body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; ov
 .section-title { font-size: 3rem; font-weight: 800; margin-bottom: 40px; color: var(--dull-white); }
 .section-tag { color: var(--accent); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
 
-/* Grid Layouts */
 .container { width: 85%; max-width: 1100px; }
 .about-grid { display: grid; grid-template-columns: 350px 1fr; gap: 60px; align-items: center; }
 .profile-rectangle { width: 100%; height: 450px; border: 1px solid var(--border); overflow: hidden; }
 .profile-rectangle img { width: 100%; height: 100%; object-fit: cover; }
-.experience-grid, .project-columns { margin-top: 20px; }
-.exp-item { padding: 30px 0; border-bottom: 1px solid var(--border); }
-.exp-header h3, .project-box h3 { color: var(--dull-white); }
 
 /* --- FOOTER & COPYRIGHT --- */
 .footer { padding-top: 120px; text-align: center; position: relative; }
-.footer-msg { font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; color: var(--dull-white); margin-bottom: 30px; }
+
+/* FOOTER MESSAGE RESTORED TO PURE WHITE */
+.footer-msg { font-size: clamp(3rem, 6vw, 5rem); font-weight: 800; color: var(--pure-white); margin-bottom: 30px; }
 .footer-email-btn { display: inline-block; font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; color: white; text-decoration: none; border: 1px solid white; padding: 15px 45px; margin-bottom: 60px; transition: 0.3s; }
-.footer-email-btn:hover { background: white; color: black; }
 .footer-social-row { display: flex; justify-content: center; gap: 20px; align-items: center; margin-bottom: 80px; }
 .footer-social-row a { text-decoration: none; color: white; font-weight: 700; }
-.plus { color: var(--accent); }
 
-/* COPYRIGHT BAR */
-.footer-bottom-bar { background: var(--bg-light); border-top: 1px solid var(--border); padding: 40px 0; color: #555; font-size: 12px; letter-spacing: 2px; }
+/* COPYRIGHT CENTERED & STYLED */
+.footer-bottom-bar { background: var(--bg-light); border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: #555; font-size: 12px; letter-spacing: 2px; }
 
 /* UTILS */
 .btn-primary, .btn-secondary { display: inline-block; padding: 15px 40px; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; }
@@ -62,6 +71,5 @@ body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; ov
 .taskbar { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 1000; }
 .taskbar-inner { background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(20px); padding: 12px 35px; border-radius: 100px; border: 1px solid var(--border); display: flex; gap: 25px; }
 .taskbar a { color: white; text-decoration: none; font-size: 13px; opacity: 0.6; }
-.replay-btn { position: fixed; bottom: 30px; right: 30px; z-index: 2000; background: none; border: 1px solid #333; color: #555; padding: 8px 18px; border-radius: 20px; cursor: pointer; }
 .reveal { opacity: 0; transform: translateY(30px); transition: 1.2s ease-out; }
 .reveal.active { opacity: 1; transform: translateY(0); }
