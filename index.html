@@ -10,9 +10,8 @@
 <body class="lock-scroll">
 
     <script>
-        // Stop scroll until intro is finished
         window.scrollTo(0, 0);
-        setTimeout(() => { document.body.classList.remove('lock-scroll'); }, 5500); 
+        setTimeout(() => { document.body.classList.remove('lock-scroll'); }, 5000); 
     </script>
 
     <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
@@ -30,11 +29,11 @@
         <canvas id="trailCanvas" class="delayed-reveal"></canvas>
         
         <div class="butterfly-container delayed-reveal">
-            <div class="bf species-a" data-home-x="15" data-home-y="25"><span></span></div>
-            <div class="bf species-b" data-home-x="80" data-home-y="20"><span></span></div>
-            <div class="bf species-c" data-home-x="50" data-home-y="50"><span></span></div>
-            <div class="bf species-a" data-home-x="20" data-home-y="80"><span></span></div>
-            <div class="bf species-b" data-home-x="85" data-home-y="75"><span></span></div>
+            <div class="bf species-wide" data-home-x="15" data-home-y="25"><span></span></div>
+            <div class="bf species-tall" data-home-x="80" data-home-y="20"><span></span></div>
+            <div class="bf species-giant" data-home-x="50" data-home-y="50"><span></span></div>
+            <div class="bf species-wide" data-home-x="20" data-home-y="80"><span></span></div>
+            <div class="bf species-tall" data-home-x="85" data-home-y="75"><span></span></div>
         </div>
 
         <div class="hero-content">
@@ -42,12 +41,14 @@
                 <p class="type-hello">Hello, I'm</p>
                 <h1 class="fade-name">Tuyet Nguyen</h1>
                 <div class="hero-actions delayed-reveal">
-                    <a href="mailto:hello@tuyetnguyen.com" class="btn-primary">Say Hello</a>
-                    <a href="#projects" class="btn-secondary">View My Work</a>
+                    <a href="#projects" class="btn-primary">View My Work</a>
+                    <a href="#contact" class="btn-secondary">Contact Me</a>
                 </div>
             </div>
         </div>
     </header>
+
+    <div class="section-divider"></div>
 
     <main class="content-wrapper">
         <section id="about" class="section-block reveal">
@@ -57,29 +58,33 @@
                     <div class="about-info">
                         <span class="section-tag"><span class="blue-num">01 /</span> Profile</span>
                         <h2 class="section-title">About Me</h2>
-                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences.</p>
+                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences. I blend organic textures with precise technology.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="experience" class="section-block reveal">
-            <div class="section-border-top"></div>
             <div class="container">
                 <span class="section-tag"><span class="blue-num">02 /</span> Journey</span>
                 <h2 class="section-title">Experience</h2>
-                <div class="exp-item">
-                    <div class="exp-row"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
-                    <p>Studio Meta • Interactive Design</p>
+                <div class="exp-list">
+                    <div class="exp-item">
+                        <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
+                        <p>Studio Meta • Interactive Design</p>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-header"><h3>Visual Designer</h3><span>2022 — 2024</span></div>
+                        <p>Freelance • Digital Branding</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="section-block reveal">
-            <div class="section-border-top"></div>
             <div class="container">
                 <span class="section-tag"><span class="blue-num">03 /</span> Work</span>
-                <h2 class="section-title">Projects</h2>
+                <h2 class="section-title">Selected Projects</h2>
                 <div class="project-grid">
                     <div class="project-card"><div class="project-image"></div></div>
                     <div class="project-card"><div class="project-image"></div></div>
@@ -89,8 +94,7 @@
     </main>
 
     <footer id="contact" class="footer reveal">
-        <div class="section-border-top"></div>
-        <div class="footer-center">
+        <div class="footer-main-content">
             <h2 class="footer-msg">Shoot me a msg</h2>
             <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
             <div class="footer-social-row">
@@ -99,7 +103,10 @@
                 <a href="#">IG</a>
             </div>
         </div>
-        <div class="copyright-bar"><p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p></div>
+        
+        <div class="copyright-section">
+            <p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
