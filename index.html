@@ -38,7 +38,6 @@
             <div class="bf" style="width:320px; height:240px;" data-home-x="50" data-home-y="45"><span></span></div>
             <div class="bf" style="width:220px; height:160px;" data-home-x="15" data-home-y="75"><span></span></div>
             <div class="bf" style="width:260px; height:260px;" data-home-x="80" data-home-y="80"><span></span></div>
-            <div class="bf" style="width:200px; height:140px;" data-home-x="40" data-home-y="10"><span></span></div>
         </div>
 
         <div class="hero-content">
@@ -55,7 +54,9 @@
         <section id="about" class="section-block reveal">
             <div class="container">
                 <div class="about-grid">
-                    <div class="profile-rectangle"><img src="images/profile.jpg" alt="Tuyet"></div>
+                    <div class="profile-rectangle">
+                        <img src="images/profile.jpg" alt="Profile">
+                    </div>
                     <div class="about-info">
                         <span class="section-tag"><span class="blue-num">01 /</span> Profile</span>
                         <h2 class="section-title">About Me</h2>
@@ -64,11 +65,23 @@
                 </div>
             </div>
         </section>
+
+        <section id="projects" class="section-block reveal">
+            <div class="section-border-top"></div>
+            <div class="container">
+                <span class="section-tag"><span class="blue-num">02 /</span> Work</span>
+                <h2 class="section-title">Selected Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card"><div class="project-image"></div></div>
+                    <div class="project-card"><div class="project-image"></div></div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer id="contact" class="footer reveal">
         <div class="section-border-top"></div>
-        <div class="container footer-flex-center">
+        <div class="footer-inner">
             <h2 class="footer-msg">Shoot me a msg</h2>
             <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
             <div class="footer-social-row">
@@ -77,64 +90,11 @@
                 <a href="#">IG</a>
             </div>
         </div>
-        <div class="copyright-bar"><p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p></div>
+        <div class="copyright-bar">
+            <p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p>
+        </div>
     </footer>
 
-    <script>
-        const canvas = document.getElementById('trailCanvas');
-        const ctx = canvas.getContext('2d');
-        const bfs = document.querySelectorAll('.bf');
-        let particles = [];
-        let mX = -2000, mY = -2000;
-
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize); resize();
-        document.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x; this.y = y;
-                this.size = Math.random() * 3 + 1;
-                this.opacity = 1;
-                this.vX = (Math.random() - 0.5) * 0.7;
-                this.vY = (Math.random() - 0.5) * 0.7;
-            }
-            update() { this.x += this.vX; this.y += this.vY; this.opacity -= 0.01; }
-            draw() {
-                ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-            }
-        }
-
-        function animate(time) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            bfs.forEach((bf, i) => {
-                const hX = (window.innerWidth * bf.dataset.homeX) / 100;
-                const hY = (window.innerHeight * bf.dataset.homeY) / 100;
-                const fX = Math.sin(time * 0.0015 + i) * 30 + Math.sin(time * 0.0004 + i) * 90;
-                const fY = Math.cos(time * 0.0015 + i) * 30 + Math.cos(time * 0.0004 + i) * 90;
-                let curX = parseFloat(bf.style.left) || hX;
-                let curY = parseFloat(bf.style.top) || hY;
-                const d = Math.hypot(mX - curX, mY - curY);
-                let tX = (d < 250) ? mX : hX + fX;
-                let tY = (d < 250) ? mY : hY + fY;
-                let l = (d < 250) ? 0.07 : 0.015;
-                const nX = curX + (tX - curX) * l;
-                const nY = curY + (tY - curY) * l;
-                const a = Math.atan2(nY - curY, nX - curX) * (180 / Math.PI);
-                bf.style.left = nX + 'px'; bf.style.top = nY + 'px';
-                bf.style.transform = `translate(-50%, -50%) rotate(${a + 90}deg)`;
-                if (Math.random() > 0.3) particles.push(new Particle(nX, nY));
-            });
-            particles.forEach((p, i) => { p.update(); p.draw(); if (p.opacity <= 0) particles.splice(i, 1); });
-            requestAnimationFrame(animate);
-        }
-        requestAnimationFrame(animate);
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
