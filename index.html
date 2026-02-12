@@ -10,8 +10,20 @@
 <body class="lock-scroll">
 
     <script>
+        // Immediately force top of page
+        window.history.scrollRestoration = 'manual';
         window.scrollTo(0, 0);
-        setTimeout(() => { document.body.classList.remove('lock-scroll'); }, 5000); 
+
+        // Stay at top during the typing/fade intro
+        const lockInterval = setInterval(() => {
+            window.scrollTo(0, 0);
+        }, 10);
+
+        // Unlock after 5 seconds
+        setTimeout(() => {
+            clearInterval(lockInterval);
+            document.body.classList.remove('lock-scroll');
+        }, 5000); 
     </script>
 
     <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
@@ -58,7 +70,7 @@
                     <div class="about-info">
                         <span class="section-tag"><span class="blue-num">01 /</span> Profile</span>
                         <h2 class="section-title">About Me</h2>
-                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences. I blend organic textures with precise technology.</p>
+                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences.</p>
                     </div>
                 </div>
             </div>
@@ -68,15 +80,9 @@
             <div class="container">
                 <span class="section-tag"><span class="blue-num">02 /</span> Journey</span>
                 <h2 class="section-title">Experience</h2>
-                <div class="exp-list">
-                    <div class="exp-item">
-                        <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
-                        <p>Studio Meta • Interactive Design</p>
-                    </div>
-                    <div class="exp-item">
-                        <div class="exp-header"><h3>Visual Designer</h3><span>2022 — 2024</span></div>
-                        <p>Freelance • Digital Branding</p>
-                    </div>
+                <div class="exp-item">
+                    <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
+                    <p>Studio Meta • Interactive Design</p>
                 </div>
             </div>
         </section>
@@ -86,8 +92,8 @@
                 <span class="section-tag"><span class="blue-num">03 /</span> Work</span>
                 <h2 class="section-title">Selected Projects</h2>
                 <div class="project-grid">
-                    <div class="project-card"><div class="project-image"></div></div>
-                    <div class="project-card"><div class="project-image"></div></div>
+                    <div class="project-card"></div>
+                    <div class="project-card"></div>
                 </div>
             </div>
         </section>
