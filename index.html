@@ -1,107 +1,123 @@
-:root {
-    --bg-deep: #0b0e14;
-    --bg-light: #161b22;
-    --accent: #00d4ff;
-    --border-color: rgba(255, 255, 255, 0.15);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyet Nguyen | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
+</head>
+<body class="lock-scroll">
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg-deep); color: white; font-family: 'Inter', sans-serif; overflow-x: hidden; width: 100%; }
-body.lock-scroll { height: 100vh; overflow: hidden; }
+    <script>
+        window.history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+        const lockInterval = setInterval(() => { window.scrollTo(0, 0); }, 10);
+        setTimeout(() => {
+            clearInterval(lockInterval);
+            document.body.classList.remove('lock-scroll');
+        }, 5000); 
+    </script>
 
-/* --- HERO & CENTERED NAME --- */
-.hero { 
-    height: 100vh; 
-    width: 100%;
-    position: relative; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    overflow: hidden; 
-}
+    <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
 
-.hero-content {
-    position: relative;
-    z-index: 100; /* Name is on top */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+    <nav class="taskbar delayed-reveal">
+        <div class="taskbar-inner">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-/* --- BUTTERFLIES (BEHIND NAME) --- */
-.butterfly-container { 
-    position: absolute; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%; 
-    z-index: 10; /* Butterflies are behind name */
-    pointer-events: none; 
-}
-#trailCanvas { position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none; }
+    <header class="hero">
+        <canvas id="trailCanvas" class="delayed-reveal"></canvas>
+        
+        <div class="butterfly-container delayed-reveal">
+            <div class="bf species-wide" data-home-x="15" data-home-y="25"><span></span></div>
+            <div class="bf species-tall" data-home-x="80" data-home-y="20"><span></span></div>
+            <div class="bf species-giant" data-home-x="50" data-home-y="50"><span></span></div>
+            <div class="bf species-wide" data-home-x="20" data-home-y="80"><span></span></div>
+            <div class="bf species-tall" data-home-x="85" data-home-y="75"><span></span></div>
+        </div>
 
-.bf { position: absolute; transform-style: preserve-3d; }
-.bf span { 
-    display: block; width: 100%; height: 100%; 
-    background: url('images/butterfly.png') no-repeat center/contain; 
-    filter: drop-shadow(0 0 15px var(--accent)); 
-    animation: flap 0.3s infinite ease-in-out; 
-}
+        <div class="hero-content">
+            <p class="type-hello">Hello, I'm</p>
+            <h1 class="fade-name">Tuyet Nguyen</h1>
+            <div class="hero-actions delayed-reveal">
+                <a href="#projects" class="btn-primary">View My Work</a>
+                <a href="#contact" class="btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </header>
 
-.species-wide { width: 380px; height: 260px; }
-.species-tall { width: 240px; height: 300px; }
-.species-giant { width: 480px; height: 350px; }
+    <div class="full-border"></div>
 
-@keyframes flap { 0%, 100% { transform: rotateY(0deg); } 50% { transform: rotateY(80deg); } }
+    <main class="content-wrapper">
+        <section id="about" class="section-block reveal">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="profile-rectangle"><img src="images/profile.jpg" alt="Profile"></div>
+                    <div class="about-info">
+                        <span class="section-tag"><span class="blue-num">01 /</span> Profile</span>
+                        <h2 class="section-title">About Me</h2>
+                        <p class="section-text">I am a Senior Designer focused on creating high-end digital experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-/* --- INTRO TIMING --- */
-.type-hello {
-    font-size: 1.2rem; text-transform: uppercase; letter-spacing: 5px;
-    margin-bottom: 20px; border-right: 2px solid var(--accent);
-    white-space: nowrap; overflow: hidden; width: 0;
-    animation: typing 1.5s steps(20) forwards;
-}
-.fade-name { font-size: clamp(3.5rem, 10vw, 8.5rem); font-weight: 800; opacity: 0; animation: fadeInName 1.2s forwards 1.8s; }
-.delayed-reveal { opacity: 0; animation: fadeInAll 1.5s forwards 3.2s; }
+        <div class="full-border"></div>
 
-@keyframes typing { from { width: 0 } to { width: 175px } }
-@keyframes fadeInName { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeInAll { from { opacity: 0; } to { opacity: 1; } }
+        <section id="experience" class="section-block reveal">
+            <div class="container">
+                <span class="section-tag"><span class="blue-num">02 /</span> Journey</span>
+                <h2 class="section-title">Experience</h2>
+                <div class="exp-list">
+                    <div class="exp-item">
+                        <div class="exp-header"><h3>Creative Lead</h3><span>2024 — Pres</span></div>
+                        <p>Studio Meta • Interactive Design</p>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-header"><h3>Visual Designer</h3><span>2022 — 2024</span></div>
+                        <p>Freelance • Design Systems</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-/* --- SECTION STRUCTURE --- */
-.full-border { width: 100%; height: 1px; background: var(--border-color); }
-.section-block { padding: 160px 0; display: flex; justify-content: center; width: 100%; }
-.container { width: 85%; max-width: 1200px; margin: 0 auto; }
+        <div class="full-border"></div>
 
-.about-grid { display: grid; grid-template-columns: 450px 1fr; gap: 100px; align-items: center; text-align: left; }
-.profile-rectangle { width: 100%; height: 600px; background: var(--bg-light); border: 1px solid var(--border-color); }
+        <section id="projects" class="section-block reveal">
+            <div class="container">
+                <span class="section-tag"><span class="blue-num">03 /</span> Work</span>
+                <h2 class="section-title">Selected Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card"><div class="project-image"></div></div>
+                    <div class="project-card"><div class="project-image"></div></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-.exp-item { padding: 40px 0; border-bottom: 1px solid var(--border-color); text-align: left; }
-.exp-header { display: flex; justify-content: space-between; align-items: center; }
+    <div class="full-border"></div>
 
-.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 50px; }
-.project-card { width: 100%; height: 500px; background: var(--bg-light); border: 1px solid var(--border-color); }
+    <footer id="contact" class="footer reveal">
+        <div class="footer-main-content">
+            <h2 class="footer-msg">Shoot me a msg</h2>
+            <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
+            <div class="footer-social-row">
+                <a href="#" class="social-link">LINKEDIN</a> <span class="plus">+</span>
+                <a href="#" class="social-link">RESUME</a> <span class="plus">+</span>
+                <a href="#" class="social-link">IG</a>
+            </div>
+        </div>
+        
+        <div class="copyright-section">
+            <p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
 
-/* --- FOOTER & BLUE LINKS --- */
-.footer { padding-top: 150px; display: flex; flex-direction: column; align-items: center; }
-.footer-social-row { display: flex; gap: 30px; margin-top: 80px; align-items: center; }
-.social-link { color: var(--accent) !important; text-decoration: none !important; font-weight: 800; letter-spacing: 1px; }
-
-.copyright-section { 
-    width: 100%; background: var(--bg-light); 
-    padding: 60px 0; border-top: 1px solid var(--border-color); 
-    text-align: center; 
-}
-
-/* REPLAY & TASKBAR */
-.taskbar { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 1000; }
-.taskbar-inner { background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(15px); padding: 12px 35px; border-radius: 100px; border: 1px solid var(--border-color); display: flex; gap: 30px; }
-.taskbar a { color: white; text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; }
-.replay-btn { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background: var(--bg-light); border: 1px solid var(--border-color); color: #888; padding: 12px 25px; border-radius: 50px; cursor: pointer; }
-
-.btn-primary { background: white; color: black; padding: 20px 45px; text-decoration: none; font-weight: 800; }
-.btn-secondary { border: 1px solid var(--border-color); color: white; padding: 20px 45px; text-decoration: none; font-weight: 800; }
-.reveal { opacity: 0; transform: translateY(30px); transition: 1.5s; }
-.reveal.active { opacity: 1; transform: translateY(0); }
-.blue-num { color: var(--accent); font-weight: 800; }
-.section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; display: block; color: #666; }
+    <script src="script.js"></script>
+</body>
+</html>
