@@ -10,16 +10,9 @@
 <body class="lock-scroll">
 
     <script>
-        // Immediately force top of page
         window.history.scrollRestoration = 'manual';
         window.scrollTo(0, 0);
-
-        // Stay at top during the typing/fade intro
-        const lockInterval = setInterval(() => {
-            window.scrollTo(0, 0);
-        }, 10);
-
-        // Unlock after 5 seconds
+        const lockInterval = setInterval(() => { window.scrollTo(0, 0); }, 10);
         setTimeout(() => {
             clearInterval(lockInterval);
             document.body.classList.remove('lock-scroll');
@@ -60,7 +53,7 @@
         </div>
     </header>
 
-    <div class="section-divider"></div>
+    <div class="full-border"></div>
 
     <main class="content-wrapper">
         <section id="about" class="section-block reveal">
@@ -76,6 +69,8 @@
             </div>
         </section>
 
+        <div class="full-border"></div>
+
         <section id="experience" class="section-block reveal">
             <div class="container">
                 <span class="section-tag"><span class="blue-num">02 /</span> Journey</span>
@@ -86,6 +81,8 @@
                 </div>
             </div>
         </section>
+
+        <div class="full-border"></div>
 
         <section id="projects" class="section-block reveal">
             <div class="container">
@@ -99,14 +96,16 @@
         </section>
     </main>
 
+    <div class="full-border"></div>
+
     <footer id="contact" class="footer reveal">
         <div class="footer-main-content">
             <h2 class="footer-msg">Shoot me a msg</h2>
             <a href="mailto:hello@tuyetnguyen.com" class="footer-email-btn">SAY HELLO</a>
             <div class="footer-social-row">
-                <a href="#">LINKEDIN</a> <span class="plus">+</span>
-                <a href="#">RESUME</a> <span class="plus">+</span>
-                <a href="#">IG</a>
+                <a href="#" class="social-link">LINKEDIN</a> <span class="plus">+</span>
+                <a href="#" class="social-link">RESUME</a> <span class="plus">+</span>
+                <a href="#" class="social-link">IG</a>
             </div>
         </div>
         
