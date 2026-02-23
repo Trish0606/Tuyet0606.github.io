@@ -1,191 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tuyet Nguyen | Portfolio</title>
-    
-    <meta property="og:image" content="images/thumbnail.png">
-    <meta property="og:title" content="Tuyet Nguyen | Portfolio">
-    <meta property="og:description" content="Personal portfolio and creative showcase.">
-    
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
-</head>
-<body class="lock-scroll">
+<div class="full-border"></div>
 
-    <script>
-        window.history.scrollRestoration = 'manual';
-        window.scrollTo(0, 0);
-        const lockInterval = setInterval(() => { window.scrollTo(0, 0); }, 10);
-        setTimeout(() => {
-            clearInterval(lockInterval);
-            document.body.classList.remove('lock-scroll');
-        }, 5000); 
-    </script>
-
-    <button class="replay-btn" onclick="location.reload()">↺ Replay Intro</button>
-
-    <nav class="taskbar delayed-reveal">
-        <div class="taskbar-inner">
-            <a href="#about">About</a>
-            <a href="#experience">Journey</a>
-            <a href="#interests">Interests</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <canvas id="trailCanvas" class="delayed-reveal"></canvas>
+<section id="projects" class="section-block reveal">
+    <div class="container">
+        <span class="section-tag"><span class="blue-num">02.5 /</span> Creations</span>
+        <h2 class="section-title">Featured Projects</h2>
         
-        <div class="butterfly-container delayed-reveal">
-            <div class="bf species-giant" data-home-x="50" data-home-y="50"><span></span></div>
-            <div class="bf species-wide" data-home-x="20" data-home-y="30"><span></span></div>
-            <div class="bf species-tall" data-home-x="80" data-home-y="25"><span></span></div>
-            <div class="bf species-wide" data-home-x="15" data-home-y="75"><span></span></div>
-            <div class="bf species-tall" data-home-x="85" data-home-y="80"><span></span></div>
-        </div>
-
-        <div class="hero-content">
-            <p class="type-hello">Hello, I'm</p>
-            <h1 class="fade-name">Tuyet Nguyen</h1>
-            <div class="hero-actions delayed-reveal">
-                <a href="#interests" class="btn-primary">My Interests</a>
-                <a href="#contact" class="btn-secondary">Contact Me</a>
-            </div>
-        </div>
-    </header>
-
-    <div class="full-border"></div>
-
-    <main class="content-wrapper">
-        <section id="about" class="section-block reveal">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="profile-rectangle">
-                        <img src="images/profile.png" alt="Profile">
-                    </div>
-                    <div class="about-info">
-                        <span class="section-tag"><span class="blue-num">01 /</span> Profile</span>
-                        <h2 class="section-title">About Me</h2>
-                        <p class="section-text">I currently a Computer Science student at University of Houston, however I am transfering to San Jacintio College to switch into doing Bachelor's in Applied Technology.</p>
-                    </div>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-icon">🌤️</div>
+                <div class="project-info">
+                    <h3>WeatherView Dashboard</h3>
+                    <p>Real-time weather tracking using OpenWeather API and JavaScript.</p>
+                </div>
+                <div class="project-links">
+                    <a href="https://Trish0606.github.io/weather-dashboard" target="_blank" class="p-link">Live Demo</a>
+                    <a href="https://github.com/Trish0606/weather-dashboard" target="_blank" class="p-link secondary">Code</a>
                 </div>
             </div>
-        </section>
 
-        <div class="full-border"></div>
-
-        <section id="experience" class="section-block reveal">
-            <div class="container">
-                <span class="section-tag"><span class="blue-num">02 /</span> Journey</span>
-                <h2 class="section-title">Experience</h2>
-                <div class="exp-list">
-                    <div class="exp-item">
-                        <div class="exp-header"><h3>Barista</h3><span class="exp-date">2026 — Pres</span></div>
-                        <p class="exp-sub">Making Drinks • Customer Services</p>
-                    </div>
-                    <div class="exp-item">
-                        <div class="exp-header"><h3>Graphic Designer</h3><span class="exp-date">2025 — 2026</span></div>
-                        <p class="exp-sub">Digital Art • Edits & Posts</p>
-                    </div>
+            <div class="project-card">
+                <div class="project-icon">🕷️</div>
+                <div class="project-info">
+                    <h3>Automated News Scraper</h3>
+                    <p>Python script that pulls daily tech news using GitHub Actions automation.</p>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Trish0606/daily-web-scraper" target="_blank" class="p-link">View Code</a>
                 </div>
             </div>
-        </section>
-<section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="project-grid">
-        
-        <div class="project-card">
-            <div class="icon">🌤️</div>
-            <h3>WeatherView Dashboard</h3>
-            <p>Real-time weather tracking using OpenWeather API and JavaScript.</p>
-            <div class="links">
-                <a href="https://Trish0606.github.io/weather-dashboard" class="btn">Live Demo</a>
-                <a href="https://github.com/Trish0606/weather-dashboard" class="btn outline">Code</a>
+
+            <div class="project-card">
+                <div class="project-icon">🤖</div>
+                <div class="project-info">
+                    <h3>GitHub Activity Service</h3>
+                    <p>DevOps tool exploring Cron jobs and automated CI/CD pipelines.</p>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Trish0606/github-activity-bot" target="_blank" class="p-link">View Code</a>
+                </div>
             </div>
         </div>
-
-        <div class="project-card">
-            <div class="icon">🕷️</div>
-            <h3>Automated News Scraper</h3>
-            <p>Python script that pulls daily tech news using GitHub Actions automation.</p>
-            <div class="links">
-                <a href="https://github.com/Trish0606/daily-web-scraper" class="btn">View Code</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="icon">🤖</div>
-            <h3>GitHub Activity Service</h3>
-            <p>DevOps tool exploring Cron jobs and automated CI/CD pipelines.</p>
-            <div class="links">
-                <a href="https://github.com/Trish0606/github-activity-bot" class="btn">View Code</a>
-            </div>
-        </div>
-
     </div>
 </section>
-        <div class="full-border"></div>
-
-        <section id="interests" class="section-block reveal">
-            <div class="container">
-                <span class="section-tag"><span class="blue-num">03 /</span> Personal</span>
-                <h2 class="section-title">Interests & Hobbies</h2>
-
-                <div class="hobby-row">
-                    <div class="hobby-text">
-                        <p>I love to draw ever since I was a kid. I spent my free time drawing different styles. Here is a digital drawing I made as miniature figure of me.</p>
-                    </div>
-                    <div class="hobby-image-wrapper">
-                        <img src="images/drawings.png" alt="Drawing" class="drawing-sticker">
-                    </div>
-                </div>
-
-                <div class="hobby-row reverse">
-                    <div class="hobby-text">
-                        <p>I also love building legos. Since then I started robotics in 3rd grade and then in intermediate school I won first place with my teammates in one of the robotics competition held at CTHS.</p>
-                    </div>
-                    <div class="hobby-image-wrapper">
-                        <img src="images/robotics.png" alt="Robotics" class="hobby-img">
-                    </div>
-                </div>
-
-                <div class="hobby-row">
-                    <div class="hobby-text">
-                        <p>I also love penguins as a kid and so I have a collection of them.</p>
-                    </div>
-                    <div class="hobby-image-wrapper">
-                        <img src="images/penguins.png" alt="Penguins" class="hobby-img">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div class="full-border"></div>
-
-    <footer id="contact" class="footer reveal">
-        <div class="footer-main-content">
-            <p class="footer-sub-msg">What are you waiting for?</p>
-            <h2 class="footer-msg">Shoot me a msg</h2>
-            <a href="mailto:tuyet.thien.nguyen@gmail.com" class="footer-email-btn">SAY HELLO</a>
-            <div class="footer-social-row">
-    <a href="https://www.linkedin.com/in/tuyetthiennguyen/" target="_blank" class="social-link">LINKEDIN</a> 
-    <span class="plus">+</span>
-    
-    <a href="images/Tuyet_Nguyen_Resume.pdf" target="_blank" class="social-link">RESUME</a> 
-    <span class="plus">+</span>
-    
-    <a href="https://www.instagram.com/empty_2006candy" target="_blank" class="social-link">IG</a>
-</div>
-        </div>
-        
-        <div class="copyright-section">
-            <p>© 2026 TUYET NGUYEN — ALL RIGHTS RESERVED</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
