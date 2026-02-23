@@ -86,3 +86,46 @@ body.lock-scroll { height: 100vh; overflow: hidden; }
 .blue-num { color: var(--accent); font-weight: 800; }
 .section-tag { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 25px; display: block; color: #777; }
 .section-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 60px; text-align: left; }
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.project-card {
+    background: #ffffff;
+    border: 1px solid #e1e4e8;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.project-card .icon { font-size: 2rem; margin-bottom: 10px; }
+.project-card h3 { margin: 10px 0; color: #24292e; }
+.project-card p { color: #586069; font-size: 0.9rem; line-height: 1.5; }
+
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.btn.outline {
+    background: transparent;
+    border: 1px solid #28a745;
+    color: #28a745;
+    margin-left: 8px;
+}
